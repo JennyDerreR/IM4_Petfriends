@@ -20,9 +20,11 @@ label {
 }
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
   width: 200px;
   padding: 4px;
+  margin-left: 60px;
 }
 
 button {
