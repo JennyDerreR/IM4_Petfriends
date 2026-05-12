@@ -1,28 +1,16 @@
 // profil.js
 
-async function loadProfile () {
-  try {
-    const response = await fetch("api/profil.php", {
-      credentials: "include",
-    });
-    const result = await response.json();
-    console.log ("Profile data:", result);
 
-      if (result.status === "error") {
-        window.location.href = "login.html";
-        return;
-      }
 
-      document.querySelector("#familienname").value = result.familienname || "";
-      document.querySelector("#email").value = result.email || "";
+document.addEventListener("DOMContentLoaded", async () => {
+  const userData = await loadProfile();
 
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Something went wrong!");
-      }
-}
+  if (userData) {
+    document.querySelector("#familienname").value = userData.familienname || "";
+    document.querySelector("#email").value = userData.email || "";
+  }
 
-loadProfile();
+});
 
 document.getElementById("profilForm")
   .addEventListener("submit", async (e) => {
