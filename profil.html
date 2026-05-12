@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Profil</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+
+    <h2>TEST VERSION 123</h2>
     <h1>Profil</h1>
 
     <form id="profilForm">
@@ -13,13 +15,26 @@
         <label>Familienname</label>
         <input type="text" id="familienname"  />
       </div>
-      <div>
 
+      <div>
+        <label>Email</label>
+        <input type="email" id="email" readonly />
+      </div>
+
+      <div>
+        <p>Passwort Ändern</p> <!-- Labels gehören zu Inputfileds, deshalb hier p -->
+
+        <button type="button" id="passwortAendern">
+          Passwort Ändern
+        </button>
+      </div>
+      
       <button type="submit">Anpassen</button>
 
     </form>
 
     <script src="js/auth.js"></script>
     <script src="js/profil.js"></script>
+
   </body>
 </html>
