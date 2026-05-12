@@ -9,33 +9,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = json_decode(file_get_contents("php://input"), true);
 
-    $email    = trim($data['email'] ?? '');
-    $password = trim($data['password'] ?? '');
+    $email          = trim($data['email'] ?? '');
+    $password       = trim($data['password'] ?? '');
+    $familienname   = trim($data['familienname'] ?? '');
 
-    if (!$email || !$password) {
-        echo json_encode(["status" => "error", "message" => "Email and password are required"]);
+    if (!$email || !$password || !$familienname) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Email, Passwort und Familienname sind erforderlich"
+        ]);
         exit;
     }
 
-    // Check if email already exists
+    // Prüfen ob Email bereits existiert
     $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email");
     $stmt->execute([':email' => $email]);
+
     if ($stmt->fetch()) {
-        echo json_encode(["status" => "error", "message" => "Email is already in use"]);
+        echo json_encode([
+            "status" => "error",
+            "message" => "Email wird bereits verwendet"
+        ]);
         exit;
     }
 
-    // Hash the password
+    // Passwort hashen
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert the new user
-    $insert = $pdo->prepare("INSERT INTO users (email, password) VALUES (:email, :pass)");
+    // Benutzer speichern
+    $insert = $pdo->prepare("
+        INSERT INTO users (email, password, familienname)
+        VALUES (:email, :pass, :familienname)
+    ");
+
     $insert->execute([
-        ':email' => $email,
-        ':pass'  => $hashedPassword
+        ':email'          => $email,
+        ':pass'           => $hashedPassword,
+        ':familienname'   => $familienname
     ]);
 
     echo json_encode(["status" => "success"]);
+
 } else {
-    echo json_encode(["status" => "error", "message" => "Invalid request method"]);
+
+    echo json_encode([
+        "status" => "error",
+        "message" => "Ungültige Anfrage"
+    ]);
 }
