@@ -76,7 +76,7 @@ document
       if (result.status === "success") {
 
         alert(
-          "Eine Email zum Zurücksetzen wurde gesendet."
+          "Dies ist ein Protoyp. Sie erhalten dehalb keine E-Mail. Normalerweise würde nun eine E-Mail zum Zurücksetzen gesendet werden."
         );
 
       } else {
