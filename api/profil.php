@@ -4,6 +4,15 @@ session_start();
 
 include_once '../system/config.php';
 
+if (!isset($_SESSION['user_id'])) {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => "Nicht eingeloggt"
+    ]);
+
+    exit;
+}
 
 $userID = $_SESSION['user_id'];
 

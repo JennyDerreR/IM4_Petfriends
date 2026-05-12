@@ -8,13 +8,18 @@ async function loadProfile () {
     const result = await response.json();
     console.log ("Profile data:", result);
 
-    document.querySelector("#familienname").value = result.familienname || "";
-    document.querySelector("#email").value = result.email || "";
+      if (result.status === "error") {
+        window.location.href = "login.html";
+        return;
+      }
 
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong!");
-  }
+      document.querySelector("#familienname").value = result.familienname || "";
+      document.querySelector("#email").value = result.email || "";
+
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Something went wrong!");
+      }
 }
 
 loadProfile();
@@ -35,11 +40,6 @@ document.getElementById("profilForm")
       });
       const result = await response.json();
       console.log("Update response:", result);
-
-      if (result.status === "error") { 
-        window.location.href = "login.html";
-        return;
-    }
 
     loadProfile(); // Refresh profile data after update
 
