@@ -24,18 +24,15 @@ const months = [
 currentDate.textContent =
   `📅 ${weekdays[today.getDay()]}, ${today.getDate()}. ${months[today.getMonth()]}`;
 
-// Ganze Woche anzeigen (7 Tage)
-for (let i = 0; i < 7; i++) {
-
+// 5 Tage anzeigen
+for (let i = 0; i < 5; i++) {
   const date = new Date();
-
   date.setDate(today.getDate() + i);
 
   const dayBox = document.createElement("div");
 
   dayBox.classList.add("day");
 
-  // Heutigen Tag markieren
   if (i === 0) {
     dayBox.classList.add("active");
   }
