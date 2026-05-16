@@ -24,6 +24,7 @@
 
 --------------------------------Register-------------------------------------------------
 
+/*
 * {
     box-sizing: border-box;
   }
@@ -147,7 +148,7 @@
   
   /* Mobile */
   
-  @media (max-width: 600px) {
+  /* @media (max-width: 600px) {
     body {
       padding: 18px;
     }
@@ -178,7 +179,7 @@
     }
   }
 
-
+*/
 
   --------------------------------Login-------------------------------------------------
 
@@ -188,7 +189,10 @@
 
 
     ------------------Näpfe-------------------------------
-    * {
+
+    /* 
+    
+   * {
       box-sizing: border-box;
     }
     
@@ -324,7 +328,7 @@
     
     /* Mobile */
     
-    @media (max-width: 700px) {
+    /* @media (max-width: 700px) {
       h1 {
         font-size: 42px;
       }
@@ -355,8 +359,12 @@
         font-size: 16px;
       }
     }
+     */ 
 
 ----------------------------------Kids------------------------------------------------- 
+
+/* Reuse the same styles as the register page */
+
 
 * {
   box-sizing: border-box;
@@ -534,3 +542,4 @@ body {
     margin: 0 auto;
   }
 }
+

@@ -1,64 +1,149 @@
+
 /* ------------------------------------------------- GRUNDREGELN ------------------------------------------------- */
 
-
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
 
 /* ------------------------------------------------- FARBEN ----------------------------------------------------- */
 
-/* Colorpalette: 
+:root {
+  --color-background: #FFF8F2;
+  --color-surface: #FFFCFA;
 
-#FFF8F2 Farbe 1;
-#FFFCFA Farbe 2;
-#D5B4EB Farbe 3;
-#6244B4 Farbe 4;
-#362664 Farbe 5;
-#7BC47F Farbe 6;
-#F4AB4F Farbe 7;
-#DA5045 Farbe 8;  /* 
+  --color-primary: #D5B4EB;
+  --color-secondary: #6244B4;
+  --color-text: #0f0b1d;
+
+  --color-status-good: #7BC47F;
+  --color-status-warning: #F4AB4F;
+  --color-status-critical: #DA5045;
+}
+
 /* ------------------------------------------------- FONTS ----------------------------------------------------- */
 
-/* ------------------------------------------------- FONT-GROESSE ----------------------------------------------------- */
-
-/* ------------------------------------------------- ABSTAND ----------------------------------------------------- */
-
-/* ------------------------------------------------- BUTTONS ----------------------------------------------------- */
-
-/* ------------------------------------------------- SONSTIGES ----------------------------------------------------- */
-
-
-
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  max-width: 600px;
-  line-height: 1.5;
+  font-family: 'Nunito', sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 h1 {
-  margin-bottom: 1em;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
+h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------- ABSTÄNDE ----------------------------------------------------- */
+
+body {
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------- BILDER ----------------------------------------------------- */
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ------------------------------------------------- BUTTONS UND LINKS----------------------------------------------------- */
+
+button a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+button {
+  display: inline-block;
+
+  padding: 0.75rem 1rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--color-primary);
+  color: var(--color-text);
+
+  font-size: 1rem;
+  font-family: inherit;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+button:active {
+  background-color: var(--color-secondary);
+  transform: scale(0.97);
+}
+
+------------------------------------------------ SONSTIGES ----------------------------------------------------- */
+
 form > div {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 label {
-  display: inline-block;
-  width: 80px;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 input[type="email"],
 input[type="password"],
 input[type="text"] {
-  width: 200px;
-  padding: 4px;
-  margin-left: 60px;
+  width: 100%;
+
+  padding: 0.75rem 1rem;
+
+  border: none;
+  border-radius: 0.75rem;
+
+  font-family: inherit;
 }
 
-button {
-  padding: 8px 16px;
-  cursor: pointer;
-}
-
-p {
-  margin-top: 1em;
+html {
+  scroll-behavior: smooth;
 }
