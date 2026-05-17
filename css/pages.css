@@ -37,8 +37,57 @@
   font-size: 1.05rem;
 }
 
-
 /* ------------------------------------------------- REGSITER ------------------------------------------------- */
+
+.petcareLogo {
+  width: 70%;
+  height: auto;
+  margin-bottom: 0;
+}
+
+.HeroSectionRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+form#registerForm button {
+  display: block;
+  width: 100%;
+  margin: 1.25rem 0 0;
+  padding: 0.95rem 1.25rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+
+a {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Icons in the register page: uniform size and single-row on all viewports */
+.IconSection {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0.25rem 0;
+}
+
+.IconSection img,
+.IconSection .icon {
+  width: auto;
+  height: 64px;
+  flex: 0 1 auto;
+  min-width: 48px;
+  max-width: 64px;
+  object-fit: contain;
+  display: block;
+}
 
 /* ------------------------------------------------- LOGIN ----------------------------------------------------- */
 
