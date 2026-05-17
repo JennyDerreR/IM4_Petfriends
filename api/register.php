@@ -9,14 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = json_decode(file_get_contents("php://input"), true);
 
+    $lastname   = trim($data['lastname'] ?? '');
+    $firstname         = trim($data['firstname'] ?? '');
     $email          = trim($data['email'] ?? '');
     $password       = trim($data['password'] ?? '');
-    $familienname   = trim($data['familienname'] ?? '');
+    
 
-    if (!$email || !$password || !$familienname) {
+    if (!$lastname || !$firstname || !$email || !$password) {
         echo json_encode([
             "status" => "error",
-            "message" => "Email, Passwort und Familienname sind erforderlich"
+            "message" => "Nachname, Vorname, Email und Passwort sind erforderlich"
         ]);
         exit;
     }
@@ -38,14 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Benutzer speichern
     $insert = $pdo->prepare("
-        INSERT INTO users (email, password, familienname)
-        VALUES (:email, :pass, :familienname)
+        INSERT INTO users (email, password, lastname, firstname)
+        VALUES (:email, :pass, :lastname, :firstname)
     ");
 
     $insert->execute([
         ':email'          => $email,
         ':pass'           => $hashedPassword,
-        ':familienname'   => $familienname
+        ':lastname'       => $lastname,
+        ':firstname'      => $firstname
     ]);
 
     echo json_encode(["status" => "success"]);
