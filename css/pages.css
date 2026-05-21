@@ -696,7 +696,74 @@ body {
 /* ------------------------------------------------ PROFIL ----------------------------------------------------- */
 
 /* ------------------------------------------------- FOOTER ----------------------------------------------------- */
+-----------------------registeranimal------------------------------
+.modal.hidden {
+  display: none;
+}
 
+.modal {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff8f1;
+
+  width: 90%;
+  max-width: 450px;
+
+  padding: 32px;
+
+  border-radius: 28px;
+}
+
+.modal-content h2 {
+  margin-bottom: 24px;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content label {
+  font-weight: bold;
+}
+
+.modal-content input {
+  padding: 12px;
+
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.modal-buttons button,
+#openAnimalModal {
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: #d2a8eb;
+
+  cursor: pointer;
+}
 
 
     ------------------Näpfe-------------------------------
@@ -1046,4 +1113,5 @@ body {
     margin: 0 auto;
   }
 }
+
 

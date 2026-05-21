@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userData = await loadProfile();
 
   if (userData) {
-    document.querySelector("#familienname").value = userData.familienname || "";
+    document.querySelector("#lastname").value = userData.lastname || "";
     document.querySelector("#email").value = userData.email || "";
   }
 
@@ -16,7 +16,7 @@ document.getElementById("profilForm")
   .addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const familienname = document.getElementById("familienname").value.trim();
+    const lastname = document.getElementById("lastname").value.trim();
 
     try {
         const response = await fetch("api/profilUpdate.php", {
@@ -24,7 +24,7 @@ document.getElementById("profilForm")
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ familienname }),
+        body: JSON.stringify({ lastname }),
       });
       const result = await response.json();
       console.log("Update response:", result);
