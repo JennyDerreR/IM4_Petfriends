@@ -487,6 +487,30 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
 }
  
 .btn-add:hover { background: var(--purple-dark); }
+
+/* ── No-family UI: Elemente untereinander ── */
+.add-form.no-family {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.add-form.no-family p {
+  margin: 0;
+}
+
+.add-form.no-family input,
+.add-form.no-family .btn-add {
+  width: 100%;
+}
+
+.member-you {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-secondary);
+  background: var(--surface2);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
  
 /* ── Invite code ── */
 .invite-box {

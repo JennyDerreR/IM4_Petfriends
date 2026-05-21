@@ -72,6 +72,7 @@ async function loadFamily() {
   // Invite-Box und Mitgliederliste wieder einblenden (falls vorher versteckt)
   document.querySelector('.invite-box').style.display = '';
   document.querySelector('.settings-card').style.display = '';
+  document.querySelector('.add-form').classList.remove('no-family');
 
   // Einladungscode anzeigen
   document.getElementById('invite-code').textContent = data.invite_code;
@@ -94,16 +95,21 @@ async function loadFamily() {
     </div>
   `).join('');
 
+  document.querySelector('.add-form').style.display = 'none';
+
   // Formular zurücksetzen auf normales "Hinzufügen"-Feld
-  document.querySelector('.add-form').innerHTML = `
+  /* document.querySelector('.add-form').innerHTML = `
     <input type="text" id="new-member-input" placeholder="Einladungscode eingeben" />
     <button class="btn-add" onclick="joinByCode()">Hinzufügen</button>
-  `;
+  `; */
 }
 
 function showNoFamilyUI() {
   document.querySelector('.invite-box').style.display = 'none';
   document.querySelector('.settings-card').style.display = 'none';
+
+   // NEU: Klasse hinzufügen damit alles untereinander ist
+  document.querySelector('.add-form').classList.add('no-family');
 
   document.querySelector('.add-form').innerHTML = `
     <p style="margin-bottom:8px; font-weight:600">Du gehörst noch keiner Familie an</p>
