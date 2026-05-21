@@ -96,12 +96,6 @@ async function loadFamily() {
   `).join('');
 
   document.querySelector('.add-form').style.display = 'none';
-
-  // Formular zurücksetzen auf normales "Hinzufügen"-Feld
-  /* document.querySelector('.add-form').innerHTML = `
-    <input type="text" id="new-member-input" placeholder="Einladungscode eingeben" />
-    <button class="btn-add" onclick="joinByCode()">Hinzufügen</button>
-  `; */
 }
 
 function showNoFamilyUI() {
@@ -232,9 +226,20 @@ function closeDeleteModal(e) {
   }
 }
 
-function confirmDelete() {
-  localStorage.clear();
-  // TODO: call your backend API to actually delete the account
-  alert('Account deleted. (Demo only — nothing was actually deleted.)');
-  closeDeleteModal();
+async function confirmDelete() {
+  // PHP: User aus der Datenbank löschen
+  const res  = await fetch('api/family.php?action=delete_account', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  const data = await res.json();
+
+  if (data.status === 'ok') {
+    // LocalStorage leeren und zur Login-Seite
+    localStorage.clear();
+    window.location.href = 'index.html'; // passe den Link zu deiner Login-Seite an
+  } else {
+    showToast('Fehler beim Löschen: ' + data.message, true);
+    closeDeleteModal();
+  }
 }
