@@ -9,18 +9,10 @@ session_start();
 try {
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (!$data) {
+    if (!$data || empty($data["kidsname"])) {
         echo json_encode([
             "status" => "error",
-            "message" => "Keine Daten empfangen"
-        ]);
-        exit;
-    }
-
-    if (empty($data["kid_id"]) || !isset($data["amount"])) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Ungültige Daten"
+            "message" => "Kein Name eingegeben"
         ]);
         exit;
     }
@@ -33,8 +25,7 @@ try {
         exit;
     }
 
-    $kid_id = (int) $data["kid_id"];
-    $amount = (int) $data["amount"];
+    $kidsname = trim($data["kidsname"]);
     $family_id = (int) $_SESSION["family_id"];
 
     $pdo = new PDO(
@@ -46,22 +37,26 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $sql = "
-        UPDATE kids
-        SET token = GREATEST(token + :amount, 0)
-        WHERE id = :kid_id
-        AND family_id = :family_id
+        INSERT INTO kids (
+            kidsname,
+            family_id
+        )
+        VALUES (
+            :kidsname,
+            :family_id
+        )
     ";
 
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute([
-        ":amount" => $amount,
-        ":kid_id" => $kid_id,
+        ":kidsname" => $kidsname,
         ":family_id" => $family_id
     ]);
 
     echo json_encode([
-        "status" => "success"
+        "status" => "success",
+        "message" => "Kind erfolgreich gespeichert"
     ]);
 
 } catch (Exception $e) {
@@ -70,4 +65,3 @@ try {
         "message" => $e->getMessage()
     ]);
 }
-?>
