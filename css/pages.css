@@ -670,6 +670,60 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
 
 /* ------------------------------------------------- FOOTER ----------------------------------------------------- */
 
+/* ── Footer / Bottom Navigation ── */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.bottom-nav {
+  background: var(--color-surface, #fff);
+  border-top: 1px solid var(--border, #E8E6F5);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 8px 24px;
+  box-shadow: 0 -2px 12px rgba(98,68,180,0.06);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-secondary, #7A7899);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 18px;
+  transition: color 0.2s, background 0.2s;
+}
+
+  .nav-item img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  opacity: 0.45;
+}
+
+.nav-item.active {
+  background: #7C6FF7;
+  color: #fff;
+  gap: 8px;
+}
+
+.nav-item.active img {
+  opacity: 1;
+}
+
+.nav-item.active span {
+  color: #fff;
+}
+
 
 
     ------------------Näpfe-------------------------------
