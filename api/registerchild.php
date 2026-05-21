@@ -9,10 +9,23 @@ session_start();
 try {
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (!$data || empty($data["kidsname"])) {
+    if (!$data) {
         echo json_encode([
             "status" => "error",
-            "message" => "Kein Name eingegeben"
+            "message" => "Keine Daten empfangen"
+        ]);
+        exit;
+    }
+
+    if (
+        empty($data["animal_name"]) ||
+        empty($data["snr"]) ||
+        empty($data["neededgramms"]) ||
+        empty($data["child_id"])
+    ) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Bitte alle Felder ausfüllen"
         ]);
         exit;
     }
@@ -25,7 +38,10 @@ try {
         exit;
     }
 
-    $kidsname = trim($data["kidsname"]);
+    $animal_name = trim($data["animal_name"]);
+    $snr = trim($data["snr"]);
+    $neededgramms = trim($data["neededgramms"]);
+    $child_id = (int) $data["child_id"];
     $family_id = (int) $_SESSION["family_id"];
 
     $pdo = new PDO(
@@ -36,13 +52,39 @@ try {
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $checkChild = $pdo->prepare("
+        SELECT id
+        FROM kids
+        WHERE id = :child_id
+        AND family_id = :family_id
+    ");
+
+    $checkChild->execute([
+        ":child_id" => $child_id,
+        ":family_id" => $family_id
+    ]);
+
+    if (!$checkChild->fetch()) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Dieses Kind gehört nicht zu dieser Familie"
+        ]);
+        exit;
+    }
+
     $sql = "
-        INSERT INTO kids (
-            kidsname,
+        INSERT INTO petbowls (
+            animal_name,
+            snr,
+            neededgramms,
+            child_id,
             family_id
         )
         VALUES (
-            :kidsname,
+            :animal_name,
+            :snr,
+            :neededgramms,
+            :child_id,
             :family_id
         )
     ";
@@ -50,13 +92,16 @@ try {
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute([
-        ":kidsname" => $kidsname,
+        ":animal_name" => $animal_name,
+        ":snr" => $snr,
+        ":neededgramms" => $neededgramms,
+        ":child_id" => $child_id,
         ":family_id" => $family_id
     ]);
 
     echo json_encode([
         "status" => "success",
-        "message" => "Kind erfolgreich gespeichert"
+        "message" => "Tier erfolgreich gespeichert"
     ]);
 
 } catch (Exception $e) {
@@ -65,3 +110,5 @@ try {
         "message" => $e->getMessage()
     ]);
 }
+
+?>
