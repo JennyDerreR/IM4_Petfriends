@@ -7,47 +7,61 @@ require_once '../system/config.php';
 session_start();
 
 try {
-    $data = json_decode(file_get_contents("php://input"), true);
 
-    if (!$data) {
+    // JSON Daten holen
+    $data = json_decode(
+        file_get_contents("php://input"),
+        true
+    );
+
+    // Prüfen ob ID vorhanden
+    if (empty($data["kid_id"])) {
+
         echo json_encode([
             "status" => "error",
-            "message" => "Keine Daten empfangen"
+            "message" => "Keine Kind-ID erhalten"
         ]);
+
         exit;
     }
 
-    if (empty($data["kid_id"]) || !isset($data["amount"])) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Ungültige Daten"
-        ]);
-        exit;
-    }
-
-    if (empty($_SESSION["family_id"])) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Keine Familie angemeldet"
-        ]);
-        exit;
-    }
-
+    // Werte holen
     $kid_id = (int) $data["kid_id"];
-    $amount = (int) $data["amount"];
     $family_id = (int) $_SESSION["family_id"];
 
+    // Datenbank verbinden
     $pdo = new PDO(
         "mysql:host=$host;dbname=$db;charset=utf8mb4",
         $user,
         $pass
     );
 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(
+        PDO::ATTR_ERRMODE,
+        PDO::ERRMODE_EXCEPTION
+    );
 
+    /*
+      ZUERST:
+      Alle verknüpften Näpfe löschen
+    */
     $sql = "
-        UPDATE kids
-        SET token = GREATEST(token + :amount, 0)
+        DELETE FROM petbowls
+        WHERE child_id = :kid_id
+    ";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+        ":kid_id" => $kid_id
+    ]);
+
+    /*
+      DANACH:
+      Kind löschen
+    */
+    $sql = "
+        DELETE FROM kids
         WHERE id = :kid_id
         AND family_id = :family_id
     ";
@@ -55,19 +69,22 @@ try {
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute([
-        ":amount" => $amount,
         ":kid_id" => $kid_id,
         ":family_id" => $family_id
     ]);
 
+    // Erfolg zurückgeben
     echo json_encode([
         "status" => "success"
     ]);
 
 } catch (Exception $e) {
+
+    // Fehler zurückgeben
     echo json_encode([
         "status" => "error",
         "message" => $e->getMessage()
     ]);
+
 }
 ?>
