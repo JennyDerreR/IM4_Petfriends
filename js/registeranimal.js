@@ -20,31 +20,22 @@ closeBtn.addEventListener("click", () => {
 });
 
 
-// KINDER AUS DATENBANK LADEN
-async function loadChildren() {
+const childSelect = document.getElementById("child_id");
 
-  const { data, error } = await supabase
-    .from("children")
-    .select("id, name");
+function loadChildren() {
+  const children = JSON.parse(localStorage.getItem("children")) || [];
 
-  if (error) {
-    console.error(error);
-    alert("Kinder konnten nicht geladen werden");
-    return;
-  }
-
-  data.forEach((child) => {
-
+  children.forEach((child) => {
     const option = document.createElement("option");
 
     option.value = child.id;
     option.textContent = child.name;
 
     childSelect.appendChild(option);
-
   });
-
 }
+
+loadChildren();
 
 
 // FORMULAR SPEICHERN

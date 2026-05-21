@@ -1,59 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
-    <title>PetCare</title>
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/pages.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-  </head>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  </html>
-  
-   <body>
-    <meta charset="UTF-8">
+  <title>Kind registrieren</title>
 
-    
-    <div id="KidsModal" class="modal hidden">
-    
-      <div class="modal-content">
-    
-        <h2>Kind hinzufügen</h2>
-    
-        <form id="KidsForm">
-    
-          <!-- Tiername -->
-          <label for="name">
-            Name des Kindes
-          </label>
-    
-          <input
-            type="text"
-            id="name"
-            required
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <form id="kidsForm" action="api/registerchild.php" method="POST">
+
+        <label for="kidsname">
+          Name des Kindes
+        </label>
+      
+        <input
+          type="text"
+          id="kidsname"
+          name="kidsname"
+          required
         >
-
-    
-          <div class="button-container">
-
-            <button
-              type="button"
-              id="closeKidsModal"
-              onclick="window.location.href='protected.html'"
-            >
-              Abbrechen
-            </button>
-          
-            <button
-              type="submit"
-              id="saveKidsBtn"
-            >
-              Speichern
-            </button>
-          
-          </div>
-        </form>
+      
+        <div class="button-container">
+      
+          <button
+            type="button"
+            onclick="window.location.href='protected.html'"
+          >
+            Abbrechen
+          </button>
+      
+          <button type="submit">
+            Speichern
+          </button>
+      
         </div>
-    <script src="js/registerchild.js"></script>
-  </body>
+      
+      </form>
+  <script src="registerchild.js"></script>
+
+</body>
+</html>
