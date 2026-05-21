@@ -140,4 +140,18 @@ if ($action === 'remove_member') {
     echo json_encode(['status' => 'ok']);
 }
 
+// ── Account löschen ────────────────────────────────────
+if ($action === 'delete_account') {
+
+    // User aus der DB löschen
+    // Die family_id wird einfach auf NULL gesetzt bei anderen Usern — die Familie bleibt
+    $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
+    $stmt->execute([$user_id]);
+
+    // Session beenden
+    session_destroy();
+
+    echo json_encode(['status' => 'ok']);
+}
+
 ?>

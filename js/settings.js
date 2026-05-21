@@ -72,6 +72,7 @@ async function loadFamily() {
   // Invite-Box und Mitgliederliste wieder einblenden (falls vorher versteckt)
   document.querySelector('.invite-box').style.display = '';
   document.querySelector('.settings-card').style.display = '';
+  document.querySelector('.add-form').classList.remove('no-family');
 
   // Einladungscode anzeigen
   document.getElementById('invite-code').textContent = data.invite_code;
@@ -94,16 +95,15 @@ async function loadFamily() {
     </div>
   `).join('');
 
-  // Formular zurücksetzen auf normales "Hinzufügen"-Feld
-  document.querySelector('.add-form').innerHTML = `
-    <input type="text" id="new-member-input" placeholder="Einladungscode eingeben" />
-    <button class="btn-add" onclick="joinByCode()">Hinzufügen</button>
-  `;
+  document.querySelector('.add-form').style.display = 'none';
 }
 
 function showNoFamilyUI() {
   document.querySelector('.invite-box').style.display = 'none';
   document.querySelector('.settings-card').style.display = 'none';
+
+   // NEU: Klasse hinzufügen damit alles untereinander ist
+  document.querySelector('.add-form').classList.add('no-family');
 
   document.querySelector('.add-form').innerHTML = `
     <p style="margin-bottom:8px; font-weight:600">Du gehörst noch keiner Familie an</p>
@@ -226,9 +226,20 @@ function closeDeleteModal(e) {
   }
 }
 
-function confirmDelete() {
-  localStorage.clear();
-  // TODO: call your backend API to actually delete the account
-  alert('Account deleted. (Demo only — nothing was actually deleted.)');
-  closeDeleteModal();
+async function confirmDelete() {
+  // PHP: User aus der Datenbank löschen
+  const res  = await fetch('api/family.php?action=delete_account', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  const data = await res.json();
+
+  if (data.status === 'ok') {
+    // LocalStorage leeren und zur Login-Seite
+    localStorage.clear();
+    window.location.href = 'index.html'; // passe den Link zu deiner Login-Seite an
+  } else {
+    showToast('Fehler beim Löschen: ' + data.message, true);
+    closeDeleteModal();
+  }
 }
