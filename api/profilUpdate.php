@@ -1,31 +1,24 @@
 <?php
-
 session_start();
 require_once '../system/config.php';
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
+    $data     = json_decode(file_get_contents("php://input"), true);
+    $userID   = $_SESSION['user_id'];
+    $lastname = trim($data['lastname'] ?? '');
 
-    $userID = $_SESSION['user_id'];
-    $familienname    = trim($data['familienname'] ?? '');
-
-    if (!$familienname) {
-        echo json_encode(["status" => "error", "message" => "Email and password are required"]);
+    if (!$lastname) {
+        echo json_encode(["status" => "error", "message" => "Nachname fehlt"]);
         exit;
     }
 
-    //echo json_encode(["status" => "success", "familienname" => "Familienname updated successfully"]);
-
-     // Check user in DB
-    $stmt = $pdo->prepare("UPDATE users SET familienname =:familienname WHERE id = :userID");
-    $stmt->execute([':familienname' => $familienname, ':userID' => $userID]);
-    $userUpdate = $stmt->fetch();
-
+    $stmt = $pdo->prepare("UPDATE users SET lastname = :lastname WHERE id = :userID");
+    $stmt->execute([':lastname' => $lastname, ':userID' => $userID]);
 
     echo json_encode(["status" => "success"]);
-    
-        
+
 } else {
     echo json_encode(["status" => "error", "message" => "Invalid request method"]);
 }
+
+?>
