@@ -24,12 +24,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Verify password
-    if ($user && password_verify($password, $user['password'])) {
+    /* if ($user && password_verify($password, $user['password'])) {
         session_regenerate_id(true);
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['email']   = $email;
 
-        echo json_encode(["status" => "success"]);
+        echo json_encode(["status" => "success"]); */
+
+    if ($user && password_verify($password, $user['password'])) {
+    session_regenerate_id(true);
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['email']   = $email;
+
+    // Wir laden nochmal den ganzen User — weil oben nur id+password abgefragt wurde
+    $stmt2 = $pdo->prepare("SELECT id, firstname, lastname, family_id FROM users WHERE id = :id");
+    $stmt2->execute([':id' => $user['id']]);
+    $userData = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+    // family_id auch in Session — so kennt jede PHP-Datei die Familie des Users
+    $_SESSION['family_id'] = $userData['family_id'];
+
+    // Alles ans JS zurückschicken
+    echo json_encode([
+        "status"    => "success",
+        "user_id"   => $userData['id'],
+        "firstname" => $userData['firstname'],
+        "lastname"  => $userData['lastname'],
+        "family_id" => $userData['family_id'], // NULL wenn noch keine Familie
+    ]);
+    
     } else {
         echo json_encode(["status" => "error", "message" => "Invalid credentials"]);
     }
