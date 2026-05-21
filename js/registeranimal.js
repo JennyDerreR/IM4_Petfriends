@@ -1,92 +1,98 @@
-const openBtn = document.getElementById("openAnimalModal");
-const closeBtn = document.getElementById("closeAnimalModal");
+// js/registeranimal.js
 
-const modal = document.getElementById("animalModal");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("animalForm");
+  const childSelect = document.getElementById("child_id");
 
-const form = document.getElementById("animalForm");
+  loadChildren();
 
-const childSelect = document.getElementById("child_id");
+  async function loadChildren() {
+    try {
+      const response = await fetch("/api/getchildren.php");
+      const result = await response.json();
 
+      if (result.status !== "success") {
+        alert(result.message || "Kinder konnten nicht geladen werden");
+        return;
+      }
 
-// MODAL ÖFFNEN
-openBtn.addEventListener("click", () => {
-  modal.classList.remove("hidden");
-});
+      childSelect.innerHTML = `
+        <option value="">Bitte Kind auswählen</option>
+      `;
 
+      result.children.forEach((child) => {
+        const option = document.createElement("option");
 
-// MODAL SCHLIESSEN
-closeBtn.addEventListener("click", () => {
-  modal.classList.add("hidden");
-});
+        option.value = child.id;
+        option.textContent = child.kidsname;
 
+        childSelect.appendChild(option);
+      });
 
-const childSelect = document.getElementById("child_id");
-
-function loadChildren() {
-  const children = JSON.parse(localStorage.getItem("children")) || [];
-
-  children.forEach((child) => {
-    const option = document.createElement("option");
-
-    option.value = child.id;
-    option.textContent = child.name;
-
-    childSelect.appendChild(option);
-  });
-}
-
-loadChildren();
-
-
-// FORMULAR SPEICHERN
-form.addEventListener("submit", async (event) => {
-
-  event.preventDefault();
-
-  const animalData = {
-
-    animal_name:
-      document.getElementById("animal_name").value,
-
-    snr:
-      Number(document.getElementById("snr").value),
-
-    neededgramms:
-      Number(document.getElementById("neededgramms").value),
-
-    child_id:
-      Number(document.getElementById("child_id").value)
-
-  };
-
-  console.log(animalData);
-
-
-  // IN DATENBANK SPEICHERN
-  const { error } = await supabase
-    .from("animals")
-    .insert([animalData]);
-
-
-  if (error) {
-    console.error(error);
-    alert("Fehler beim Speichern");
-    return;
+    } catch (error) {
+      console.error("Fehler beim Laden der Kinder:", error);
+      alert("Fehler beim Laden der Kinder");
+    }
   }
 
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  alert("Tier erfolgreich gespeichert");
+    const animal_name = document
+      .getElementById("animal_name")
+      .value
+      .trim();
 
+    const snr = document
+      .getElementById("snr")
+      .value
+      .trim();
 
-  // Formular leeren
-  form.reset();
+    const neededgramms = document
+      .getElementById("neededgramms")
+      .value
+      .trim();
 
+    const child_id = document
+      .getElementById("child_id")
+      .value;
 
-  // Modal schliessen
-  modal.classList.add("hidden");
+    if (!animal_name || !snr || !neededgramms || !child_id) {
+      alert("Bitte alle Felder ausfüllen.");
+      return;
+    }
 
+    try {
+      const response = await fetch("/api/registeranimal.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          animal_name: animal_name,
+          snr: snr,
+          neededgramms: neededgramms,
+          child_id: child_id
+        })
+      });
+
+      const text = await response.text();
+
+      console.log("HTTP Status:", response.status);
+      console.log("Antwort vom Server:", text);
+
+      const result = JSON.parse(text);
+
+      if (result.status === "success") {
+        alert("Tier erfolgreich gespeichert");
+        window.location.href = "/protected.html";
+      } else {
+        alert(result.message || "Speichern fehlgeschlagen");
+      }
+
+    } catch (error) {
+      console.error("Fehler beim Speichern:", error);
+      alert("Serverfehler. Siehe Console.");
+    }
+  });
 });
-
-
-// KINDER LADEN
-loadChildren();

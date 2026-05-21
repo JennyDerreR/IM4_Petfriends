@@ -9,99 +9,36 @@
     <link rel="stylesheet" href="css/responsive.css" />
   </head>
 
-  </html>
-  
-   <body>
-    <meta charset="UTF-8">
 
-    
-    <div id="animalModal" class="modal hidden">
-    
-      <div class="modal-content">
-    
-        <h2>Tier hinzufügen</h2>
-    
-        <form id="animalForm">
-    
-          <!-- Tiername -->
-          <label for="animal_name">
-            Name des Tieres
-          </label>
-    
-          <input
-            type="text"
-            id="animal_name"
-            required
-          >
-    
-    
-          <!-- Napfnummer -->
-          <label for="snr">
-            Napfnummer
-          </label>
-    
-          <input
-            type="number"
-            id="snr"
-            required
-          >
-    
-    
-          <!-- Futter -->
-          <label for="neededgramms">
-            Wie viel Futter braucht das Tier?
-          </label>
-    
-          <input
-            type="number"
-            id="neededgramms"
-            required
-          >
-    
-    
-          <!-- Kind auswählen -->
-          <label for="child_id">
-            Verantwortliches Kind
-          </label>
-    
-          <select id="child_id" required>
-            <option value="">
-              Bitte Kind auswählen
-            </option>
-          </select>
-    
-    
-          <!-- Foto -->
-          <label for="animal_photo">
-            Foto
-          </label>
-    
-          <input
-            type="file"
-            id="animal_photo"
-            accept="image/*"
-          >
-    
-    
-          <div class="button-container">
+<form id="animalForm">
 
-            <button
-              type="button"
-              id="closeAnimalModal"
-              onclick="window.location.href='protected.html'"
-            >
-              Abbrechen
-            </button>
-          
-            <button
-              type="submit"
-              id="saveAnimal"
-            >
-              Speichern
-            </button>
-          
-          </div>
-        </form>
-        </div>
-    <script src="js/registeranimal.js"></script>
-  </body>
+  <label for="animal_name">Name des Tieres</label>
+  <input type="text" id="animal_name" required>
+
+  <label for="snr">Napfnummer</label>
+  <input type="number" id="snr" required>
+
+  <label for="neededgramms">Wie viel Futter braucht das Tier?</label>
+  <input type="number" id="neededgramms" required>
+
+  <label for="child_id">Verantwortliches Kind</label>
+  <select id="child_id" required>
+    <option value="">Bitte Kind auswählen</option>
+  </select>
+
+  <label for="animal_photo">Foto</label>
+  <input type="file" id="animal_photo" accept="image/*">
+
+  <div class="button-container">
+    <button type="button" onclick="window.location.href='protected.html'">
+      Abbrechen
+    </button>
+
+    <button type="submit">
+      Speichern
+    </button>
+  </div>
+
+</form>
+
+<script src="js/registeranimal.js"></script>
