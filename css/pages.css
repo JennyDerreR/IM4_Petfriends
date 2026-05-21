@@ -280,6 +280,8 @@ form#loginForm button {
   padding: 3px 8px;
   border-radius: 20px;
 }
+
+span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
  
 /* ── Settings card & rows ── */
 .settings-card {
@@ -404,7 +406,7 @@ form#loginForm button {
  
 .coming-soon-banner .cs-icon { font-size: 32px; margin-bottom: 8px; }
 .coming-soon-banner strong   { display: block; font-size: 15px; font-weight: 800; color: var(--text-secondary); }
-.coming-soon-banner p        { font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
+.coming-soon-banner p        { font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.5; }
  
 /* ── Family members ── */
 .member-list { padding: 0 16px; }
