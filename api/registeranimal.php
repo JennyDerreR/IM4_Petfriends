@@ -1,70 +1,89 @@
 <?php
-
-header("Content-Type: application/json; charset=UTF-8");
-
-require_once '../system/config.php';
-
 session_start();
 
-try {
-    $data = json_decode(file_get_contents("php://input"), true);
+header("Content-Type: application/json; charset=utf-8");
 
-    if (
-        !$data ||
-        empty($data["animal_name"]) ||
-        empty($data["snr"]) ||
-        empty($data["neededgramms"]) ||
-        empty($data["child_id"])
-    ) {
+require_once __DIR__ . "/../db.php";
+
+if (!isset($_SESSION["family_id"])) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Nicht eingeloggt oder family_id fehlt."
+    ]);
+    exit;
+}
+
+$family_id = (int) $_SESSION["family_id"];
+
+
+$data = json_decode(file_get_contents("php://input"), true);
+
+$animal_name = trim($data["animal_name"] ?? "");
+$snr = trim($data["snr"] ?? "");
+$neededgramms = trim($data["neededgramms"] ?? "");
+$child_id = trim($data["child_id"] ?? "");
+
+if ($animal_name === "" || $snr === "" || $neededgramms === "" || $child_id === "") {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Bitte alle Felder ausfüllen."
+    ]);
+    exit;
+}
+
+try {
+    $checkFamily = $pdo->prepare("
+        SELECT id 
+        FROM families 
+        WHERE id = ?
+    ");
+    $checkFamily->execute([$family_id]);
+
+    if (!$checkFamily->fetch()) {
         echo json_encode([
             "status" => "error",
-            "message" => "Ungültige Daten"
+            "message" => "Diese Familie existiert nicht."
         ]);
         exit;
     }
 
-    $animal_name = trim($data["animal_name"]);
-    $snr = (int) $data["snr"];
-    $neededgramms = (int) $data["neededgramms"];
-    $child_id = (int) $data["child_id"];
+    $checkChild = $pdo->prepare("
+        SELECT id 
+        FROM children 
+        WHERE id = ? 
+        AND family_id = ?
+    ");
+    $checkChild->execute([$child_id, $family_id]);
 
-    $pdo = new PDO(
-        "mysql:host=$host;dbname=$db;charset=utf8mb4",
-        $user,
-        $pass
-    );
+    if (!$checkChild->fetch()) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Dieses Kind gehört nicht zu dieser Familie."
+        ]);
+        exit;
+    }
 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $sql = "
-        INSERT INTO petbowls (
-            animal_name,
-            snr,
-            neededgramms,
-            child_id
-        )
-        VALUES (
-            :animal_name,
-            :snr,
-            :neededgramms,
-            :child_id
-        )
-    ";
-
-    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare("
+        INSERT INTO petbowls 
+        (animal_name, snr, neededgramms, child_id, family_id)
+        VALUES 
+        (?, ?, ?, ?, ?)
+    ");
 
     $stmt->execute([
-        ":animal_name" => $animal_name,
-        ":snr" => $snr,
-        ":neededgramms" => $neededgramms,
-        ":child_id" => $child_id
+        $animal_name,
+        $snr,
+        $neededgramms,
+        $child_id,
+        $family_id
     ]);
 
     echo json_encode([
-        "status" => "success"
+        "status" => "success",
+        "message" => "Tier erfolgreich gespeichert."
     ]);
 
-} catch (Exception $e) {
+} catch (PDOException $e) {
     echo json_encode([
         "status" => "error",
         "message" => $e->getMessage()
