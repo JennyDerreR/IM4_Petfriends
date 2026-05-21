@@ -4,15 +4,15 @@
 
 * **Modul:** Interaktive Medien 4 an der Fachhochschule Graubünden (FS26)  
 * **Themenfeld:** IoT-Applikation zum Thema Eltern mit kleinen Kindern  
-* **Name des Projekts:** \[*Name*\]   
-* **Team Physical Computing:** \[*Namen*\]   
-* **Team WebApp:** \[*Namen*\]
+* **Name des Projekts:** Petfriends   
+* **Team Physical Computing:** Kilian Züger, Sara Imthurn  
+* **Team WebApp:** Julia Jäger, Jennifer Derrer
  
  
-* Welches Problem im Alltag von Eltern mit kleinen Kindern wird gelöst? 
+* Welches Problem im Alltag von Eltern mit kleinen Kindern wird gelöst?
+Kinder möchten immer Haustiere, aber kümmern sich nicht zuverlässig darum, wenn die Familie sich ein Haustier zulegt. Deswegen bauen wir Näpfe, die mit Sensoren ausgestattet sind, die registrieren, wenn ein Haustier gefüttert oder getränkt wurde. Die Eltern können den Kindern die Aufgaben verteilen und bei erfolgreichem Abschliessen der Aufgaben erhalten die Kinder eine von der Familier festgelegte Belohnung.
 * Was ist der „Sinn und Zweck“ des Systems?
-
-\[*Bilder / GIFs (optional)*\]
+Unser Ziel ist es, den Kindern Verantwortung beizubringen, damit sie sich selbständig um die Haustiere kümmern.
 
 ### UX & Konzeption
 
