@@ -1,1 +1,23 @@
 
+/* Mobile — Standard (bis 430px) */
+/* dein normaler CSS Code */
+
+/* iPad / Tablet */
+@media (min-width: 431px) and (max-width: 768px) {
+
+}
+
+/* Small Desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+/* Desktop */
+@media (min-width: 1025px) and (max-width: 1440px) {
+
+}
+
+/* Large Desktop */
+@media (min-width: 1441px) {
+
+}

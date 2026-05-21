@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .value
       .trim();
 
+      const type = document
+      .getElementById("type")
+      .value
+      .trim();
+
     const snr = document
       .getElementById("snr")
       .value
@@ -57,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .getElementById("child_id")
       .value;
 
-    if (!animal_name || !snr || !neededgramms || !child_id) {
+    if (!animal_name || !type || !snr || !neededgramms || !child_id) {
       alert("Bitte alle Felder ausfüllen.");
       return;
     }
@@ -70,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify({
           animal_name: animal_name,
+          type: type,
           snr: snr,
           neededgramms: neededgramms,
           child_id: child_id
