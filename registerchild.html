@@ -1,48 +1,47 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Kind registrieren</title>
-
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/pages.css">
-  <link rel="stylesheet" href="css/responsive.css">
-</head>
-
-<body>
-
-    <form id="kidsForm" action="api/registerchild.php" method="POST">
-
+ <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+      <title>Kind registrieren</title>
+    
+      <link rel="stylesheet" href="css/global.css">
+      <link rel="stylesheet" href="css/pages.css">
+      <link rel="stylesheet" href="css/responsive.css">
+    </head>
+    
+    <body>
+    
+      <form id="kidsForm">
+    
         <label for="kidsname">
           Name des Kindes
         </label>
-      
+    
         <input
           type="text"
           id="kidsname"
-          name="kidsname"
           required
         >
-      
+    
         <div class="button-container">
-      
+    
           <button
             type="button"
             onclick="window.location.href='protected.html'"
           >
             Abbrechen
           </button>
-      
+    
           <button type="submit">
             Speichern
           </button>
-      
+    
         </div>
-      
-      </form>
-  <script src="registerchild.js"></script>
+    
+  <script src="js/registerchild.js"></script>
 
 </body>
 </html>
