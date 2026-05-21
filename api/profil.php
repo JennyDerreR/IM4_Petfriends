@@ -25,5 +25,5 @@ echo json_encode([
     "status" => "success",
     "user_id" => $user['id'],
     "email" => $user['email'],
-    "familienname" => $user['familienname'],
+    "lastname" => $user['lastname'],
 ]);
