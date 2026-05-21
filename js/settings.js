@@ -59,67 +59,146 @@ function closePanel(id) {
 /* ═══════════════════════════════════════
    FAMILY MEMBERS
 ═══════════════════════════════════════ */
-let members = JSON.parse(localStorage.getItem('members') || '[]');
 
-if (!members.length) {
-  members = [
-    { name: 'Familie test', role: 'Admin',   color: COLORS[0] },
-    { name: 'Kind 1',       role: 'Kind',    color: COLORS[2] },
-  ];
-  saveMembers();
-}
+async function loadFamily() {
+  const res  = await fetch('api/family.php?action=get_family');
+  const data = await res.json();
 
-renderMembers();
+  if (data.status === 'no_family') {
+    showNoFamilyUI();
+    return;
+  }
 
-function saveMembers() {
-  localStorage.setItem('members', JSON.stringify(members));
-}
+  // Invite-Box und Mitgliederliste wieder einblenden (falls vorher versteckt)
+  document.querySelector('.invite-box').style.display = '';
+  document.querySelector('.settings-card').style.display = '';
 
-function renderMembers() {
+  // Einladungscode anzeigen
+  document.getElementById('invite-code').textContent = data.invite_code;
+
+  // Mitgliederliste aufbauen — mit Entfernen-Button für alle ausser sich selbst
+  const currentUserId = parseInt(localStorage.getItem('user_id'));
   const list = document.getElementById('member-list');
-  list.innerHTML = members.map((m, i) => `
+  list.innerHTML = data.members.map((m, i) => `
     <div class="member-item">
-      <div class="member-avatar" style="background:${m.color}">
-        ${m.name.charAt(0).toUpperCase()}
+      <div class="member-avatar" style="background:${COLORS[i % COLORS.length]}">
+        ${m.firstname.charAt(0).toUpperCase()}
       </div>
       <div class="member-info">
-        <strong>${m.name}</strong>
-        <span>${m.role}</span>
+        <strong>${m.firstname} ${m.lastname}</strong>
+        <span>${m.email}</span>
       </div>
-      ${i > 0
-        ? `<button class="member-remove" onclick="removeMember(${i})" aria-label="Remove ${m.name}">✕</button>`
-        : ''}
+      ${m.id !== currentUserId
+        ? `<button class="member-remove" onclick="removeMember(${m.id})" aria-label="Entfernen">✕</button>`
+        : '<span class="member-you">Du</span>'}
     </div>
   `).join('');
+
+  // Formular zurücksetzen auf normales "Hinzufügen"-Feld
+  document.querySelector('.add-form').innerHTML = `
+    <input type="text" id="new-member-input" placeholder="Einladungscode eingeben" />
+    <button class="btn-add" onclick="joinByCode()">Hinzufügen</button>
+  `;
 }
 
-function addMember() {
-  const input = document.getElementById('new-member-input');
-  const val   = input.value.trim();
-  if (!val) return;
+function showNoFamilyUI() {
+  document.querySelector('.invite-box').style.display = 'none';
+  document.querySelector('.settings-card').style.display = 'none';
 
-  members.push({
-    name:  val,
-    role:  'Mitglied',
-    color: COLORS[members.length % COLORS.length],
+  document.querySelector('.add-form').innerHTML = `
+    <p style="margin-bottom:8px; font-weight:600">Du gehörst noch keiner Familie an</p>
+
+    <input type="text" id="family-name-input" placeholder="Familienname (z.B. Familie Müller)" />
+    <button class="btn-add" onclick="createFamily()">Familie erstellen</button>
+
+    <p style="margin: 12px 0 8px; text-align:center; color: var(--text-muted)">— oder —</p>
+
+    <input type="text" id="join-code-input" placeholder="Einladungscode (z.B. FAM-AB123)" />
+    <button class="btn-add" onclick="joinFamily()">Beitreten</button>
+  `;
+}
+
+async function createFamily() {
+  const name = document.getElementById('family-name-input').value.trim();
+  if (!name) return;
+
+  const res  = await fetch('api/family.php?action=create_family', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ name }),
   });
+  const data = await res.json();
 
-  saveMembers();
-  renderMembers();
-  input.value = '';
+  if (data.status === 'ok') {
+    localStorage.setItem('family_id', data.family_id);
+    showToast('Familie erstellt! Dein Code: ' + data.invite_code);
+    loadFamily(); // Ansicht neu laden → zeigt jetzt Code + Mitglieder
+  } else {
+    showToast('Fehler: ' + data.message, true);
+  }
 }
 
-function removeMember(i) {
-  members.splice(i, 1);
-  saveMembers();
-  renderMembers();
+async function joinFamily() {
+  const code = document.getElementById('join-code-input').value.trim();
+  if (!code) return;
+
+  const res  = await fetch('api/family.php?action=join_family', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ invite_code: code }),
+  });
+  const data = await res.json();
+
+  if (data.status === 'ok') {
+    localStorage.setItem('family_id', data.family_id);
+    showToast('Erfolgreich beigetreten!');
+    loadFamily();
+  } else {
+    showToast('Ungültiger Code', true);
+  }
 }
 
-// Allow pressing Enter to add a member
-document.getElementById('new-member-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') addMember();
-});
+async function removeMember(userId) {
+  // Sicherheitsabfrage damit man nicht aus Versehen jemanden entfernt
+  if (!confirm('Mitglied wirklich aus der Familie entfernen?')) return;
 
+  const res  = await fetch('api/family.php?action=remove_member', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ remove_user_id: userId }),
+  });
+  const data = await res.json();
+
+  if (data.status === 'ok') {
+    showToast('Mitglied entfernt');
+    loadFamily();
+  } else {
+    showToast('Fehler: ' + data.message, true);
+  }
+}
+
+// Kleine Erfolgsmeldung unten einblenden statt alert()
+// isError = true macht sie rot
+function showToast(msg, isError = false) {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.style.cssText = `
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: var(--color-primary, #7C6FF7); color: #fff;
+      padding: 12px 24px; border-radius: 24px; font-size: 14px;
+      z-index: 9999; transition: opacity 0.3s;
+    `;
+    document.body.appendChild(toast);
+  }
+  toast.style.background = isError ? '#e53935' : 'var(--color-primary, #7C6FF7)';
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  setTimeout(() => toast.style.opacity = '0', 3000);
+}
+
+loadFamily();
 /* ═══════════════════════════════════════
    INVITE CODE
 ═══════════════════════════════════════ */
