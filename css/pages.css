@@ -104,6 +104,7 @@ form#loginForm button {
 
 /* ------------------------------------------------- KIDS ----------------------------------------------------- */
 
+
 /* ------------------------------------------------- SETTINGS ----------------------------------------------------- */
  
 /* Dark Mode — überschreibt global.css Farben wenn aktiv */
@@ -1166,6 +1167,7 @@ footer {
 
 /* Reuse the same styles as the register page */
 
+/*
 * {
   box-sizing: border-box;
 }
