@@ -46,7 +46,9 @@ for (let i = 0; i < 5; i++) {
 
 async function loadAnimal() {
   try {
-    const response = await fetch(`api/getanimal.php?id=${animalId}`);
+    const response = await fetch(
+  `api/getanimal.php?action=get_animal&id=${animalId}`
+);
 
     const text = await response.text();
     console.log("PHP Antwort:", text);

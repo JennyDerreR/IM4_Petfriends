@@ -1,68 +1,162 @@
 <?php
-session_start();
-header('Content-Type: application/json');
+
+header("Content-Type: application/json; charset=UTF-8");
 
 require_once '../system/config.php';
 
-$user_id = $_SESSION['user_id'] ?? null;
+session_start();
 
-if (!$user_id) {
-    echo json_encode(['status' => 'error', 'message' => 'Nicht eingeloggt']);
-    exit;
-}
+try {
 
-$action = $_GET['action'] ?? '';
+    // Prüfen ob Familie existiert
+    if (empty($_SESSION["family_id"])) {
 
+        echo json_encode([
+            "status" => "error",
+            "message" => "Keine Familie angemeldet"
+        ]);
 
-// ── Tierdaten laden ────────────────────────────────────
-// JS ruft auf: api/animal.php?action=get_animal&id=7
-if ($action === 'get_animal') {
+        exit;
+    }
 
-    $animal_id = (int)($_GET['id'] ?? 0);
-    $family_id = $_SESSION['family_id'] ?? null;
+    // Tier-ID holen
+    $animal_id = isset($_GET["id"])
+        ? (int) $_GET["id"]
+        : 0;
 
     if (!$animal_id) {
-        echo json_encode(['status' => 'error', 'message' => 'Tier-ID fehlt']);
+
+        echo json_encode([
+            "status" => "error",
+            "message" => "Keine Tier-ID übergeben"
+        ]);
+
         exit;
     }
 
-    if (!$family_id) {
-        echo json_encode(['status' => 'error', 'message' => 'Keine Familie gefunden']);
-        exit;
-    }
+    $family_id = (int) $_SESSION["family_id"];
 
-    $stmt = $pdo->prepare('
-        SELECT 
+    // Datenbankverbindung
+    $pdo = new PDO(
+        "mysql:host=$host;dbname=$db;charset=utf8mb4",
+        $user,
+        $pass
+    );
+
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Tierdaten laden
+    $stmt = $pdo->prepare("
+        SELECT
             id,
             child_id,
             animal_name,
             snr,
             family_id,
             neededgramms,
-            type,
-            food_level,
-            water_level
-        FROM pets
-        WHERE id = ? AND family_id = ?
-    ');
+            type
+        FROM petbowls
+        WHERE id = :id
+        AND family_id = :family_id
+        LIMIT 1
+    ");
 
-    $stmt->execute([$animal_id, $family_id]);
+    $stmt->execute([
+        ":id" => $animal_id,
+        ":family_id" => $family_id
+    ]);
+
     $animal = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    // Prüfen ob Tier existiert
     if (!$animal) {
-        echo json_encode(['status' => 'error', 'message' => 'Tier nicht gefunden']);
+
+        echo json_encode([
+            "status" => "error",
+            "message" => "Tier nicht gefunden"
+        ]);
+
         exit;
     }
 
-    echo json_encode([
-        'status' => 'ok',
-        'animal' => $animal
+    // Sensor-Daten laden
+    $stmtSensor = $pdo->prepare("
+        SELECT
+            type,
+            filllevel
+        FROM data
+        WHERE snr = :snr
+        AND type IN (
+            'Gewichtssensor',
+            'Feuchtigkeitssensor'
+        )
+        ORDER BY timestamp DESC
+    ");
+
+    $stmtSensor->execute([
+        ":snr" => $animal["snr"]
     ]);
-    exit;
+
+    $sensorRows = $stmtSensor->fetchAll(PDO::FETCH_ASSOC);
+
+    // Standardwerte
+    $foodLevel = 0;
+    $waterLevel = 0;
+
+    // Neueste Werte holen
+    foreach ($sensorRows as $row) {
+
+        // Gewichtssensor = Futter
+        if (
+            $row["type"] === "Gewichtssensor"
+            && $foodLevel === 0
+        ) {
+
+            $foodLevel = (int) $row["filllevel"];
+        }
+
+        // Feuchtigkeitssensor = Wasser
+        if (
+            $row["type"] === "Feuchtigkeitssensor"
+            && $waterLevel === 0
+        ) {
+
+            $waterLevel = (int) $row["filllevel"];
+        }
+    }
+
+    // JSON zurückgeben
+    echo json_encode([
+
+        "status" => "success",
+
+        "animal" => [
+
+            "id" => $animal["id"],
+
+            "child_id" => $animal["child_id"],
+
+            "animal_name" => $animal["animal_name"],
+
+            "type" => $animal["type"],
+
+            "snr" => $animal["snr"],
+
+            "family_id" => $animal["family_id"],
+
+            "neededgramms" => $animal["neededgramms"],
+
+            "food_level" => $foodLevel,
+
+            "water_level" => $waterLevel
+        ]
+    ]);
+
+} catch (Exception $e) {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
 }
-
-
-// ── Fallback bei unbekannter Aktion ────────────────────
-echo json_encode(['status' => 'error', 'message' => 'Unbekannte Aktion']);
-exit;
 ?>

@@ -901,30 +901,35 @@ footer {
 
      ----------------------------------Näpfe------------------------------------------------- 
      * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
     
     body {
-      margin: 0;
+      background: #f5f1ee;
       font-family: Arial, sans-serif;
-      background: #f8f0eb;
-      color: #111126;
+      color: #111827;
     }
     
     .app {
+      width: 100%;
       max-width: 390px;
-      min-height: 100vh;
       margin: 0 auto;
-      padding: 20px;
+      min-height: 100vh;
+      padding: 20px 16px 100px;
     }
     
+    /* DATUM */
+    
     .top {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
     
     #currentDate {
       font-size: 14px;
-      margin-bottom: 12px;
+      color: #666;
+      margin-bottom: 14px;
     }
     
     .days {
@@ -933,78 +938,107 @@ footer {
     }
     
     .day {
-      width: 48px;
-      height: 58px;
+      width: 52px;
+      height: 68px;
+      background: white;
       border-radius: 18px;
-      background: #ffffff;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
     
     .day span {
-      font-size: 12px;
+      font-size: 13px;
+      color: #666;
     }
     
     .day strong {
       font-size: 18px;
+      margin-top: 4px;
     }
     
     .day.active {
-      background: #6947c7;
+      background: #6b4ce6;
+    }
+    
+    .day.active span,
+    .day.active strong {
       color: white;
     }
+    
+    /* PROFIL */
     
     .profile {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
     
     .avatar {
-      width: 72px;
-      height: 72px;
-      background: #6947c7;
-      color: white;
-      border-radius: 18px;
-      margin: 0 auto 12px;
-      display: grid;
-      place-items: center;
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 14px;
+      background: linear-gradient(135deg, #8f6bff, #6b4ce6);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 34px;
+      color: white;
+      box-shadow: 0 10px 20px rgba(107,76,230,0.25);
     }
     
     .profile h1 {
-      margin: 0;
       font-size: 34px;
+      margin-bottom: 6px;
     }
     
     .profile p {
-      margin: 6px 0;
+      color: #666;
+      font-size: 14px;
     }
     
     .mood {
-      margin-top: 20px;
-      font-size: 22px;
+      margin-top: 16px;
+      font-size: 24px;
     }
+    
+    /* KARTEN */
     
     .card {
       background: white;
-      border-radius: 20px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-radius: 24px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
     }
     
     .card h2 {
-      margin: 0 0 16px;
-      font-size: 22px;
+      font-size: 20px;
+      margin-bottom: 18px;
     }
     
-    label {
-      display: block;
-      margin-bottom: 12px;
-      font-weight: bold;
+    /* AUFGABEN */
+    
+    .card label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f4f0ff;
+      padding: 14px;
+      border-radius: 14px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      cursor: pointer;
     }
+    
+    .card input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+    }
+    
+    /* STATUS */
     
     .status-grid {
       display: flex;
@@ -1013,10 +1047,10 @@ footer {
     }
     
     .status-circle {
-      width: 88px;
-      height: 88px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
-      border: 7px solid #ccc;
+      border: 8px solid #ddd;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1024,60 +1058,110 @@ footer {
     }
     
     .status-circle span {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
     }
     
     .status-circle small {
-      font-size: 12px;
+      margin-top: 4px;
+      color: #666;
     }
     
     .food {
-      border-color: #24c991;
+      border-color: #22c55e;
     }
     
     .water {
-      border-color: #3c8df2;
+      border-color: #3b82f6;
     }
+    
+    /* TIERDATEN */
+    
+    .card p {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    
+    .card strong {
+      color: #111827;
+    }
+    
+    /* DEVICES */
     
     .device-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
     }
     
     .device {
+      border-radius: 18px;
+      padding: 18px 12px;
       text-align: center;
-      border-radius: 16px;
-      padding: 14px 8px;
-      background: #f0fff8;
-      border: 1px solid #b8efd8;
     }
     
-    .device:nth-child(2) {
-      background: #f0f9ff;
-      border-color: #b8e2ff;
+    .device:first-child {
+      background: #f0fff5;
+      border: 1px solid #b8efd0;
+    }
+    
+    .device:last-child {
+      background: #eef7ff;
+      border: 1px solid #c6e2ff;
     }
     
     .device span {
-      font-size: 24px;
+      font-size: 28px;
     }
     
     .device p {
-      margin: 8px 0 4px;
+      margin-top: 10px;
+      margin-bottom: 6px;
+      font-size: 14px;
     }
     
     .device strong {
       display: block;
-      color: #15a870;
+      color: #16a34a;
+      margin-bottom: 4px;
       font-size: 13px;
     }
     
     .device small {
-      color: #3c8df2;
+      color: #3b82f6;
       font-size: 12px;
     }
-
+    
+    /* BOTTOM NAV */
+    
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      padding: 14px 0;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    }
+    
+    .bottom-nav ul {
+      max-width: 390px;
+      margin: 0 auto;
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+    
+    .bottom-nav li {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+    }
+    
+    .bottom-nav li.active {
+      color: #6b4ce6;
+      font-weight: bold;
+    }
      ----------------------------------Kids------------------------------------------------- 
 
 /* Reuse the same styles as the register page */
