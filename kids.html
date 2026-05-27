@@ -1,66 +1,88 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
-    <title>PetCare</title>
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/pages.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-  </head>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>PetCare – Kinder</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+ 
 <body>
-
+ 
   <main class="page">
     <header class="page-header">
       <h1>Kinder & Belohnungen 🎁</h1>
       <p>Verwalte die Fortschritte und Token deiner Kinder</p>
     </header>
-
+ 
     <section id="childrenContainer" class="children-container"></section>
+ 
+    <a href="registerchild.html" class="btn-add-child">+ Kind hinzufügen</a>
   </main>
-
-  <div class="button-container">
-
-    <button
-      type="button"
-      id="closeKidsModal"
-      onclick="window.location.href='registerchild.html'"
-    >
-      Kind hinzufügen
-
-    <button
-      type="button"
-      id="closeKidsModal"
-      onclick="window.location.href='protected.html'"
-    >
-      Abbrechen
-    </button>
-
-    <footer>
-      <nav class="bottom-nav">
-        <a href="protected.html" class="nav-item active">
-          <img src="assets/homeicon_v2.png" alt="Start" />
-          <span>Home</span>
-        </a>
-
-        <a href="naepfe.html" class="nav-item">
-          <img src="assets/dogicon_v2.png" alt="Tiere" />
-          <span>Tiere</span>
-        </a>
-
-        <a href="kids.html" class="nav-item">
-         <img src="assets/kidsicon_v2.png" alt="Kinder" />
-          <span>Kinder</span>
-        </a>
-
-        <a href="settings.html" class="nav-item">
-         <img src="assets/profileicon_v2.png" alt="Profil" />
-          <span>Profil</span>
-        </a>
-      </nav>
-    </footer>
-
+ 
+  <!-- Modal: Token hinzufügen -->
+  <div id="addModal" class="kids-modal-overlay">
+    <div class="kids-modal">
+      <h2>Token hinzufügen</h2>
+      <p class="modal-subtitle">Wie viele Token möchtest du hinzufügen?</p>
+      <label for="addAmount">Anzahl Token</label>
+      <input type="number" id="addAmount" placeholder="z.B. 5" min="1" />
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" id="addCancel">Abbrechen</button>
+        <button class="modal-btn-confirm" id="addConfirm">Hinzufügen</button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Modal: Einlösen -->
+  <div id="redeemModal" class="kids-modal-overlay">
+    <div class="kids-modal">
+      <h2>Belohnung verwalten 🎁</h2>
+      <p class="modal-subtitle">Wie viele Token sollen eingelöst werden?</p>
+      <label for="redeemAmount">Anzahl Token</label>
+      <input type="number" id="redeemAmount" placeholder="z.B. 10" min="1" />
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" id="redeemCancel">Abbrechen</button>
+        <button class="modal-btn-confirm" id="redeemConfirm">Einlösen</button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Modal: Löschen -->
+  <div id="deleteModal" class="kids-modal-overlay">
+    <div class="kids-modal">
+      <h2 class="delete-title">Kind löschen?</h2>
+      <p class="delete-warning">Möchtest du dieses Kinderprofil wirklich löschen?<br>Diese Aktion kann nicht rückgängig gemacht werden.</p>
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" id="deleteCancel">Abbrechen</button>
+        <button class="modal-btn-delete" id="deleteConfirm">Löschen</button>
+      </div>
+    </div>
+  </div>
+ 
+  <footer>
+    <nav class="bottom-nav">
+      <a href="protected.html" class="nav-item">
+        <img src="assets/homeicon_v2.png" alt="Start" />
+        <span>Home</span>
+      </a>
+      <a href="naepfe.html" class="nav-item">
+        <img src="assets/dogicon_v2.png" alt="Tiere" />
+        <span>Tiere</span>
+      </a>
+      <a href="kids.html" class="nav-item active">
+        <img src="assets/kidsicon_v2.png" alt="Kinder" />
+        <span>Kinder</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <img src="assets/profileicon_v2.png" alt="Profil" />
+        <span>Profil</span>
+      </a>
+    </nav>
+  </footer>
+ 
   <script src="js/kids.js"></script>
   <script src="js/nav.js"></script>
 </body>

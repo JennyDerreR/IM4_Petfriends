@@ -104,6 +104,305 @@ form#loginForm button {
 
 /* ------------------------------------------------- KIDS ----------------------------------------------------- */
 
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+ 
+.page-header h1 {
+  font-size: 28px;
+  margin: 0 0 6px;
+  letter-spacing: -0.4px;
+}
+ 
+.page-header p {
+  font-size: 13px;
+  color: #7A7899;
+  margin: 0;
+}
+
+ 
+/* ── Children Container ── */
+.children-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+ 
+/* ── Child Card ── */
+.child-card {
+  background: #FFFCFA;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 2px 12px rgba(98, 68, 180, 0.08);
+}
+ 
+/* ── Oberer Bereich ── */
+.child-top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+ 
+.child-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+ 
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--color-secondary);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+ 
+.child-name {
+  font-size: 18px;
+  margin: 0 0 2px;
+}
+ 
+.tokens {
+  font-size: 13px;
+  font-weight: 700;
+  color: #d97706;
+  margin: 0;
+}
+ 
+/* ── Action Buttons ── */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+ 
+.add-token {
+  flex: 1;
+  padding: 11px 10px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+ 
+.redeem {
+  flex: 1;
+  padding: 11px 10px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+ 
+.delete {
+  width: 44px;
+  min-width: 44px;
+  padding: 11px;
+  background: var(--color-secondary);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 18px;
+  margin: 0;
+}
+ 
+/* ── Kind hinzufügen ── */
+.btn-add-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 800;
+  margin: 4px 0 0;
+  text-decoration: none;
+  text-align: center;
+}
+ 
+/* ── Modal Overlay ── */
+.kids-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 17, 31, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s;
+  padding: 20px;
+}
+ 
+.kids-modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+ 
+/* ── Modal Box ── */
+.kids-modal {
+  background: #FFFCFA;
+  border-radius: 22px;
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 360px;
+  transform: scale(0.94) translateY(10px);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+ 
+.kids-modal-overlay.open .kids-modal {
+  transform: scale(1) translateY(0);
+}
+ 
+.kids-modal h2 {
+  font-size: 20px;
+  margin: 0 0 6px;
+}
+ 
+.kids-modal .modal-subtitle {
+  font-size: 13px;
+  color: #7A7899;
+  margin: 0 0 20px;
+  line-height: 1.4;
+}
+ 
+.kids-modal label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #7A7899;
+  margin-bottom: 6px;
+}
+ 
+.kids-modal input[type="number"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #E8E6F5;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+ 
+.kids-modal input[type="number"]:focus {
+  border-color: var(--color-secondary);
+}
+ 
+/* ── Modal Buttons ── */
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+ 
+.modal-btn-cancel {
+  flex: 1;
+  padding: 13px;
+  background: #E8E6F5;
+  color: var(--color-text);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+ 
+.modal-btn-confirm {
+  flex: 1;
+  padding: 13px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0;
+}
+ 
+.modal-btn-delete {
+  flex: 1;
+  padding: 13px;
+  background: var(--color-secondary);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  margin: 0;
+}
+ 
+.delete-title {
+  text-align: center;
+  margin-bottom: 8px;
+}
+ 
+.delete-warning {
+  font-size: 14px;
+  color: #7A7899;
+  margin: 0 0 24px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+/* ------------------------------------------------------------------ */
+/* Button hover and transition overrides (kids page)                 */
+/* Ensures .btn-add-child and delete buttons have consistent effects. */
+/* ------------------------------------------------------------------ */
+
+/* Primary add-child button */
+.btn-add-child {
+  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.12s ease;
+  cursor: pointer;
+}
+.btn-add-child:hover {
+  background: var(--color-secondary);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.btn-add-child:active { transform: translateY(0) scale(0.97); }
+
+/* Small circular delete button on child cards */
+.delete {
+  transition: background 0.15s ease, transform 0.08s ease;
+  cursor: pointer;
+}
+.delete:hover { 
+  background: var(--color-secondary);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+/* make delete button shrink on press (inward) */
+.delete:active { transform: scale(0.94); }
+
+/* Modal delete button */
+.modal-btn-delete {
+  transition: background 0.15s ease, transform 0.08s ease;
+  cursor: pointer;
+}
+.modal-btn-delete:hover { background: var(--purple-dark); transform: translateY(-1px); }
+.modal-btn-delete:active { transform: scale(0.95); }
 
 /* ------------------------------------------------- SETTINGS ----------------------------------------------------- */
  
@@ -721,11 +1020,22 @@ footer {
   opacity: 1;
 }
 
-.nav-item.active span {
-  color: #fff;
+/* Ensure standalone page content can scroll even with fixed footer/panels */
+main.page {
+  /* Allow the document body to handle scrolling (avoid creating an inner scroll container) */
+  overflow: visible;
+  -webkit-overflow-scrolling: touch;
+  /* reserve more space for the fixed footer so last content isn't hidden */
+  padding-bottom: 140px; /* increased to ensure button can scroll above footer */
+  scroll-padding-bottom: 140px;
 }
 
+/* If an .app wrapper is used elsewhere, keep panels scrollable but not hide global scroll */
+.app { overflow: visible; }
 
+.nav-item.active span {
+  color: #fff;
+}S
 
     ------------------Näpfe-------------------------------
 
@@ -905,12 +1215,6 @@ footer {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-    
-    body {
-      background: #f5f1ee;
-      font-family: Arial, sans-serif;
-      color: #111827;
     }
     
     .app {
@@ -1163,181 +1467,7 @@ footer {
       color: #6b4ce6;
       font-weight: bold;
     }
-     ----------------------------------Kids------------------------------------------------- 
-
-/* Reuse the same styles as the register page */
-
-/*
-* {
-  box-sizing: border-box;
-}
-
-
-.page {
-  width: 100%;
-  max-width: 760px;
-  padding: 28px 20px;
-}
-
-.page-header h1 {
-  margin: 0;
-  font-size: 36px;
-  font-weight: 700;
-}
-
-.page-header p {
-  margin: 8px 0 32px;
-  color: #6b7280;
-  font-size: 16px;
-}
-
-.children-container {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.child-card {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
-  padding: 28px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.child-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.child-info {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.avatar {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: #8b5cf6;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34px;
-  box-shadow: 0 8px 18px rgba(139, 92, 246, 0.3);
-}
-
-.child-name {
-  margin: 0;
-  font-size: 26px;
-}
-
-.tokens {
-  margin: 8px 0 0;
-  color: #d97706;
-  font-size: 18px;
-}
-
-.star-box {
-  background: #fef3c7;
-  color: #374151;
-  border-radius: 999px;
-  padding: 8px 12px;
-  font-size: 14px;
-  white-space: nowrap;
-}
-
-.progress-info {
-  margin-top: 28px;
-  display: flex;
-  justify-content: space-between;
-  color: #4b5563;
-  font-size: 14px;
-}
-
-.progress-bar {
-  margin-top: 10px;
-  width: 100%;
-  height: 16px;
-  background: #f3f4f6;
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 0;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #c084fc, #ec4899);
-}
-
-.actions {
-  margin-top: 24px;
-  display: flex;
-  gap: 12px;
-}
-
-.actions button {
-  flex: 1;
-  border: none;
-  border-radius: 14px;
-  padding: 15px;
-  color: white;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.add-token {
-  background: #00c853;
-}
-
-.redeem {
-  background: #8b5cf6;
-}
-
-.delete {
-  background: #ff2d38;
-}
-
-.actions button:hover {
-  opacity: 0.9;
-}
-
-@media (max-width: 600px) {
-  .page {
-    padding: 24px 14px;
-  }
-
-  .page-header h1 {
-    font-size: 28px;
-  }
-
-  .child-card {
-    padding: 22px;
-  }
-
-  .child-top,
-  .child-info,
-  .actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .child-info {
-    text-align: center;
-  }
-
-  .avatar {
-    margin: 0 auto;
-  }
-}
-
+    
 /* =========================
    REGISTER ANIMAL FORM
 ========================= */
