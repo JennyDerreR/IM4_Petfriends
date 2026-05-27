@@ -1,62 +1,118 @@
 <?php
-// register.php
-session_start();
-header('Content-Type: application/json');
+
+header("Content-Type: application/json; charset=UTF-8");
 
 require_once '../system/config.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+session_start();
 
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    $lastname   = trim($data['lastname'] ?? '');
-    $firstname         = trim($data['firstname'] ?? '');
-    $email          = trim($data['email'] ?? '');
-    $password       = trim($data['password'] ?? '');
-    
-
-    if (!$lastname || !$firstname || !$email || !$password) {
+try {
+    if (empty($_SESSION["family_id"])) {
         echo json_encode([
             "status" => "error",
-            "message" => "Nachname, Vorname, Email und Passwort sind erforderlich"
+            "message" => "Keine Familie angemeldet"
         ]);
         exit;
     }
 
-    // Prüfen ob Email bereits existiert
-    $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email");
-    $stmt->execute([':email' => $email]);
+    $family_id = (int) $_SESSION["family_id"];
+    $animal_id = isset($_GET["id"]) ? (int) $_GET["id"] : 0;
 
-    if ($stmt->fetch()) {
+    if (!$animal_id) {
         echo json_encode([
             "status" => "error",
-            "message" => "Email wird bereits verwendet"
+            "message" => "Tier-ID fehlt"
         ]);
         exit;
     }
 
-    // Passwort hashen
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $pdo = new PDO(
+        "mysql:host=$host;dbname=$db;charset=utf8mb4",
+        $user,
+        $pass
+    );
 
-    // Benutzer speichern
-    $insert = $pdo->prepare("
-        INSERT INTO users (email, password, lastname, firstname)
-        VALUES (:email, :pass, :lastname, :firstname)
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Tierdaten laden
+    $stmt = $pdo->prepare("
+        SELECT
+            id,
+            child_id,
+            animal_name,
+            snr,
+            family_id,
+            neededgramms,
+            type
+        FROM petbowls
+        WHERE id = :id
+        AND family_id = :family_id
+        LIMIT 1
     ");
 
-    $insert->execute([
-        ':email'          => $email,
-        ':pass'           => $hashedPassword,
-        ':lastname'       => $lastname,
-        ':firstname'      => $firstname
+    $stmt->execute([
+        ":id" => $animal_id,
+        ":family_id" => $family_id
     ]);
 
-    echo json_encode(["status" => "success"]);
+    $animal = $stmt->fetch(PDO::FETCH_ASSOC);
 
-} else {
+    if (!$animal) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Tier nicht gefunden"
+        ]);
+        exit;
+    }
+
+    // Neueste Sensorwerte laden
+    $stmtSensor = $pdo->prepare("
+        SELECT type, filllevel
+        FROM sensor_data
+        WHERE snr = :snr
+        AND type IN ('Gewichtssensor', 'Feuchtigkeitssensor')
+        ORDER BY timestamp DESC
+    ");
+
+    $stmtSensor->execute([
+        ":snr" => $animal["snr"]
+    ]);
+
+    $sensorRows = $stmtSensor->fetchAll(PDO::FETCH_ASSOC);
+
+    $foodLevel = 0;
+    $waterLevel = 0;
+
+    foreach ($sensorRows as $row) {
+        if ($row["type"] === "Gewichtssensor" && $foodLevel === 0) {
+            $foodLevel = (int) $row["filllevel"];
+        }
+
+        if ($row["type"] === "Feuchtigkeitssensor" && $waterLevel === 0) {
+            $waterLevel = (int) $row["filllevel"];
+        }
+    }
 
     echo json_encode([
+        "status" => "success",
+        "animal" => [
+            "id" => $animal["id"],
+            "child_id" => $animal["child_id"],
+            "animal_name" => $animal["animal_name"],
+            "type" => $animal["type"],
+            "snr" => $animal["snr"],
+            "family_id" => $animal["family_id"],
+            "neededgramms" => $animal["neededgramms"],
+            "food_level" => $foodLevel,
+            "water_level" => $waterLevel
+        ]
+    ]);
+
+} catch (Exception $e) {
+    echo json_encode([
         "status" => "error",
-        "message" => "Ungültige Anfrage"
+        "message" => $e->getMessage()
     ]);
 }
+
+?>

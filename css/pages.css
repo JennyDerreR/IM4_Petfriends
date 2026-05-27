@@ -899,7 +899,186 @@ footer {
     }
      */ 
 
-----------------------------------Kids------------------------------------------------- 
+     ----------------------------------Näpfe------------------------------------------------- 
+     * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f0eb;
+      color: #111126;
+    }
+    
+    .app {
+      max-width: 390px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .top {
+      margin-bottom: 20px;
+    }
+    
+    #currentDate {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    
+    .days {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .day {
+      width: 48px;
+      height: 58px;
+      border-radius: 18px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .day span {
+      font-size: 12px;
+    }
+    
+    .day strong {
+      font-size: 18px;
+    }
+    
+    .day.active {
+      background: #6947c7;
+      color: white;
+    }
+    
+    .profile {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .avatar {
+      width: 72px;
+      height: 72px;
+      background: #6947c7;
+      color: white;
+      border-radius: 18px;
+      margin: 0 auto 12px;
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+    }
+    
+    .profile h1 {
+      margin: 0;
+      font-size: 34px;
+    }
+    
+    .profile p {
+      margin: 6px 0;
+    }
+    
+    .mood {
+      margin-top: 20px;
+      font-size: 22px;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+    
+    .card h2 {
+      margin: 0 0 16px;
+      font-size: 22px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+    
+    .status-grid {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+    }
+    
+    .status-circle {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 7px solid #ccc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .status-circle span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .status-circle small {
+      font-size: 12px;
+    }
+    
+    .food {
+      border-color: #24c991;
+    }
+    
+    .water {
+      border-color: #3c8df2;
+    }
+    
+    .device-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    
+    .device {
+      text-align: center;
+      border-radius: 16px;
+      padding: 14px 8px;
+      background: #f0fff8;
+      border: 1px solid #b8efd8;
+    }
+    
+    .device:nth-child(2) {
+      background: #f0f9ff;
+      border-color: #b8e2ff;
+    }
+    
+    .device span {
+      font-size: 24px;
+    }
+    
+    .device p {
+      margin: 8px 0 4px;
+    }
+    
+    .device strong {
+      display: block;
+      color: #15a870;
+      font-size: 13px;
+    }
+    
+    .device small {
+      color: #3c8df2;
+      font-size: 12px;
+    }
+
+     ----------------------------------Kids------------------------------------------------- 
 
 /* Reuse the same styles as the register page */
 

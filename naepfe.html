@@ -1,56 +1,92 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
-    <title>PetCare</title>
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/pages.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-  </head>
-
+  <meta charset="UTF-8">
+  <title>Näpfe</title>
+  <link rel="stylesheet" href="css/pages.css">
+</head>
 <body>
 
-  <main class="dashboard">
+  <main class="app">
 
-    <h1>Guten Tag! 👋</h1>
-
-    <p class="date" id="currentDate"></p>
-
-    <section class="days" id="daysContainer"></section>
-
-    <section class="task-header">
-      <h2>Heutige Aufgaben 📝</h2>
+    <section class="top">
+      <p id="currentDate"></p>
+      <div id="daysContainer" class="days"></div>
     </section>
 
-    <div class="task-card">
+    <section class="profile">
+      <div class="avatar">🐕</div>
+      <h1 id="animalName">Lädt...</h1>
+      <p id="animalType"></p>
 
-      <div class="circle"></div>
-    
-      <div class="task-content">
-        <h3>Hund füttern</h3>
-        <p>Max</p>
-      </div>
-    
-    </div>
-
-    <div class="task-card">
-
-      <div class="circle"></div>
-    
-      <div class="task-content">
-        <h3>Wassernapf auffüllen</h3>
-        <p>Luna</p>
-      </div>
-    
-    </div>
-
-
+      <div class="mood">😊</div>
+      <p>Mood <strong>Gluecklich</strong></p>
     </section>
 
-  </main>
+    <section class="card">
+      <h2>Offene Aufgaben 📋</h2>
 
-  <footer>
+      <label>
+        <input type="checkbox">
+        Hund fuettern
+      </label>
+
+      <label>
+        <input type="checkbox">
+        Mit Hund spazieren
+      </label>
+
+      <label>
+        <input type="checkbox">
+        Futternapf reinigen
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>Aktueller Status 📊</h2>
+
+      <div class="status-grid">
+        <div class="status-circle food">
+          <span id="foodLevel">0</span>
+          <small>Futter</small>
+        </div>
+
+        <div class="status-circle water">
+          <span id="waterLevel">0</span>
+          <small>Wasser</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Tierdaten 🐾</h2>
+
+      <p><strong>SNR:</strong> <span id="snr"></span></p>
+      <p><strong>Family ID:</strong> <span id="familyId"></span></p>
+      <p><strong>Benötigte Gramm:</strong> <span id="neededGramms"></span> g</p>
+    </section>
+
+    <section class="card">
+      <h2>Smart Device Verbindung 📡</h2>
+
+      <div class="device-grid">
+        <div class="device">
+          <span>🍽️</span>
+          <p>Futternapf</p>
+          <strong>Verbunden</strong>
+          <small>✓ Online</small>
+        </div>
+
+        <div class="device">
+          <span>💧</span>
+          <p>Wassernapf</p>
+          <strong>Verbunden</strong>
+          <small>✓ Online</small>
+        </div>
+      </div>
+    </section>
+
+    <footer>
       <nav class="bottom-nav">
         <a href="protected.html" class="nav-item active">
           <img src="assets/homeicon_v2.png" alt="Start" />
@@ -73,9 +109,8 @@
         </a>
       </nav>
     </footer>
+  </main>
 
   <script src="js/naepfe.js"></script>
-  <script src="js/nav.js"></script>
-
 </body>
 </html>
