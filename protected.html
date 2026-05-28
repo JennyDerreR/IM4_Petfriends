@@ -1,96 +1,69 @@
-<!doctype html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
-    <title>PetCare</title>
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/pages.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-  </head>
-
-  <body>
-
-    <!-- This is where we'll dynamically show the protected content -->
-    <div id="protectedContent">
-
-        <div class="dashboardHeader">
-          <h1>Herzlich Willkommen Familie <span id="familienname"></span>!</h1>
-          <p id="currentDate"></p>
-
-
-          <p>Ihre Benutzer-ID ist: <span id="userId"></span></p>
-        </div>
-
-      <div class="weekCalendar">
-      </div>
-
-      <div class="todayTasksSection">
-        <h2>Heutige Aufgaben</h2>
-
-        <div class="todayTasksList">
-        </div>
-      </div>
-    </div>
-
-    <div class="petsSection">
-      <h2>Meine Haustiere</h2>
-
-      <a href="registeranimal.html">
-        <button id="addPet">
-          Tier hinzufügen
-        </button>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>PetCare – Home</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+ 
+<body>
+ 
+  <main class="page">
+ 
+    <!-- ── Begrüssung ── -->
+    <header class="page-header">
+      <h1>Herzlich Willkommen Familie <span id="familienname"></span>!</h1>
+      <p id="currentDate"></p>
+    </header>
+ 
+    <!-- ── Heutige Aufgaben ── -->
+    <section class="dashboard-section">
+      <h2 class="section-title">Heutige Aufgaben</h2>
+      <div id="tasksContainer" class="dashboard-cards"></div>
+    </section>
+ 
+    <!-- ── Meine Haustiere ── -->
+    <section class="dashboard-section">
+      <h2 class="section-title">Meine Haustiere</h2>
+      <div id="petsContainer" class="dashboard-cards"></div>
+      <button class="btn-dashboard" onclick="window.location.href='registeranimal.html'">+ Tier hinzufügen</button>
+    </section>
+ 
+    <!-- ── Meine Kinder ── -->
+    <section class="dashboard-section">
+      <h2 class="section-title">Meine Kinder</h2>
+      <div id="kidsWidgetContainer" class="dashboard-cards"></div>
+      <button class="btn-dashboard" onclick="window.location.href='registerchild.html'">+ Kind hinzufügen</button>
+    </section>
+  </main>
+ 
+  <footer>
+    <nav class="bottom-nav">
+      <a href="protected.html" class="nav-item active">
+        <img src="assets/homeicon_v2.png" alt="Start" />
+        <span>Home</span>
       </a>
-
-
-      <h2>Meine Kinder</h2>
-
-      <div id="kidsWidgetContainer"></div>  
-
-      <a href="kids.html">
-        <button id="addPet">
-         Tokens verwalten
-        </button>
+      <a href="naepfe.html" class="nav-item">
+        <img src="assets/dogicon_v2.png" alt="Tiere" />
+        <span>Tiere</span>
       </a>
-
-
-      <a href="registerchild.html">
-        <button id="addPet">
-          Kind hinzufügen
-        </button>
+      <a href="kids.html" class="nav-item">
+        <img src="assets/kidsicon_v2.png" alt="Kinder" />
+        <span>Kinder</span>
       </a>
-
-    <button id="logoutBtn">Logout</button>
-
-    <footer>
-      <nav class="bottom-nav">
-        <a href="protected.html" class="nav-item active">
-          <img src="assets/homeicon_v2.png" alt="Start" />
-          <span>Home</span>
-        </a>
-
-        <a href="naepfe.html" class="nav-item">
-          <img src="assets/dogicon_v2.png" alt="Tiere" />
-          <span>Tiere</span>
-        </a>
-
-        <a href="kids.html" class="nav-item">
-         <img src="assets/kidsicon_v2.png" alt="Kinder" />
-          <span>Kinder</span>
-        </a>
-
-        <a href="settings.html" class="nav-item">
-         <img src="assets/profileicon_v2.png" alt="Profil" />
-          <span>Profil</span>
-        </a>
-      </nav>
-    </footer>
-
-    <script src="js/protected.js"></script>
-    <script src="js/logout.js"></script>
-    <script src="js/DataAcess.js"></script>
-    <script src="js/protectedDOM.js"></script>
-    <script src="js/nav.js"></script>
-
-  </body>
+      <a href="settings.html" class="nav-item">
+        <img src="assets/profileicon_v2.png" alt="Profil" />
+        <span>Profil</span>
+      </a>
+    </nav>
+  </footer>
+ 
+  <script src="js/protected.js"></script>
+  <script src="js/logout.js"></script>
+  <script src="js/protectedDOM.js"></script>
+  <script src="js/nav.js"></script>
+</body>
 </html>

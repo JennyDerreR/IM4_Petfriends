@@ -81,13 +81,34 @@ p {
   margin-bottom: 0.75rem;
 }
 
-/* ------------------------------------------------- ABSTÄNDE ----------------------------------------------------- */
+/* ------------------------------------------------- ABSTÄNDE UND LAYOUT ----------------------------------------------------- */
 
 body {
   padding: 1rem;
   min-height: 100vh;
 }
 
+.page {
+  padding: 28px 16px 140px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 26px;
+  margin-bottom: 4px;
+  letter-spacing: -0.4px;
+}
+
+.page-header p {
+  font-size: 13px;
+  color: #7A7899;
+  margin: 0;
+}
 /* ------------------------------------------------- BILDER ----------------------------------------------------- */
 
 img {

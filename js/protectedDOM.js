@@ -1,11 +1,8 @@
 window.addEventListener("load", async () => {
-   
-    const userData = await loadProfile();
-    console.log("Loaded user data for protected DOMMMMMMM:", userData);
-  
-    if (userData) {
-        document.getElementById("familienname").textContent = userData.familienname || "";
-        document.getElementById("userId").textContent = userData.user_id || "";
-    }
-  
-  });
+  const res  = await fetch("/api/protected.php", { credentials: "include" });
+  const data = await res.json();
+
+  if (data.familienname) {
+    document.getElementById("familienname").textContent = data.familienname;
+  }
+});
