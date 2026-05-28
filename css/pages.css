@@ -1,4 +1,3 @@
-
 /* ------------------------------------------------- INDEX ----------------------------------------------------- */
 
 .landingpicture {
@@ -37,7 +36,7 @@
   font-size: 1.05rem;
 }
 
-/* ------------------------------------------------- REGSITER ------------------------------------------------- */
+/* ------------------------------------------------- REGISTER ------------------------------------------------- */
 
 .petcareLogo {
   width: 70%;
@@ -68,7 +67,6 @@ a {
   font-weight: 600;
 }
 
-/* Icons gleiche Grösse + skalierung für Responsive Design in verschiedenen Mobile Grössen */
 .IconSection {
   display: flex;
   gap: 0.5rem;
@@ -105,62 +103,59 @@ form#loginForm button {
 .dashboard-header {
   margin-bottom: 28px;
 }
- 
+
 .dashboard-header h1 {
   font-size: 26px;
   margin-bottom: 6px;
   letter-spacing: -0.4px;
   line-height: 1.25;
 }
- 
+
 p#currentDate {
   font-size: 14px;
   font-weight: 700;
   color: var(--color-secondary);
   margin-bottom: 4px;
 }
- 
-/* ── Sections ── */
+
 .dashboard-section {
   margin-bottom: 28px;
 }
- 
+
 .section-title {
   font-size: 18px;
   font-weight: 800;
   margin-bottom: 12px;
   color: var(--color-text);
 }
- 
-/* ── Cards Container ── */
+
 .dashboard-cards {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 12px;
 }
- 
-/* ── Aufgaben Card ── */
+
 .task-card {
   background: #FFFCFA;
   border-radius: 16px;
   padding: 14px 16px;
   box-shadow: 0 2px 12px rgba(98, 68, 180, 0.08);
 }
- 
+
 .task-card-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 12px;
 }
- 
+
 .task-card-header h3 {
   font-size: 15px;
   font-weight: 700;
   margin: 0;
 }
- 
+
 .task-row {
   display: flex;
   align-items: center;
@@ -168,23 +163,22 @@ p#currentDate {
   padding: 8px 0;
   border-top: 1px solid #F0EFF8;
 }
- 
+
 .task-check {
   font-size: 18px;
   flex-shrink: 0;
 }
- 
+
 .task-label {
   font-size: 14px;
   color: var(--color-text);
 }
- 
+
 .task-row:has(.done) .task-label {
   color: #7A7899;
   text-decoration: line-through;
 }
- 
-/* ── Mini Kid Card ── */
+
 .mini-kid-card {
   background: #FFFCFA;
   border-radius: 16px;
@@ -196,12 +190,12 @@ p#currentDate {
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.15s;
 }
- 
+
 .mini-kid-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(98, 68, 180, 0.13);
 }
- 
+
 .mini-avatar {
   width: 42px;
   height: 42px;
@@ -215,21 +209,20 @@ p#currentDate {
   justify-content: center;
   flex-shrink: 0;
 }
- 
+
 .mini-kid-card h3 {
   font-size: 15px;
   font-weight: 700;
   margin: 0 0 2px;
 }
- 
+
 .mini-kid-card p {
   font-size: 13px;
   font-weight: 700;
   color: #d97706;
   margin: 0;
 }
- 
-/* ── Mini Pet Card ── */
+
 .mini-pet-card {
   background: #FFFCFA;
   border-radius: 16px;
@@ -243,12 +236,12 @@ p#currentDate {
   text-decoration: none;
   color: var(--color-text);
 }
- 
+
 .mini-pet-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(98, 68, 180, 0.13);
 }
- 
+
 .mini-pet-avatar {
   width: 42px;
   height: 42px;
@@ -260,20 +253,19 @@ p#currentDate {
   font-size: 20px;
   flex-shrink: 0;
 }
- 
+
 .mini-pet-card h3 {
   font-size: 15px;
   font-weight: 700;
   margin: 0 0 2px;
 }
- 
+
 .mini-pet-card p {
   font-size: 12px;
   color: #7A7899;
   margin: 0;
 }
- 
-/* ── Buttons ── */
+
 .btn-dashboard {
   display: flex;
   align-items: center;
@@ -288,7 +280,7 @@ p#currentDate {
   text-decoration: none;
   text-align: center;
 }
- 
+
 .btn-logout {
   width: 100%;
   padding: 13px;
@@ -299,8 +291,7 @@ p#currentDate {
   font-weight: 700;
   margin: 0 0 20px;
 }
- 
-/* ── Leer-Hinweis ── */
+
 .empty-hint {
   font-size: 13px;
   color: #7A7899;
@@ -309,14 +300,10 @@ p#currentDate {
 
 /* ------------------------------------------------- NÄPFE ----------------------------------------------------- */
 
-/* Nutzt bereits vorhandene Klassen:
-.mini-pet-card  → protected-section.css
-.btn-add-child  → kids CSS       
-.empty-hint     → protected-section.css  */
+/* Nutzt: .mini-pet-card, .btn-add-child, .empty-hint */
 
 /* ------------------------------------------------- NÄPFE DETAIL ----------------------------------------------------- */
- 
-/* ── Zurück Button ── */
+
 .btn-back {
   background: none;
   border: none;
@@ -327,8 +314,7 @@ p#currentDate {
   margin: 0 0 12px;
   cursor: pointer;
 }
- 
-/* ── Naepfe Card ── */
+
 .naepfe-card {
   background: #FFFCFA;
   border-radius: 20px;
@@ -336,28 +322,27 @@ p#currentDate {
   box-shadow: 0 2px 12px rgba(98, 68, 180, 0.08);
   margin-bottom: 14px;
 }
- 
+
 .naepfe-card-title {
   font-size: 16px;
   font-weight: 800;
   margin-bottom: 16px;
   color: var(--color-text);
 }
- 
-/* ── Status Circles ── */
+
 .status-grid {
   display: flex;
   justify-content: space-around;
   gap: 16px;
 }
- 
+
 .status-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
- 
+
 .status-circle-new {
   width: 80px;
   height: 80px;
@@ -369,18 +354,17 @@ p#currentDate {
   font-size: 16px;
   font-weight: 800;
 }
- 
+
 .status-circle-new.food  { border-color: var(--color-status-good); }
 .status-circle-new.water { border-color: #3b82f6; }
- 
+
 .status-label {
   font-size: 13px;
   color: #7A7899;
   font-weight: 700;
   margin: 0;
 }
- 
-/* ── Tierdaten Rows ── */
+
 .naepfe-data-row {
   display: flex;
   justify-content: space-between;
@@ -388,28 +372,27 @@ p#currentDate {
   padding: 10px 0;
   border-bottom: 1px solid #F0EFF8;
 }
- 
+
 .naepfe-data-row:last-child { border-bottom: none; }
- 
+
 .naepfe-data-label {
   font-size: 13px;
   color: #7A7899;
   font-weight: 600;
 }
- 
+
 .naepfe-data-value {
   font-size: 14px;
   font-weight: 700;
   color: var(--color-text);
 }
- 
-/* ── Device Grid ── */
+
 .device-grid-new {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
- 
+
 .device-card {
   background: var(--color-background);
   border-radius: 14px;
@@ -417,42 +400,43 @@ p#currentDate {
   text-align: center;
   border: 1px solid #E8E6F5;
 }
- 
+
 .device-icon {
   font-size: 24px;
   display: block;
   margin-bottom: 8px;
 }
- 
+
 .device-name {
   font-size: 13px;
   font-weight: 700;
   margin: 0 0 6px;
   color: var(--color-text);
 }
- 
+
 .device-status {
   font-size: 12px;
   font-weight: 700;
 }
- 
+
 .device-status.online  { color: var(--color-status-good); }
 .device-status.offline { color: var(--color-status-critical); }
- 
-/* ── Chart Platzhalter ── */
+
 #feedingChart {
   width: 100%;
   max-height: 200px;
 }
- 
-/* ── Animal Hero ── */
+
 .animal-hero {
   background: var(--color-secondary);
   padding: 48px 24px 32px;
   text-align: center;
   position: relative;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-top: -1rem;
 }
- 
+
 .btn-back-hero {
   position: absolute;
   top: 16px;
@@ -466,7 +450,7 @@ p#currentDate {
   border-radius: 20px;
   cursor: pointer;
 }
- 
+
 .animal-hero-avatar {
   width: 80px;
   height: 80px;
@@ -478,51 +462,20 @@ p#currentDate {
   justify-content: center;
   margin: 0 auto 14px;
 }
- 
+
 .animal-hero-name {
   font-size: 26px;
   font-weight: 800;
   color: #fff;
   margin: 0 0 4px;
 }
- 
+
 .animal-hero-type {
   font-size: 14px;
   color: rgba(255,255,255,0.75);
   margin: 0;
 }
- 
-/* ── Aufgaben Rows ── */
-.animal-task-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid #F0EFF8;
-}
- 
-.animal-task-row:last-child { border-bottom: none; }
- 
-.animal-task-check { font-size: 18px; flex-shrink: 0; }
- 
-.animal-task-label {
-  font-size: 14px;
-  color: var(--color-text);
-}
- 
-.animal-task-row.done .animal-task-label {
-  color: #7A7899;
-  text-decoration: line-through;
-}
- 
-/* ── Hero Fix: raus aus body padding ── */
-.animal-hero {
-  margin-left: -1rem;
-  margin-right: -1rem;
-  margin-top: -1rem;
-}
- 
-/* ── Schöne Checkboxen ── */
+
 .animal-task-row {
   display: flex;
   align-items: center;
@@ -533,9 +486,9 @@ p#currentDate {
   margin-bottom: 8px;
   border: none;
 }
- 
+
 .animal-task-row:last-child { margin-bottom: 0; }
- 
+
 .animal-task-check {
   width: 22px;
   height: 22px;
@@ -550,24 +503,24 @@ p#currentDate {
   color: #fff;
   transition: background 0.2s, border-color 0.2s;
 }
- 
+
 .animal-task-row.done .animal-task-check {
   background: var(--color-secondary);
   border-color: var(--color-secondary);
 }
- 
+
 .animal-task-row.done .animal-task-check::after {
   content: '✓';
   font-size: 13px;
   font-weight: 800;
 }
- 
+
 .animal-task-label {
   font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
- 
+
 .animal-task-row.done .animal-task-label {
   color: #7A7899;
   text-decoration: line-through;
@@ -618,48 +571,45 @@ p#currentDate {
 }
 
 /* ------------------------------------------------- KIDS ----------------------------------------------------- */
- 
+
 .page-header h1 {
   font-size: 28px;
   margin: 0 0 6px;
   letter-spacing: -0.4px;
 }
- 
+
 .page-header p {
   font-size: 13px;
   color: #7A7899;
   margin: 0;
 }
- 
-/* ── Children Container ── */
+
 .children-container {
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-bottom: 20px;
 }
- 
-/* ── Child Card ── */
+
 .child-card {
   background: #FFFCFA;
   border-radius: 20px;
   padding: 18px;
   box-shadow: 0 2px 12px rgba(98, 68, 180, 0.08);
 }
- 
-/* ── Oberer Bereich ── */
+
 .child-top {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
 }
- 
+
 .child-info {
   display: flex;
   align-items: center;
   gap: 14px;
 }
- 
+
 .avatar {
   width: 52px;
   height: 52px;
@@ -673,25 +623,24 @@ p#currentDate {
   justify-content: center;
   flex-shrink: 0;
 }
- 
+
 .child-name {
   font-size: 18px;
   margin: 0 0 2px;
 }
- 
+
 .tokens {
   font-size: 13px;
   font-weight: 700;
   color: #d97706;
   margin: 0;
 }
- 
-/* ── Action Buttons ── */
+
 .actions {
   display: flex;
   gap: 8px;
 }
- 
+
 .add-token {
   flex: 1;
   padding: 11px 10px;
@@ -702,7 +651,7 @@ p#currentDate {
   font-weight: 700;
   margin: 0;
 }
- 
+
 .redeem {
   flex: 1;
   padding: 11px 10px;
@@ -713,7 +662,7 @@ p#currentDate {
   font-weight: 700;
   margin: 0;
 }
- 
+
 .delete {
   width: 44px;
   min-width: 44px;
@@ -723,9 +672,18 @@ p#currentDate {
   border-radius: 12px;
   font-size: 18px;
   margin: 0;
+  transition: background 0.15s ease, transform 0.08s ease;
+  cursor: pointer;
 }
- 
-/* ── Kind hinzufügen ── */
+
+.delete:hover {
+  background: var(--color-secondary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.delete:active { transform: scale(0.94); }
+
 .btn-add-child {
   display: flex;
   align-items: center;
@@ -740,8 +698,18 @@ p#currentDate {
   margin: 4px 0 0;
   text-decoration: none;
   text-align: center;
+  transition: background 0.18s ease, transform 0.12s ease;
+  cursor: pointer;
 }
- 
+
+.btn-add-child:hover {
+  background: var(--color-secondary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-add-child:active { transform: translateY(0) scale(0.97); }
+
 /* ── Modal Overlay ── */
 .kids-modal-overlay {
   position: fixed;
@@ -756,13 +724,12 @@ p#currentDate {
   transition: opacity 0.22s;
   padding: 20px;
 }
- 
+
 .kids-modal-overlay.open {
   opacity: 1;
   pointer-events: all;
 }
- 
-/* ── Modal Box ── */
+
 .kids-modal {
   background: #FFFCFA;
   border-radius: 22px;
@@ -772,23 +739,23 @@ p#currentDate {
   transform: scale(0.94) translateY(10px);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
- 
+
 .kids-modal-overlay.open .kids-modal {
   transform: scale(1) translateY(0);
 }
- 
+
 .kids-modal h2 {
   font-size: 20px;
   margin: 0 0 6px;
 }
- 
+
 .kids-modal .modal-subtitle {
   font-size: 13px;
   color: #7A7899;
   margin: 0 0 20px;
   line-height: 1.4;
 }
- 
+
 .kids-modal label {
   display: block;
   font-size: 13px;
@@ -796,7 +763,7 @@ p#currentDate {
   color: #7A7899;
   margin-bottom: 6px;
 }
- 
+
 .kids-modal input[type="number"] {
   width: 100%;
   padding: 12px 14px;
@@ -811,17 +778,16 @@ p#currentDate {
   margin-bottom: 20px;
   box-sizing: border-box;
 }
- 
+
 .kids-modal input[type="number"]:focus {
   border-color: var(--color-secondary);
 }
- 
-/* ── Modal Buttons ── */
+
 .modal-actions {
   display: flex;
   gap: 10px;
 }
- 
+
 .modal-btn-cancel {
   flex: 1;
   padding: 13px;
@@ -832,7 +798,7 @@ p#currentDate {
   font-weight: 700;
   margin: 0;
 }
- 
+
 .modal-btn-confirm {
   flex: 1;
   padding: 13px;
@@ -843,7 +809,7 @@ p#currentDate {
   font-weight: 700;
   margin: 0;
 }
- 
+
 .modal-btn-delete {
   flex: 1;
   padding: 13px;
@@ -853,13 +819,18 @@ p#currentDate {
   font-size: 15px;
   font-weight: 700;
   margin: 0;
+  transition: background 0.15s ease, transform 0.08s ease;
+  cursor: pointer;
 }
- 
+
+.modal-btn-delete:hover { background: var(--purple-dark, #4a3490); transform: translateY(-1px); }
+.modal-btn-delete:active { transform: scale(0.95); }
+
 .delete-title {
   text-align: center;
   margin-bottom: 8px;
 }
- 
+
 .delete-warning {
   font-size: 14px;
   color: #7A7899;
@@ -868,48 +839,7 @@ p#currentDate {
   text-align: center;
 }
 
-
-/* ------------------------------------------------------------------ */
-/* Button hover and transition overrides (kids page)                 */
-/* Ensures .btn-add-child and delete buttons have consistent effects. */
-/* ------------------------------------------------------------------ */
-
-/* Primary add-child button */
-.btn-add-child {
-  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.12s ease;
-  cursor: pointer;
-}
-.btn-add-child:hover {
-  background: var(--color-secondary);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-.btn-add-child:active { transform: translateY(0) scale(0.97); }
-
-/* Small circular delete button on child cards */
-.delete {
-  transition: background 0.15s ease, transform 0.08s ease;
-  cursor: pointer;
-}
-.delete:hover { 
-  background: var(--color-secondary);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-/* make delete button shrink on press (inward) */
-.delete:active { transform: scale(0.94); }
-
-/* Modal delete button */
-.modal-btn-delete {
-  transition: background 0.15s ease, transform 0.08s ease;
-  cursor: pointer;
-}
-.modal-btn-delete:hover { background: var(--purple-dark); transform: translateY(-1px); }
-.modal-btn-delete:active { transform: scale(0.95); }
-
-/* ------------------------------------------------- REGISTER CHILD  ----------------------------------------------------- */
+/* ------------------------------------------------- REGISTER CHILD ----------------------------------------------------- */
 
 .register-child-form {
   background: #FFFCFA;
@@ -920,14 +850,14 @@ p#currentDate {
   flex-direction: column;
   gap: 8px;
 }
- 
+
 .register-child-form label {
   font-size: 14px;
   font-weight: 700;
   color: #7A7899;
   margin-bottom: 2px;
 }
- 
+
 .register-child-form input[type="text"] {
   width: 100%;
   padding: 13px 16px;
@@ -942,21 +872,21 @@ p#currentDate {
   box-sizing: border-box;
   margin-bottom: 8px;
 }
- 
+
 .register-child-form input[type="text"]:focus {
   border-color: var(--color-secondary);
 }
- 
+
 .register-child-form input[type="text"]::placeholder {
   color: #B8B6D0;
 }
- 
+
 .register-child-actions {
   display: flex;
   gap: 10px;
   margin-top: 4px;
 }
- 
+
 .btn-secondary {
   flex: 1;
   padding: 13px;
@@ -967,7 +897,7 @@ p#currentDate {
   font-weight: 700;
   margin: 0;
 }
- 
+
 .btn-primary {
   flex: 1;
   padding: 13px;
@@ -980,8 +910,18 @@ p#currentDate {
 }
 
 /* ------------------------------------------------- SETTINGS ----------------------------------------------------- */
- 
-/* Dark Mode — überschreibt global.css Farben wenn aktiv */
+
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+body.no-scroll .app {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Dark Mode */
 [data-theme="dark"] {
   --color-background: #12111F;
   --color-surface:    #1E1D30;
@@ -995,8 +935,7 @@ p#currentDate {
   --shadow-md:        0 4px 24px rgba(0,0,0,0.35);
   --red-light:        #2A1A1A;
 }
- 
-/* Variablen die global.css nicht hat — nur für Settings */
+
 :root {
   --surface2:       #F0EFF8;
   --border:         #E8E6F5;
@@ -1006,16 +945,13 @@ p#currentDate {
   --purple-dark:    #4a3490;
   --red-light:      #FEF0F0;
 }
- 
-/* ── App Container ── */
+
 .app {
-  /* margin: 0 auto; */
   min-height: 100vh;
   position: relative;
   overflow: hidden;
 }
- 
-/* ── Panels ── */
+
 .panel {
   position: absolute;
   inset: 0;
@@ -1025,42 +961,19 @@ p#currentDate {
   overflow-y: auto;
   min-height: 100vh;
 }
- 
+
 .panel.active { transform: translateX(0); }
- 
+
 #panel-hub {
   transform: translateX(0);
   position: relative;
   min-height: 100vh;
   overflow-y: auto;
 }
- 
-/* ── Topbar ── */
-.topbar {
-  padding: 56px 20px 14px;
-}
- 
-.topbar-back {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--color-secondary);
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-  background: none;
-  padding: 0;
-  margin-bottom: 12px;
-}
- 
-.topbar h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
-.topbar p  { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
- 
-/* ── Profile banner ── */
+
 .profile-banner {
   background: var(--color-surface);
-  margin: 16px;
+  margin: 8px 16px;
   border-radius: 18px;
   padding: 18px 20px;
   display: flex;
@@ -1068,32 +981,23 @@ p#currentDate {
   gap: 14px;
   box-shadow: var(--shadow);
   transition: box-shadow 0.2s;
-  color: inherit;
+  color: var(--color-text) !important;
+  text-decoration: none !important;
 }
- 
+
 .profile-banner:hover { box-shadow: var(--shadow-md); }
- 
-.avatar {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: var(--color-secondary);
-  color: #fff;
-  font-size: 20px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+
+.profile-banner strong,
+.profile-banner span {
+  color: var(--color-text);
 }
- 
+
 .profile-info { flex: 1; }
 .profile-info strong { font-size: 16px; font-weight: 800; }
 .profile-info span   { font-size: 13px; color: var(--text-secondary); display: block; }
- 
-/* ── Section / card list ── */
-.section { margin: 16px; }
- 
+
+.section { margin: 8px 16px; }
+
 .section-label {
   font-size: 11px;
   font-weight: 800;
@@ -1102,14 +1006,14 @@ p#currentDate {
   margin-bottom: 8px;
   padding-left: 4px;
 }
- 
+
 .card-list {
   background: var(--color-surface);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: var(--shadow);
 }
- 
+
 .card-item {
   display: flex;
   align-items: center;
@@ -1123,11 +1027,11 @@ p#currentDate {
   transition: background 0.15s;
   border-bottom: 1px solid var(--border);
 }
- 
+
 .card-item:last-child { border-bottom: none; }
 .card-item:hover      { background: var(--surface2); }
 .card-item.disabled   { opacity: 0.45; cursor: default; }
- 
+
 .card-icon {
   width: 36px;
   height: 36px;
@@ -1138,15 +1042,15 @@ p#currentDate {
   flex-shrink: 0;
   font-size: 18px;
 }
- 
+
 .card-icon.purple { background: var(--color-primary); }
 .card-icon.red    { background: var(--red-light); }
 .card-icon.gray   { background: var(--surface2); }
- 
+
 .card-text { flex: 1; }
 .card-text strong { font-size: 15px; font-weight: 700; display: block; }
 .card-text span   { font-size: 12px; color: var(--text-secondary); }
- 
+
 .badge-soon {
   font-size: 10px;
   font-weight: 800;
@@ -1157,8 +1061,7 @@ p#currentDate {
 }
 
 span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
- 
-/* ── Settings card & rows ── */
+
 .settings-card {
   background: var(--color-surface);
   border-radius: 18px;
@@ -1166,7 +1069,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   box-shadow: var(--shadow);
   margin: 0 16px 16px;
 }
- 
+
 .setting-row {
   display: flex;
   align-items: center;
@@ -1174,23 +1077,22 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   padding: 16px 18px;
   border-bottom: 1px solid var(--border);
 }
- 
+
 .setting-row:last-child { border-bottom: none; }
 .setting-row.disabled   { opacity: 0.45; pointer-events: none; }
- 
+
 .setting-label strong { font-size: 15px; font-weight: 700; }
 .setting-label span   { font-size: 12px; color: var(--text-secondary); display: block; margin-top: 1px; }
- 
-/* ── Toggle switch ── */
+
 .toggle {
   position: relative;
   width: 50px;
   height: 28px;
   flex-shrink: 0;
 }
- 
+
 .toggle input { opacity: 0; width: 0; height: 0; }
- 
+
 .toggle-track {
   position: absolute;
   inset: 0;
@@ -1198,7 +1100,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   border-radius: 14px;
   transition: background 0.25s;
 }
- 
+
 .toggle-track::after {
   content: '';
   position: absolute;
@@ -1211,18 +1113,17 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   transition: transform 0.25s;
   box-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
- 
+
 .toggle input:checked + .toggle-track              { background: var(--color-secondary); }
 .toggle input:checked + .toggle-track::after       { transform: translateX(22px); }
- 
-/* ── Theme picker ── */
+
 .theme-options {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   padding: 16px;
 }
- 
+
 .theme-card {
   border-radius: 14px;
   overflow: hidden;
@@ -1230,24 +1131,24 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   cursor: pointer;
   transition: border-color 0.2s;
 }
- 
+
 .theme-card.selected { border-color: var(--color-secondary); }
- 
+
 .theme-preview {
   height: 80px;
   position: relative;
   padding: 10px;
 }
- 
+
 .theme-preview.light-prev { background: var(--color-background); }
 .theme-preview.dark-prev  { background: #12111F; }
- 
+
 .preview-bar { height: 10px; border-radius: 5px; margin-bottom: 6px; }
 .light-prev .preview-bar:nth-child(1) { background: var(--color-surface); width: 70%; }
 .light-prev .preview-bar:nth-child(2) { background: var(--color-primary); width: 50%; }
 .dark-prev  .preview-bar:nth-child(1) { background: #1E1D30; width: 70%; }
 .dark-prev  .preview-bar:nth-child(2) { background: #282640; width: 50%; }
- 
+
 .preview-dot {
   width: 24px;
   height: 24px;
@@ -1257,7 +1158,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   bottom: 10px;
   right: 10px;
 }
- 
+
 .theme-label {
   padding: 8px 12px;
   font-size: 13px;
@@ -1268,8 +1169,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   align-items: center;
   gap: 6px;
 }
- 
-/* ── Notifications coming soon banner ── */
+
 .coming-soon-banner {
   margin: 0 16px 16px;
   background: var(--surface2);
@@ -1278,14 +1178,13 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   text-align: center;
   border: 1.5px dashed var(--border);
 }
- 
+
 .coming-soon-banner .cs-icon { font-size: 32px; margin-bottom: 8px; }
 .coming-soon-banner strong   { display: block; font-size: 15px; font-weight: 800; color: var(--text-secondary); }
 .coming-soon-banner p        { font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.5; }
- 
-/* ── Family members ── */
+
 .member-list { padding: 0 16px; }
- 
+
 .member-item {
   display: flex;
   align-items: center;
@@ -1293,9 +1192,9 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   padding: 13px 0;
   border-bottom: 1px solid var(--border);
 }
- 
+
 .member-item:last-child { border-bottom: none; }
- 
+
 .member-avatar {
   width: 42px;
   height: 42px;
@@ -1308,11 +1207,11 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   justify-content: center;
   flex-shrink: 0;
 }
- 
+
 .member-info { flex: 1; }
 .member-info strong { font-size: 14px; font-weight: 700; }
 .member-info span   { font-size: 12px; color: var(--text-secondary); }
- 
+
 .member-remove {
   width: 30px;
   height: 30px;
@@ -1325,10 +1224,9 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   font-size: 16px;
   transition: background 0.15s;
 }
- 
+
 .member-remove:hover { background: #fcc; }
- 
-/* ── Add member form ── */
+
 .add-form {
   margin: 0 16px 16px;
   background: var(--surface2);
@@ -1337,7 +1235,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   display: flex;
   gap: 10px;
 }
- 
+
 .add-form input {
   flex: 1;
   border: 1.5px solid var(--border);
@@ -1350,28 +1248,25 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   outline: none;
   transition: border-color 0.2s;
 }
- 
+
 .add-form input:focus        { border-color: var(--color-secondary); }
 .add-form input::placeholder { color: var(--text-muted); }
- 
+
 .btn-add {
   padding: 10px 16px;
   font-size: 14px;
   font-weight: 800;
   transition: background 0.15s;
 }
- 
+
 .btn-add:hover { background: var(--purple-dark); }
 
-/* ── No-family UI: Elemente untereinander ── */
 .add-form.no-family {
   flex-direction: column;
   gap: 8px;
 }
 
-.add-form.no-family p {
-  margin: 0;
-}
+.add-form.no-family p { margin: 0; }
 
 .add-form.no-family input,
 .add-form.no-family .btn-add {
@@ -1386,19 +1281,18 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   padding: 3px 10px;
   border-radius: 20px;
 }
- 
-/* ── Invite code ── */
+
 .invite-box {
   margin: 0 16px 16px;
   background: var(--color-primary);
   border-radius: 14px;
   padding: 14px 16px;
 }
- 
+
 .invite-box p { font-size: 12px; margin-bottom: 8px; font-weight: 600; }
- 
+
 .invite-code-row { display: flex; align-items: center; gap: 10px; }
- 
+
 .invite-code {
   font-size: 22px;
   font-weight: 800;
@@ -1407,7 +1301,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   font-family: monospace;
   flex: 1;
 }
- 
+
 .btn-copy {
   padding: 7px 14px;
   background: var(--color-secondary);
@@ -1416,9 +1310,9 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   font-weight: 700;
   transition: background 0.15s;
 }
- 
+
 .btn-copy:hover { background: var(--purple-dark); }
- 
+
 .copy-confirm {
   font-size: 12px;
   color: var(--color-secondary);
@@ -1427,10 +1321,9 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   opacity: 0;
   transition: opacity 0.3s;
 }
- 
+
 .copy-confirm.show { opacity: 1; }
- 
-/* ── Danger zone ── */
+
 .danger-card {
   margin: 16px;
   background: var(--color-surface);
@@ -1439,9 +1332,9 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   box-shadow: var(--shadow);
   border: 1.5px solid var(--border);
 }
- 
+
 .danger-header { padding: 14px 18px; border-bottom: 1px solid var(--border); }
- 
+
 .danger-header strong {
   font-size: 11px;
   font-weight: 800;
@@ -1449,7 +1342,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   text-transform: uppercase;
   color: var(--color-status-critical);
 }
- 
+
 .danger-row {
   padding: 16px 18px;
   display: flex;
@@ -1457,13 +1350,13 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   gap: 14px;
   border-bottom: 1px solid var(--border);
 }
- 
+
 .danger-row:last-child { border-bottom: none; }
- 
+
 .danger-text { flex: 1; }
 .danger-text strong { font-size: 15px; font-weight: 700; }
 .danger-text span   { font-size: 12px; color: var(--text-secondary); display: block; margin-top: 1px; }
- 
+
 .btn-danger {
   padding: 9px 16px;
   background: var(--red-light);
@@ -1473,10 +1366,9 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   font-weight: 800;
   transition: background 0.15s;
 }
- 
+
 .btn-danger:hover { background: #fcc; }
- 
-/* ── Modal ── */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -1489,9 +1381,9 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   pointer-events: none;
   transition: opacity 0.25s;
 }
- 
+
 .modal-overlay.open { opacity: 1; pointer-events: all; }
- 
+
 .modal {
   background: var(--color-surface);
   border-radius: 24px 24px 0 0;
@@ -1500,9 +1392,9 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   transform: translateY(40px);
   transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
 }
- 
+
 .modal-overlay.open .modal { transform: translateY(0); }
- 
+
 .modal-handle {
   width: 36px;
   height: 4px;
@@ -1510,12 +1402,12 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   background: var(--border);
   margin: 0 auto 20px;
 }
- 
+
 .modal h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
 .modal p  { font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 24px; }
- 
+
 .modal-actions { display: flex; gap: 10px; }
- 
+
 .btn-cancel {
   flex: 1;
   padding: 14px;
@@ -1525,7 +1417,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   font-weight: 700;
   transition: background 0.15s;
 }
- 
+
 .btn-confirm-delete {
   flex: 1;
   padding: 14px;
@@ -1535,17 +1427,23 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   font-weight: 800;
   transition: background 0.15s;
 }
- 
+
 .btn-confirm-delete:hover { background: #c93030; }
- 
-/* ── Utilities ── */
+
 .spacer      { height: 40px; }
 .section-gap { height: 8px; }
-/* ------------------------------------------------ PROFIL ----------------------------------------------------- */
+
+#panel-hub .page-header,
+.panel .page-header {
+  padding-top: 28px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* ------------------------------------------------- PROFIL ----------------------------------------------------- */
 
 /* ------------------------------------------------- FOOTER ----------------------------------------------------- */
 
-/* ── Footer / Bottom Navigation ── */
 footer {
   position: fixed;
   bottom: 0;
@@ -1578,7 +1476,7 @@ footer {
   transition: color 0.2s, background 0.2s;
 }
 
-  .nav-item img {
+.nav-item img {
   width: 42px;
   height: 42px;
   object-fit: contain;
@@ -1591,23 +1489,12 @@ footer {
   gap: 8px;
 }
 
-.nav-item.active img {
-  opacity: 1;
-}
+.nav-item.active img { opacity: 1; }
+.nav-item.active span { color: #fff; }
 
-/* Ensure standalone page content can scroll even with fixed footer/panels */
 main.page {
-  /* Allow the document body to handle scrolling (avoid creating an inner scroll container) */
   overflow: visible;
   -webkit-overflow-scrolling: touch;
-  /* reserve more space for the fixed footer so last content isn't hidden */
-  padding-bottom: 140px; /* increased to ensure button can scroll above footer */
+  padding-bottom: 140px;
   scroll-padding-bottom: 140px;
-}
-
-/* If an .app wrapper is used elsewhere, keep panels scrollable but not hide global scroll */
-.app { overflow: visible; }
-
-.nav-item.active span {
-  color: #fff;
 }
