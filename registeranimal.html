@@ -1,69 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
-    <title>PetCare</title>
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/pages.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-  </head>
-
-
-<form id="animalForm">
-
-  <label for="animal_name">Name des Tieres</label>
-  <input type="text" id="animal_name" required>
-
-  <label for="type">Welche Tierart?</label>
-  <input type="text" id="type" required>
-
-  <label for="snr">Napfnummer</label>
-  <input type="text" id="snr" required>
-
-  <label for="neededgramms">Wie viel Futter braucht das Tier?</label>
-  <input type="number" id="neededgramms" required>
-
-  <label for="child_id">Verantwortliches Kind</label>
-  <select id="child_id" required>
-    <option value="">Bitte Kind auswählen</option>
-  </select>
-
-
-  <div class="button-container">
-    <button type="button" onclick="window.location.href='protected.html'">
-      Abbrechen
-    </button>
-
-    <button type="submit">
-      Speichern
-    </button>
-  </div>
-
-</form>
-
-<footer>
-  <nav class="bottom-nav">
-    <a href="protected.html" class="nav-item active">
-      <img src="assets/homeicon_v2.png" alt="Start" />
-      <span>Home</span>
-    </a>
-
-    <a href="naepfe.html" class="nav-item">
-      <img src="assets/dogicon_v2.png" alt="Tiere" />
-      <span>Tiere</span>
-    </a>
-
-    <a href="kids.html" class="nav-item">
-     <img src="assets/kidsicon_v2.png" alt="Kinder" />
-      <span>Kinder</span>
-    </a>
-
-    <a href="settings.html" class="nav-item">
-     <img src="assets/profileicon_v2.png" alt="Profil" />
-      <span>Profil</span>
-    </a>
-  </nav>
-</footer>
-
-<script src="js/registeranimal.js"></script>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>PetCare – Tier hinzufügen</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+ 
+<body>
+ 
+  <main class="page">
+    <header class="page-header">
+      <h1>Tier hinzufügen</h1>
+      <p>Füge ein Tier zu deinem Familienprofil hinzu</p>
+    </header>
+ 
+    <form id="animalForm" class="register-animal-form">
+ 
+      <label for="animal_name">Name des Tieres</label>
+      <input type="text" id="animal_name" placeholder="z.B. Bello" required />
+ 
+      <label for="type">Tierart</label>
+      <input type="text" id="type" placeholder="z.B. Hund" required />
+ 
+      <label for="snr">Napfnummer</label>
+      <input type="text" id="snr" placeholder="z.B. 12345" required />
+ 
+      <label for="neededgramms">Futtermenge (in Gramm)</label>
+      <input type="number" id="neededgramms" placeholder="z.B. 200" required />
+ 
+      <label for="child_id">Verantwortliches Kind</label>
+      <select id="child_id" required>
+        <option value="">Bitte Kind auswählen</option>
+      </select>
+ 
+      <div class="register-child-actions">
+        <button type="button" class="btn-secondary" onclick="window.location.href='protected.html'">
+          Abbrechen
+        </button>
+        <button type="submit" class="btn-primary">
+          Speichern
+        </button>
+      </div>
+ 
+    </form>
+  </main>
+ 
+  <footer>
+    <nav class="bottom-nav">
+      <a href="protected.html" class="nav-item">
+        <img src="assets/homeicon_v2.png" alt="Start" />
+        <span>Home</span>
+      </a>
+      <a href="naepfe.html" class="nav-item active">
+        <img src="assets/dogicon_v2.png" alt="Tiere" />
+        <span>Tiere</span>
+      </a>
+      <a href="kids.html" class="nav-item">
+        <img src="assets/kidsicon_v2.png" alt="Kinder" />
+        <span>Kinder</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <img src="assets/profileicon_v2.png" alt="Profil" />
+        <span>Profil</span>
+      </a>
+    </nav>
+  </footer>
+ 
+  <script src="js/registeranimal.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>
