@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>PetCare – Tier Detail</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+
+  <!-- ── Hero Section ── -->
+  <div class="animal-hero">
+    <button class="btn-back-hero" onclick="window.location.href='naepfe.html'">← Zurück</button>
+    <div class="animal-hero-avatar">🐾</div>
+    <h1 class="animal-hero-name" id="animalName">Lädt...</h1>
+    <p class="animal-hero-type" id="animalType"></p>
+  </div>
+
+  <main class="page">
+
+    <!-- ── Aufgaben ── -->
+    <section class="naepfe-card">
+      <h2 class="naepfe-card-title">Offene Aufgaben 📋</h2>
+      <div class="animal-task-row" id="foodTask">
+        <div class="animal-task-check"></div>
+        <span class="animal-task-label">🥣 Futter auffüllen</span>
+      </div>
+      <div class="animal-task-row" id="waterTask">
+        <div class="animal-task-check"></div>
+        <span class="animal-task-label">💧 Wasser auffüllen</span>
+      </div>
+    </section>
+
+    <!-- ── Aktueller Status ── -->
+    <section class="naepfe-card">
+      <h2 class="naepfe-card-title">Aktueller Status 📊</h2>
+      <div class="status-grid">
+        <div class="status-item">
+          <div class="status-circle-new food">
+            <span id="foodLevel">0%</span>
+          </div>
+          <p class="status-label">Futter</p>
+        </div>
+        <div class="status-item">
+          <div class="status-circle-new water">
+            <span id="waterLevel">0%</span>
+          </div>
+          <p class="status-label">Wasser</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Verlauf ── -->
+    <section class="naepfe-card">
+      <h2 class="naepfe-card-title">Verlauf 📈</h2>
+      <canvas id="feedingChart"></canvas>
+    </section>
+
+    <!-- ── Tierdaten ── -->
+    <section class="naepfe-card">
+      <h2 class="naepfe-card-title">Tierdaten 🐾</h2>
+      <div class="naepfe-data-row">
+        <span class="naepfe-data-label">SNR</span>
+        <span id="snr" class="naepfe-data-value"></span>
+      </div>
+      <div class="naepfe-data-row">
+        <span class="naepfe-data-label">Benötigte Gramm</span>
+        <span id="neededGramms" class="naepfe-data-value"></span>
+      </div>
+    </section>
+
+    <!-- ── Smart Device ── -->
+    <section class="naepfe-card">
+      <h2 class="naepfe-card-title">Smart Device Verbindung 📡</h2>
+      <div class="device-grid-new">
+        <div class="device-card">
+          <span class="device-icon">🍽️</span>
+          <p class="device-name">Futternapf</p>
+          <span class="device-status online">✓ Online</span>
+        </div>
+        <div class="device-card">
+          <span class="device-icon">💧</span>
+          <p class="device-name">Wassernapf</p>
+          <span class="device-status online">✓ Online</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <nav class="bottom-nav">
+      <a href="protected.html" class="nav-item">
+        <img src="assets/homeicon_v2.png" alt="Start" />
+        <span>Home</span>
+      </a>
+      <a href="naepfe.html" class="nav-item active">
+        <img src="assets/dogicon_v2.png" alt="Tiere" />
+        <span>Tiere</span>
+      </a>
+      <a href="kids.html" class="nav-item">
+        <img src="assets/kidsicon_v2.png" alt="Kinder" />
+        <span>Kinder</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <img src="assets/profileicon_v2.png" alt="Profil" />
+        <span>Profil</span>
+      </a>
+    </nav>
+  </footer>
+
+  <script src="js/naepfedetail.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

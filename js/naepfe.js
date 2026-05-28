@@ -1,3 +1,4 @@
+/*
 const currentDate = document.getElementById("currentDate");
 const daysContainer = document.getElementById("daysContainer");
 
@@ -88,4 +89,53 @@ async function loadAnimal() {
   }
 }
 
-loadAnimal();
+loadAnimal(); */
+
+const petsContainer = document.getElementById("petsContainer");
+ 
+async function loadPets() {
+  try {
+    const response = await fetch("/api/getanimals.php");
+    const result   = await response.json();
+ 
+    if (result.status !== "success") {
+      petsContainer.innerHTML = `<p class="empty-hint">Keine Tiere gefunden.</p>`;
+      return;
+    }
+ 
+    renderPets(result.animals);
+  } catch (error) {
+    console.error("Fehler beim Laden:", error);
+    petsContainer.innerHTML = `<p class="empty-hint">Fehler beim Laden der Tiere.</p>`;
+  }
+}
+ 
+function renderPets(animals) {
+  petsContainer.innerHTML = "";
+ 
+  if (animals.length === 0) {
+    petsContainer.innerHTML = `<p class="empty-hint">Noch keine Tiere hinzugefügt.</p>`;
+    return;
+  }
+ 
+  animals.forEach((animal) => {
+    const card = document.createElement("div");
+    card.classList.add("mini-pet-card");
+ 
+    card.innerHTML = `
+      <div class="mini-pet-avatar">🐾</div>
+      <div>
+        <h3>${animal.animal_name}</h3>
+        <p>${animal.type ?? ""}</p>
+      </div>
+    `;
+ 
+    card.addEventListener("click", () => {
+      window.location.href = `naepfedetail.html?id=${animal.id}`;
+    });
+ 
+    petsContainer.appendChild(card);
+  });
+}
+ 
+loadPets();

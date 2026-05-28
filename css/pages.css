@@ -309,6 +309,270 @@ p#currentDate {
 
 /* ------------------------------------------------- NÄPFE ----------------------------------------------------- */
 
+/* Nutzt bereits vorhandene Klassen:
+.mini-pet-card  → protected-section.css
+.btn-add-child  → kids CSS       
+.empty-hint     → protected-section.css  */
+
+/* ------------------------------------------------- NÄPFE DETAIL ----------------------------------------------------- */
+ 
+/* ── Zurück Button ── */
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--color-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0;
+  margin: 0 0 12px;
+  cursor: pointer;
+}
+ 
+/* ── Naepfe Card ── */
+.naepfe-card {
+  background: #FFFCFA;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 2px 12px rgba(98, 68, 180, 0.08);
+  margin-bottom: 14px;
+}
+ 
+.naepfe-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+ 
+/* ── Status Circles ── */
+.status-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+}
+ 
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+ 
+.status-circle-new {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 8px solid #E8E6F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+}
+ 
+.status-circle-new.food  { border-color: var(--color-status-good); }
+.status-circle-new.water { border-color: #3b82f6; }
+ 
+.status-label {
+  font-size: 13px;
+  color: #7A7899;
+  font-weight: 700;
+  margin: 0;
+}
+ 
+/* ── Tierdaten Rows ── */
+.naepfe-data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #F0EFF8;
+}
+ 
+.naepfe-data-row:last-child { border-bottom: none; }
+ 
+.naepfe-data-label {
+  font-size: 13px;
+  color: #7A7899;
+  font-weight: 600;
+}
+ 
+.naepfe-data-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+ 
+/* ── Device Grid ── */
+.device-grid-new {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+ 
+.device-card {
+  background: var(--color-background);
+  border-radius: 14px;
+  padding: 16px 12px;
+  text-align: center;
+  border: 1px solid #E8E6F5;
+}
+ 
+.device-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+ 
+.device-name {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--color-text);
+}
+ 
+.device-status {
+  font-size: 12px;
+  font-weight: 700;
+}
+ 
+.device-status.online  { color: var(--color-status-good); }
+.device-status.offline { color: var(--color-status-critical); }
+ 
+/* ── Chart Platzhalter ── */
+#feedingChart {
+  width: 100%;
+  max-height: 200px;
+}
+ 
+/* ── Animal Hero ── */
+.animal-hero {
+  background: var(--color-secondary);
+  padding: 48px 24px 32px;
+  text-align: center;
+  position: relative;
+}
+ 
+.btn-back-hero {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+ 
+.animal-hero-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+ 
+.animal-hero-name {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 4px;
+}
+ 
+.animal-hero-type {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+ 
+/* ── Aufgaben Rows ── */
+.animal-task-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #F0EFF8;
+}
+ 
+.animal-task-row:last-child { border-bottom: none; }
+ 
+.animal-task-check { font-size: 18px; flex-shrink: 0; }
+ 
+.animal-task-label {
+  font-size: 14px;
+  color: var(--color-text);
+}
+ 
+.animal-task-row.done .animal-task-label {
+  color: #7A7899;
+  text-decoration: line-through;
+}
+ 
+/* ── Hero Fix: raus aus body padding ── */
+.animal-hero {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-top: -1rem;
+}
+ 
+/* ── Schöne Checkboxen ── */
+.animal-task-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--color-background);
+  margin-bottom: 8px;
+  border: none;
+}
+ 
+.animal-task-row:last-child { margin-bottom: 0; }
+ 
+.animal-task-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #C4B5FD;
+  background: #fff;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  transition: background 0.2s, border-color 0.2s;
+}
+ 
+.animal-task-row.done .animal-task-check {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+ 
+.animal-task-row.done .animal-task-check::after {
+  content: '✓';
+  font-size: 13px;
+  font-weight: 800;
+}
+ 
+.animal-task-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+ 
+.animal-task-row.done .animal-task-label {
+  color: #7A7899;
+  text-decoration: line-through;
+}
+
 /* ------------------------------------------------- REGISTER ANIMAL ----------------------------------------------------- */
 
 .register-animal-form {
@@ -1347,261 +1611,3 @@ main.page {
 .nav-item.active span {
   color: #fff;
 }
-
-     ----------------------------------Näpfe------------------------------------------------- 
-     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    .app {
-      width: 100%;
-      max-width: 390px;
-      margin: 0 auto;
-      min-height: 100vh;
-      padding: 20px 16px 100px;
-    }
-    
-    /* DATUM */
-    
-    .top {
-      margin-bottom: 24px;
-    }
-    
-    #currentDate {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 14px;
-    }
-    
-    .days {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .day {
-      width: 52px;
-      height: 68px;
-      background: white;
-      border-radius: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    
-    .day span {
-      font-size: 13px;
-      color: #666;
-    }
-    
-    .day strong {
-      font-size: 18px;
-      margin-top: 4px;
-    }
-    
-    .day.active {
-      background: #6b4ce6;
-    }
-    
-    .day.active span,
-    .day.active strong {
-      color: white;
-    }
-    
-    /* PROFIL */
-    
-    .profile {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    
-    .avatar {
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 14px;
-      background: linear-gradient(135deg, #8f6bff, #6b4ce6);
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 34px;
-      color: white;
-      box-shadow: 0 10px 20px rgba(107,76,230,0.25);
-    }
-    
-    .profile h1 {
-      font-size: 34px;
-      margin-bottom: 6px;
-    }
-    
-    .profile p {
-      color: #666;
-      font-size: 14px;
-    }
-    
-    .mood {
-      margin-top: 16px;
-      font-size: 24px;
-    }
-    
-    /* KARTEN */
-    
-    .card {
-      background: white;
-      border-radius: 24px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-    }
-    
-    .card h2 {
-      font-size: 20px;
-      margin-bottom: 18px;
-    }
-    
-    /* AUFGABEN */
-    
-    .card label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #f4f0ff;
-      padding: 14px;
-      border-radius: 14px;
-      margin-bottom: 10px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    
-    .card input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-    }
-    
-    /* STATUS */
-    
-    .status-grid {
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-    }
-    
-    .status-circle {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      border: 8px solid #ddd;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .status-circle span {
-      font-size: 22px;
-      font-weight: bold;
-    }
-    
-    .status-circle small {
-      margin-top: 4px;
-      color: #666;
-    }
-    
-    .food {
-      border-color: #22c55e;
-    }
-    
-    .water {
-      border-color: #3b82f6;
-    }
-    
-    /* TIERDATEN */
-    
-    .card p {
-      margin-bottom: 10px;
-      font-size: 15px;
-    }
-    
-    .card strong {
-      color: #111827;
-    }
-    
-    /* DEVICES */
-    
-    .device-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    
-    .device {
-      border-radius: 18px;
-      padding: 18px 12px;
-      text-align: center;
-    }
-    
-    .device:first-child {
-      background: #f0fff5;
-      border: 1px solid #b8efd0;
-    }
-    
-    .device:last-child {
-      background: #eef7ff;
-      border: 1px solid #c6e2ff;
-    }
-    
-    .device span {
-      font-size: 28px;
-    }
-    
-    .device p {
-      margin-top: 10px;
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-    
-    .device strong {
-      display: block;
-      color: #16a34a;
-      margin-bottom: 4px;
-      font-size: 13px;
-    }
-    
-    .device small {
-      color: #3b82f6;
-      font-size: 12px;
-    }
-    
-    /* BOTTOM NAV */
-    
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      padding: 14px 0;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-    }
-    
-    .bottom-nav ul {
-      max-width: 390px;
-      margin: 0 auto;
-      list-style: none;
-      display: flex;
-      justify-content: space-around;
-    }
-    
-    .bottom-nav li {
-      text-align: center;
-      font-size: 12px;
-      color: #999;
-    }
-    
-    .bottom-nav li.active {
-      color: #6b4ce6;
-      font-weight: bold;
-    }

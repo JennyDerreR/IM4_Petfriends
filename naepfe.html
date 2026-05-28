@@ -1,116 +1,50 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Näpfe</title>
-  <link rel="stylesheet" href="css/pages.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>PetCare – Meine Tiere</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
+ 
 <body>
-
-  <main class="app">
-
-    <section class="top">
-      <p id="currentDate"></p>
-      <div id="daysContainer" class="days"></div>
-    </section>
-
-    <section class="profile">
-      <div class="avatar">🐕</div>
-      <h1 id="animalName">Lädt...</h1>
-      <p id="animalType"></p>
-
-      <div class="mood">😊</div>
-      <p>Mood <strong>Gluecklich</strong></p>
-    </section>
-
-    <section class="card">
-      <h2>Offene Aufgaben 📋</h2>
-
-      <label>
-        <input type="checkbox">
-        Hund fuettern
-      </label>
-
-      <label>
-        <input type="checkbox">
-        Mit Hund spazieren
-      </label>
-
-      <label>
-        <input type="checkbox">
-        Futternapf reinigen
-      </label>
-    </section>
-
-    <section class="card">
-      <h2>Aktueller Status 📊</h2>
-
-      <div class="status-grid">
-        <div class="status-circle food">
-          <span id="foodLevel">0</span>
-          <small>Futter</small>
-        </div>
-
-        <div class="status-circle water">
-          <span id="waterLevel">0</span>
-          <small>Wasser</small>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Tierdaten 🐾</h2>
-
-      <p><strong>SNR:</strong> <span id="snr"></span></p>
-      <p><strong>Family ID:</strong> <span id="familyId"></span></p>
-      <p><strong>Benötigte Gramm:</strong> <span id="neededGramms"></span> g</p>
-    </section>
-
-    <section class="card">
-      <h2>Smart Device Verbindung 📡</h2>
-
-      <div class="device-grid">
-        <div class="device">
-          <span>🍽️</span>
-          <p>Futternapf</p>
-          <strong>Verbunden</strong>
-          <small>✓ Online</small>
-        </div>
-
-        <div class="device">
-          <span>💧</span>
-          <p>Wassernapf</p>
-          <strong>Verbunden</strong>
-          <small>✓ Online</small>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <nav class="bottom-nav">
-        <a href="protected.html" class="nav-item active">
-          <img src="assets/homeicon_v2.png" alt="Start" />
-          <span>Home</span>
-        </a>
-
-        <a href="naepfe.html" class="nav-item">
-          <img src="assets/dogicon_v2.png" alt="Tiere" />
-          <span>Tiere</span>
-        </a>
-
-        <a href="kids.html" class="nav-item">
-         <img src="assets/kidsicon_v2.png" alt="Kinder" />
-          <span>Kinder</span>
-        </a>
-
-        <a href="settings.html" class="nav-item">
-         <img src="assets/profileicon_v2.png" alt="Profil" />
-          <span>Profil</span>
-        </a>
-      </nav>
-    </footer>
+ 
+  <main class="page">
+    <header class="page-header">
+      <h1>Meine Tiere 🐾</h1>
+      <p>Übersicht aller deiner Haustiere</p>
+    </header>
+ 
+    <div id="petsContainer" class="dashboard-cards"></div>
+ 
+    <a href="registeranimal.html" class="btn-add-child">+ Tier hinzufügen</a>
   </main>
-
+ 
+  <footer>
+    <nav class="bottom-nav">
+      <a href="protected.html" class="nav-item">
+        <img src="assets/homeicon_v2.png" alt="Start" />
+        <span>Home</span>
+      </a>
+      <a href="naepfe.html" class="nav-item active">
+        <img src="assets/dogicon_v2.png" alt="Tiere" />
+        <span>Tiere</span>
+      </a>
+      <a href="kids.html" class="nav-item">
+        <img src="assets/kidsicon_v2.png" alt="Kinder" />
+        <span>Kinder</span>
+      </a>
+      <a href="settings.html" class="nav-item">
+        <img src="assets/profileicon_v2.png" alt="Profil" />
+        <span>Profil</span>
+      </a>
+    </nav>
+  </footer>
+ 
   <script src="js/naepfe.js"></script>
+  <script src="js/nav.js"></script>
 </body>
 </html>
+ 
