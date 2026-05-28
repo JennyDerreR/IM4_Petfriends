@@ -124,7 +124,6 @@ form#loginForm button {
   color: #7A7899;
   margin: 0;
 }
-
  
 /* ── Children Container ── */
 .children-container {
@@ -231,7 +230,7 @@ form#loginForm button {
   color: var(--color-text);
   border-radius: 16px;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 700;
   margin: 4px 0 0;
   text-decoration: none;
   text-align: center;
@@ -335,7 +334,7 @@ form#loginForm button {
   color: var(--color-text);
   border-radius: 12px;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   margin: 0;
 }
  
@@ -346,7 +345,7 @@ form#loginForm button {
   color: #fff;
   border-radius: 12px;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   margin: 0;
 }
  
@@ -403,6 +402,76 @@ form#loginForm button {
 }
 .modal-btn-delete:hover { background: var(--purple-dark); transform: translateY(-1px); }
 .modal-btn-delete:active { transform: scale(0.95); }
+
+/* ------------------------------------------------- REGISTER CHILD  ----------------------------------------------------- */
+
+register-child-form {
+  background: #FFFCFA;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(98, 68, 180, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+ 
+.register-child-form label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #7A7899;
+  margin-bottom: 2px;
+}
+ 
+.register-child-form input[type="text"] {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid #E8E6F5;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+ 
+.register-child-form input[type="text"]:focus {
+  border-color: var(--color-secondary);
+}
+ 
+.register-child-form input[type="text"]::placeholder {
+  color: #B8B6D0;
+}
+ 
+.register-child-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+ 
+.btn-secondary {
+  flex: 1;
+  padding: 13px;
+  background: #E8E6F5;
+  color: var(--color-text);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+ 
+.btn-primary {
+  flex: 1;
+  padding: 13px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
 
 /* ------------------------------------------------- SETTINGS ----------------------------------------------------- */
  
