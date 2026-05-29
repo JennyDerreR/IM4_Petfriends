@@ -8,17 +8,14 @@ session_start();
 
 try {
     if (empty($_SESSION["family_id"])) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Keine Familie angemeldet"
-        ]);
+        echo json_encode(["status" => "error", "message" => "Keine Familie angemeldet"]);
         exit;
     }
 
     $family_id = (int) $_SESSION["family_id"];
 
     $stmt = $pdo->prepare("
-        SELECT id, animal_name, type, snr, neededgramms, child_id
+        SELECT id, animal_name, type, snr, neededgramms, child_id, icon
         FROM petbowls
         WHERE family_id = :family_id
         ORDER BY id ASC
@@ -28,15 +25,9 @@ try {
 
     $animals = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode([
-        "status" => "success",
-        "animals" => $animals
-    ]);
+    echo json_encode(["status" => "success", "animals" => $animals]);
 
 } catch (Exception $e) {
-    echo json_encode([
-        "status" => "error",
-        "message" => $e->getMessage()
-    ]);
+    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 }
 ?>

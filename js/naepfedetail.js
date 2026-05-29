@@ -1,3 +1,15 @@
+const ICON_MAP = {
+  dog:       'assets/dogicon_v2.png',
+  cat:       'assets/caticon_v2.png',
+  bunny:     'assets/bunnyicon_v2.png',
+  gunneapig: 'assets/gunneapig_v2.png',
+  bird:      'assets/birdicon_v2.png',
+};
+
+function getAnimalIcon(icon) {
+  return ICON_MAP[icon] || 'assets/dogicon_v2.png';
+}
+
 const params   = new URLSearchParams(window.location.search);
 const animalId = params.get("id") ?? 7;
 
@@ -17,6 +29,7 @@ async function loadAnimal() {
     // Hero
     document.getElementById("animalName").textContent = animal.animal_name ?? "Unbekannt";
     document.getElementById("animalType").textContent = animal.type ?? "";
+    document.getElementById("animalHeroAvatar").src   = getAnimalIcon(animal.icon);
 
     // Status
     const foodLevel    = animal.food_level  ?? 0;
@@ -28,7 +41,7 @@ async function loadAnimal() {
     document.getElementById("snr").textContent          = animal.snr ?? "";
     document.getElementById("neededGramms").textContent = `${neededgramms} g`;
 
-    // Aufgaben — nur Klasse setzen, kein Emoji
+    // Aufgaben
     const foodDone  = foodLevel >= neededgramms;
     const waterDone = waterLevel >= 50;
 

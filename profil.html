@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>PetCare – [Seitenname]</title>
+  <title>PetCare – Profil</title>
   <script>
     const t = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', t);
@@ -13,59 +13,58 @@
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
-  <body>
+<body>
 
-    <h1>Profil bearbeiten</h1>
+  <main class="page">
+    <header class="page-header">
+      <h1>Profil bearbeiten</h1>
+      <p>Passe deine Kontodaten an</p>
+    </header>
 
-    <form id="profilForm">
-      <div>
-        <label>Nachname</label>
-        <input type="text" id="lastname"  />
-      </div>
+    <form id="profilForm" class="register-child-form">
 
-      <div>
-        <label>Email</label>
-        <input type="email" id="email" readonly />
-      </div>
+      <label for="lastname">Nachname</label>
+      <input type="text" id="lastname" placeholder="z.B. Müller" />
 
-        <div>
-        <button type="button" id="passwortAendern">
-          Passwort Ändern
+      <label for="email">Email</label>
+      <input type="email" id="email" readonly placeholder="deine@email.ch" />
+
+      <div class="register-child-actions">
+        <button type="button" class="btn-secondary" id="passwortAendern">
+          Passwort ändern
+        </button>
+        <button type="submit" class="btn-primary">
+          Speichern
         </button>
       </div>
-      
-      <button type="submit">Anpassen</button>
 
     </form>
+  </main>
 
-    <footer>
-      <nav class="bottom-nav">
-        <a href="protected.html" class="nav-item active">
-          <img src="assets/homeicon_v2.png" alt="Start" />
-          <span>Home</span>
-        </a>
+  <footer>
+    <nav class="bottom-nav">
+      <a href="protected.html" class="nav-item">
+        <img src="assets/homeicon_v2.png" alt="Start" />
+        <span>Home</span>
+      </a>
+      <a href="naepfe.html" class="nav-item">
+        <img src="assets/dogicon_v2.png" alt="Tiere" />
+        <span>Tiere</span>
+      </a>
+      <a href="kids.html" class="nav-item">
+        <img src="assets/kidsicon_v2.png" alt="Kinder" />
+        <span>Kinder</span>
+      </a>
+      <a href="settings.html" class="nav-item active">
+        <img src="assets/profileicon_v2.png" alt="Profil" />
+        <span>Profil</span>
+      </a>
+    </nav>
+  </footer>
 
-        <a href="naepfe.html" class="nav-item">
-          <img src="assets/dogicon_v2.png" alt="Tiere" />
-          <span>Tiere</span>
-        </a>
+  <script src="js/auth.js"></script>
+  <script src="js/profil.js"></script>
+  <script src="js/nav.js"></script>
 
-        <a href="kids.html" class="nav-item">
-         <img src="assets/kidsicon_v2.png" alt="Kinder" />
-          <span>Kinder</span>
-        </a>
-
-        <a href="settings.html" class="nav-item">
-         <img src="assets/profileicon_v2.png" alt="Profil" />
-          <span>Profil</span>
-        </a>
-      </nav>
-    </footer>
-
-    <script src="js/auth.js"></script>
-    <script src="js/profil.js"></script>
-    <script src="js/nav.js"></script>
-
-
-  </body>
+</body>
 </html>

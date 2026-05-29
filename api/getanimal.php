@@ -54,7 +54,8 @@ try {
             snr,
             family_id,
             neededgramms,
-            type
+            type,
+            icon
         FROM petbowls
         WHERE id = :id
         AND family_id = :family_id
@@ -148,7 +149,9 @@ try {
 
             "food_level" => $foodLevel,
 
-            "water_level" => $waterLevel
+            "water_level" => $waterLevel,
+            
+            "icon" => $animal["icon"] ?? "dog",
         ]
     ]);
 
