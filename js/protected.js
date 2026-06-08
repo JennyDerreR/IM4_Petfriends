@@ -110,7 +110,7 @@ function renderPetsWidget(animals) {
   animals.forEach((animal) => {
     const card = document.createElement("a");
     card.classList.add("mini-pet-card");
-    card.href = "naepfe.html";
+    card.href = `naepfedetail.html?id=${animal.id}`;
 
     card.innerHTML = `
       <div class="mini-pet-avatar">
