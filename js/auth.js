@@ -1,26 +1,27 @@
-
 async function checkAuth() {
-    try {
-      const response = await fetch("/api/protected.php", {
-        credentials: "include",
-      });
-  
-      if (response.status === 401) {
-        window.location.href = "/login.html";
-        return false;
-      }
-  
-      const result = await response.json();
+  try {
+    const response = await fetch("/api/protected.php", {
+      credentials: "include",
+    });
 
-
-      return true;
-    } catch (error) {
-      console.error("Auth check failed:", error);
+    if (response.status === 401) {
       window.location.href = "/login.html";
       return false;
     }
+
+    return true;
+  } catch (error) {
+    console.error("Auth check failed:", error);
+    window.location.href = "/login.html";
+    return false;
   }
-  
-  // Check auth when page loads
-  ///window.addEventListener("load", checkAuth);
-  
+}
+
+// Seite verstecken bis Auth-Check fertig
+document.body.style.visibility = "hidden";
+
+checkAuth().then(isAuth => {
+  if (isAuth) {
+    document.body.style.visibility = "visible";
+  }
+});
