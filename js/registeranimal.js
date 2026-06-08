@@ -6,7 +6,9 @@ const ICON_MAP = {
   bird:      'assets/birdicon_v2.png',
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  const isAuth = await checkAuth();
+  if (!isAuth) return;
   const form        = document.getElementById("animalForm");
   const childSelect = document.getElementById("child_id");
   const iconInput   = document.getElementById("icon");
