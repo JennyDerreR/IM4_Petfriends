@@ -48,6 +48,26 @@ async function loadAnimal() {
     if (foodDone)  document.getElementById("foodTask").classList.add("done");
     if (waterDone) document.getElementById("waterTask").classList.add("done");
 
+    // Device Status
+const foodStatusEl  = document.getElementById("foodStatus");
+const waterStatusEl = document.getElementById("waterStatus");
+
+if (foodLevel > 0) {
+  foodStatusEl.textContent = "✓ Online";
+  foodStatusEl.className = "device-status online";
+} else {
+  foodStatusEl.textContent = "✕ Nicht verbunden";
+  foodStatusEl.className = "device-status offline";
+}
+
+if (waterLevel > 0) {
+  waterStatusEl.textContent = "✓ Online";
+  waterStatusEl.className = "device-status online";
+} else {
+  waterStatusEl.textContent = "✕ Nicht verbunden";
+  waterStatusEl.className = "device-status offline";
+}
+
   } catch (error) {
     console.error("Fehler beim Laden:", error);
   }
