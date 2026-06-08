@@ -11,17 +11,10 @@
 
 .navigation {
   display: flex;
-  justify-content: center;
+  gap: 10px;
   margin: 1rem 0;
 }
 
-.navigation ul {
-  gap: 0.5rem;
-}
-
-.navigation button {
-  margin: 0;
-}
 
 .sectionCTA {
   display: flex;
@@ -30,10 +23,25 @@
   margin-top: 1.25rem;
 }
 
-.navigation button,
-.sectionCTA button {
-  padding: 0.95rem 1.25rem;
-  font-size: 1.05rem;
+.navigation .btn-secondary,
+.navigation .btn-primary,
+.sectionCTA .btn-primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+}
+
+.sectionCTA .btn-primary {
+  flex: none;
+  width: 100%;
+  padding: 14px;
 }
 
 /* ------------------------------------------------- REGISTER ------------------------------------------------- */
@@ -1021,10 +1029,20 @@ body.no-scroll .app {
   height: 100vh;
 }
 
+:root {
+  --surface2:       #F0EFF8;
+  --border:         #E8E6F5;
+  --text-secondary: #7A7899;
+  --shadow:         0 2px 12px rgba(98,68,180,0.08);
+  --shadow-md:      0 4px 24px rgba(98,68,180,0.13);
+  --purple-dark:    #4a3490;
+  --red-light:      #FEF0F0;
+}
+
 /* Dark Mode */
 [data-theme="dark"] {
   --color-background: #12111F;
-  --color-surface:    #1E1D30;
+  --color-surface: #1E1D30;
   --color-text:       #F0EFF8;
   --color-primary:    #2A2650;
   --color-secondary:  #7C6FF7;
@@ -1036,15 +1054,68 @@ body.no-scroll .app {
   --red-light:        #2A1A1A;
 }
 
-:root {
-  --surface2:       #F0EFF8;
-  --border:         #E8E6F5;
-  --text-secondary: #7A7899;
-  --shadow:         0 2px 12px rgba(98,68,180,0.08);
-  --shadow-md:      0 4px 24px rgba(98,68,180,0.13);
-  --purple-dark:    #4a3490;
-  --red-light:      #FEF0F0;
+/* ── Dark Mode Fixes ── */
+[data-theme="dark"] .task-card,
+[data-theme="dark"] .mini-kid-card,
+[data-theme="dark"] .mini-pet-card,
+[data-theme="dark"] .child-card,
+[data-theme="dark"] .naepfe-card,
+[data-theme="dark"] .register-animal-form,
+[data-theme="dark"] .register-child-form,
+[data-theme="dark"] .kids-modal {
+  background: var(--color-surface);
 }
+
+[data-theme="dark"] .task-row {
+  background: var(--surface2);
+}
+
+[data-theme="dark"] .task-check {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .animal-task-row {
+  background: var(--surface2);
+}
+
+[data-theme="dark"] .animal-task-check {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .icon-option {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .icon-option.selected {
+  background: var(--color-primary);
+  border-color: var(--color-secondary);
+}
+
+[data-theme="dark"] .register-animal-form input,
+[data-theme="dark"] .register-animal-form select,
+[data-theme="dark"] .register-child-form input,
+[data-theme="dark"] .kids-modal input[type="number"] {
+  background: var(--surface2);
+  color: var(--color-text);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .device-card {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .btn-secondary,
+[data-theme="dark"] .btn-cancel,
+[data-theme="dark"] .btn-logout,
+[data-theme="dark"] .modal-btn-cancel {
+  background: var(--surface2);
+  color: var(--color-text);
+}
+
 
 .app {
   min-height: 100vh;
@@ -1476,7 +1547,7 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  z-index: 100;
+  z-index: 200;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s;

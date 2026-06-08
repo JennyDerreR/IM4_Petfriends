@@ -17,6 +17,7 @@
 
   <main class="page">
     <header class="page-header">
+      <button class="btn-back" onclick="window.location.href='settings.html'">← Zurück</button>
       <h1>Profil bearbeiten</h1>
       <p>Passe deine Kontodaten an</p>
     </header>
@@ -30,15 +31,19 @@
       <input type="email" id="email" readonly placeholder="deine@email.ch" />
 
       <div class="register-child-actions">
-        <button type="button" class="btn-secondary" id="passwortAendern">
-          Passwort ändern
-        </button>
         <button type="submit" class="btn-primary">
           Speichern
         </button>
       </div>
 
     </form>
+
+    <div style="height: 16px;"></div>
+
+    <button type="button" class="btn-logout" id="passwortAendern">
+      Passwort ändern
+    </button>
+
   </main>
 
   <footer>
