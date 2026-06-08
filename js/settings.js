@@ -38,7 +38,6 @@ function updateThemeCards(t) {
   document.getElementById('theme-dark').classList.toggle('selected', t === 'dark');
 }
 
-// Keep in sync if the OS theme changes while the page is open
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
   if (localStorage.getItem('followSystem') === 'true') {
     applyTheme(e.matches ? 'dark' : 'light');
@@ -69,15 +68,12 @@ async function loadFamily() {
     return;
   }
 
-  // Invite-Box und Mitgliederliste wieder einblenden (falls vorher versteckt)
   document.querySelector('.invite-box').style.display = '';
   document.querySelector('.settings-card').style.display = '';
   document.querySelector('.add-form').classList.remove('no-family');
 
-  // Einladungscode anzeigen
   document.getElementById('invite-code').textContent = data.invite_code;
 
-  // Mitgliederliste aufbauen — mit Entfernen-Button für alle ausser sich selbst
   const currentUserId = parseInt(localStorage.getItem('user_id'));
   const list = document.getElementById('member-list');
   list.innerHTML = data.members.map((m, i) => `
@@ -101,12 +97,11 @@ async function loadFamily() {
 function showNoFamilyUI() {
   document.querySelector('.invite-box').style.display = 'none';
   document.querySelector('.settings-card').style.display = 'none';
-
-   // NEU: Klasse hinzufügen damit alles untereinander ist
   document.querySelector('.add-form').classList.add('no-family');
 
   document.querySelector('.add-form').innerHTML = `
-    <p style="margin-bottom:8px; font-weight:600">Du gehörst noch keiner Familie an</p>
+    <p style="margin-bottom:4px; font-weight:600">Du gehörst noch keiner Familie an</p>
+    <p style="margin-bottom:12px; font-size:13px; color: var(--text-secondary)">Um die App vollständig nutzen zu können, erstelle eine neue Familie oder tritt einer bestehenden bei.</p>
 
     <input type="text" id="family-name-input" placeholder="Familienname (z.B. Familie Müller)" />
     <button class="btn-add" onclick="createFamily()">Familie erstellen</button>
@@ -132,7 +127,7 @@ async function createFamily() {
   if (data.status === 'ok') {
     localStorage.setItem('family_id', data.family_id);
     showToast('Familie erstellt! Dein Code: ' + data.invite_code);
-    loadFamily(); // Ansicht neu laden → zeigt jetzt Code + Mitglieder
+    loadFamily();
   } else {
     showToast('Fehler: ' + data.message, true);
   }
@@ -159,7 +154,6 @@ async function joinFamily() {
 }
 
 async function removeMember(userId) {
-  // Sicherheitsabfrage damit man nicht aus Versehen jemanden entfernt
   if (!confirm('Mitglied wirklich aus der Familie entfernen?')) return;
 
   const res  = await fetch('api/family.php?action=remove_member', {
@@ -177,8 +171,6 @@ async function removeMember(userId) {
   }
 }
 
-// Kleine Erfolgsmeldung unten einblenden statt alert()
-// isError = true macht sie rot
 function showToast(msg, isError = false) {
   let toast = document.getElementById('toast');
   if (!toast) {
@@ -199,6 +191,7 @@ function showToast(msg, isError = false) {
 }
 
 loadFamily();
+
 /* ═══════════════════════════════════════
    INVITE CODE
 ═══════════════════════════════════════ */
@@ -213,6 +206,25 @@ function copyCode() {
 }
 
 /* ═══════════════════════════════════════
+   PROFIL
+═══════════════════════════════════════ */
+async function loadProfile() {
+  try {
+    const res  = await fetch('api/profil.php');
+    const data = await res.json();
+
+    if (data.status === 'success') {
+      document.getElementById('profileName').textContent  = data.lastname || 'Profil';
+      document.getElementById('profileEmail').textContent = data.email    || '';
+    }
+  } catch (error) {
+    console.error('Fehler beim Laden des Profils:', error);
+  }
+}
+
+loadProfile();
+
+/* ═══════════════════════════════════════
    DELETE ACCOUNT MODAL
 ═══════════════════════════════════════ */
 function openDeleteModal() {
@@ -220,14 +232,12 @@ function openDeleteModal() {
 }
 
 function closeDeleteModal(e) {
-  // Close when clicking the backdrop, or when called directly (no event)
   if (!e || e.target === document.getElementById('delete-modal')) {
     document.getElementById('delete-modal').classList.remove('open');
   }
 }
 
 async function confirmDelete() {
-  // PHP: User aus der Datenbank löschen
   const res  = await fetch('api/family.php?action=delete_account', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -235,11 +245,27 @@ async function confirmDelete() {
   const data = await res.json();
 
   if (data.status === 'ok') {
-    // LocalStorage leeren und zur Login-Seite
     localStorage.clear();
-    window.location.href = 'index.html'; // passe den Link zu deiner Login-Seite an
+    window.location.href = 'index.html';
   } else {
     showToast('Fehler beim Löschen: ' + data.message, true);
     closeDeleteModal();
+  }
+}
+
+/* ═══════════════════════════════════════
+   FAMILIE VERLASSEN
+═══════════════════════════════════════ */
+async function leaveFamily() {
+  if (!confirm('Familie wirklich verlassen? Wenn du das letzte Mitglied bist, wird die Familie gelöscht.')) return;
+
+  const res  = await fetch('api/family.php?action=leave_family', { method: 'POST' });
+  const data = await res.json();
+
+  if (data.status === 'ok') {
+    showToast('Du hast die Familie verlassen');
+    loadFamily();
+  } else {
+    showToast('Fehler: ' + data.message, true);
   }
 }

@@ -171,3 +171,17 @@ function renderKidsWidget(children) {
 loadTasksWidget();
 loadPetsWidget();
 loadKidsWidget();
+
+async function checkFamily() {
+  try {
+    const res    = await fetch("/api/family.php?action=get_family");
+    const data   = await res.json();
+    if (data.status === "no_family") {
+      document.getElementById("familyBanner").style.display = "block";
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+checkFamily();

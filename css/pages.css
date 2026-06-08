@@ -137,6 +137,21 @@ p#currentDate {
   color: var(--color-text);
 }
 
+.onboarding-banner {
+  background: var(--color-primary);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+.onboarding-banner a {
+  color: var(--color-secondary);
+  font-weight: 800;
+}
+
 .dashboard-cards {
   display: flex;
   flex-direction: column;
@@ -945,6 +960,41 @@ p#currentDate {
   margin: 0 0 24px;
   line-height: 1.5;
   text-align: center;
+}
+
+/* ── Reassign Modal ── */
+.reassign-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #F0EFF8;
+}
+
+.reassign-row:last-child { border-bottom: none; }
+
+.reassign-animal-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.reassign-select {
+  padding: 9px 12px;
+  border: 1.5px solid #E8E6F5;
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+  background: var(--color-background);
+  color: var(--color-text);
+  outline: none;
+  flex: 1;
+  max-width: 160px;
+}
+
+.reassign-select:focus {
+  border-color: var(--color-secondary);
 }
 
 /* ------------------------------------------------- REGISTER CHILD ----------------------------------------------------- */

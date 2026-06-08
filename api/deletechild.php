@@ -7,84 +7,47 @@ require_once '../system/config.php';
 session_start();
 
 try {
+    $data = json_decode(file_get_contents("php://input"), true);
 
-    // JSON Daten holen
-    $data = json_decode(
-        file_get_contents("php://input"),
-        true
-    );
-
-    // Prüfen ob ID vorhanden
     if (empty($data["kid_id"])) {
-
-        echo json_encode([
-            "status" => "error",
-            "message" => "Keine Kind-ID erhalten"
-        ]);
-
+        echo json_encode(["status" => "error", "message" => "Keine Kind-ID erhalten"]);
         exit;
     }
 
-    // Werte holen
-    $kid_id = (int) $data["kid_id"];
+    $kid_id    = (int) $data["kid_id"];
     $family_id = (int) $_SESSION["family_id"];
 
-    // Datenbank verbinden
-    $pdo = new PDO(
-        "mysql:host=$host;dbname=$db;charset=utf8mb4",
-        $user,
-        $pass
-    );
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $pdo->setAttribute(
-        PDO::ATTR_ERRMODE,
-        PDO::ERRMODE_EXCEPTION
-    );
-
-    /*
-      ZUERST:
-      Alle verknüpften Näpfe löschen
-    */
-    $sql = "
-        DELETE FROM petbowls
+    // Prüfen ob Kind noch Tiere hat
+    $checkAnimals = $pdo->prepare("
+        SELECT id, animal_name FROM petbowls
         WHERE child_id = :kid_id
-    ";
+    ");
+    $checkAnimals->execute([":kid_id" => $kid_id]);
+    $animals = $checkAnimals->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt = $pdo->prepare($sql);
+    if (count($animals) > 0) {
+        $names = array_map(fn($a) => $a["animal_name"], $animals);
+        echo json_encode([
+            "status"  => "has_animals",
+            "message" => "Dieses Kind hat noch Tiere: " . implode(", ", $names) . ". Bitte zuerst die Tiere einem anderen Kind zuweisen.",
+            "animals" => $animals
+        ]);
+        exit;
+    }
 
-    $stmt->execute([
-        ":kid_id" => $kid_id
-    ]);
-
-    /*
-      DANACH:
-      Kind löschen
-    */
-    $sql = "
+    // Kind löschen
+    $stmt = $pdo->prepare("
         DELETE FROM kids
-        WHERE id = :kid_id
-        AND family_id = :family_id
-    ";
+        WHERE id = :kid_id AND family_id = :family_id
+    ");
+    $stmt->execute([":kid_id" => $kid_id, ":family_id" => $family_id]);
 
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ":kid_id" => $kid_id,
-        ":family_id" => $family_id
-    ]);
-
-    // Erfolg zurückgeben
-    echo json_encode([
-        "status" => "success"
-    ]);
+    echo json_encode(["status" => "success"]);
 
 } catch (Exception $e) {
-
-    // Fehler zurückgeben
-    echo json_encode([
-        "status" => "error",
-        "message" => $e->getMessage()
-    ]);
-
+    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 }
 ?>

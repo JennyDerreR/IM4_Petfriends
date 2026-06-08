@@ -7,112 +7,43 @@ require_once '../system/config.php';
 session_start();
 
 try {
-    if (empty($_SESSION["family_id"])) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Keine Familie angemeldet"
-        ]);
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (empty($data["lastname"]) || empty($data["firstname"]) || empty($data["email"]) || empty($data["password"])) {
+        echo json_encode(["status" => "error", "message" => "Bitte alle Felder ausfüllen"]);
         exit;
     }
 
-    $family_id = (int) $_SESSION["family_id"];
-    $animal_id = isset($_GET["id"]) ? (int) $_GET["id"] : 0;
+    $lastname  = trim($data["lastname"]);
+    $firstname = trim($data["firstname"]);
+    $email     = trim($data["email"]);
+    $password  = password_hash(trim($data["password"]), PASSWORD_DEFAULT);
 
-    if (!$animal_id) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Tier-ID fehlt"
-        ]);
+    // Prüfen ob Email bereits existiert
+    $check = $pdo->prepare("SELECT id FROM users WHERE email = :email");
+    $check->execute([":email" => $email]);
+
+    if ($check->fetch()) {
+        echo json_encode(["status" => "error", "message" => "Diese E-Mail ist bereits registriert"]);
         exit;
     }
 
-    $pdo = new PDO(
-        "mysql:host=$host;dbname=$db;charset=utf8mb4",
-        $user,
-        $pass
-    );
-
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Tierdaten laden
+    // User erstellen
     $stmt = $pdo->prepare("
-        SELECT
-            id,
-            child_id,
-            animal_name,
-            snr,
-            family_id,
-            neededgramms,
-            type
-        FROM petbowls
-        WHERE id = :id
-        AND family_id = :family_id
-        LIMIT 1
+        INSERT INTO users (lastname, firstname, email, password)
+        VALUES (:lastname, :firstname, :email, :password)
     ");
 
     $stmt->execute([
-        ":id" => $animal_id,
-        ":family_id" => $family_id
+        ":lastname"  => $lastname,
+        ":firstname" => $firstname,
+        ":email"     => $email,
+        ":password"  => $password,
     ]);
 
-    $animal = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$animal) {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Tier nicht gefunden"
-        ]);
-        exit;
-    }
-
-    // Neueste Sensorwerte laden
-    $stmtSensor = $pdo->prepare("
-        SELECT type, filllevel
-        FROM sensor_data
-        WHERE snr = :snr
-        AND type IN ('Gewichtssensor', 'Feuchtigkeitssensor')
-        ORDER BY timestamp DESC
-    ");
-
-    $stmtSensor->execute([
-        ":snr" => $animal["snr"]
-    ]);
-
-    $sensorRows = $stmtSensor->fetchAll(PDO::FETCH_ASSOC);
-
-    $foodLevel = 0;
-    $waterLevel = 0;
-
-    foreach ($sensorRows as $row) {
-        if ($row["type"] === "Gewichtssensor" && $foodLevel === 0) {
-            $foodLevel = (int) $row["filllevel"];
-        }
-
-        if ($row["type"] === "Feuchtigkeitssensor" && $waterLevel === 0) {
-            $waterLevel = (int) $row["filllevel"];
-        }
-    }
-
-    echo json_encode([
-        "status" => "success",
-        "animal" => [
-            "id" => $animal["id"],
-            "child_id" => $animal["child_id"],
-            "animal_name" => $animal["animal_name"],
-            "type" => $animal["type"],
-            "snr" => $animal["snr"],
-            "family_id" => $animal["family_id"],
-            "neededgramms" => $animal["neededgramms"],
-            "food_level" => $foodLevel,
-            "water_level" => $waterLevel
-        ]
-    ]);
+    echo json_encode(["status" => "success", "message" => "Registrierung erfolgreich"]);
 
 } catch (Exception $e) {
-    echo json_encode([
-        "status" => "error",
-        "message" => $e->getMessage()
-    ]);
+    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 }
-
 ?>

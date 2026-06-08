@@ -18,11 +18,14 @@ const deleteModal   = document.getElementById("deleteModal");
 const deleteConfirm = document.getElementById("deleteConfirm");
 const deleteCancel  = document.getElementById("deleteCancel");
 
+const reassignModal  = document.getElementById("reassignModal");
+const reassignCancel = document.getElementById("reassignCancel");
+
 // ── Modal Helfer ────────────────────────────────────────────────────────────
 function openModal(overlay)  { overlay.classList.add("open"); }
 function closeModal(overlay) { overlay.classList.remove("open"); }
 
-[addModal, redeemModal, deleteModal].forEach(modal => {
+[addModal, redeemModal, deleteModal, reassignModal].forEach(modal => {
   modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal(modal);
   });
@@ -56,8 +59,10 @@ deleteCancel.addEventListener("click", () => closeModal(deleteModal));
 deleteConfirm.addEventListener("click", async () => {
   closeModal(deleteModal);
   await deleteChild(activeKidId);
-  await loadChildren();
 });
+
+// ── Reassign Modal Events ───────────────────────────────────────────────────
+reassignCancel.addEventListener("click", () => closeModal(reassignModal));
 
 // ── Daten laden ─────────────────────────────────────────────────────────────
 async function loadChildren() {
@@ -67,6 +72,9 @@ async function loadChildren() {
 
     if (result.status === "success") {
       children = result.children;
+      renderChildren();
+    } else if (result.message === "Keine Familie angemeldet") {
+      console.error(result.message);
       renderChildren();
     } else {
       alert(result.message || "Kinder konnten nicht geladen werden");
@@ -80,6 +88,11 @@ async function loadChildren() {
 // ── Render ──────────────────────────────────────────────────────────────────
 function renderChildren() {
   childrenContainer.innerHTML = "";
+
+  if (children.length === 0) {
+    childrenContainer.innerHTML = `<p class="empty-hint">Keine Kinder gefunden.</p>`;
+    return;
+  }
 
   children.forEach((child) => {
     const token = Number(child.token) || 0;
@@ -98,7 +111,6 @@ function renderChildren() {
           </div>
         </div>
       </div>
-
       <div class="actions">
         <button class="add-token" data-id="${child.id}">+ Token</button>
         <button class="redeem" data-id="${child.id}">🎁 Einlösen</button>
@@ -163,7 +175,12 @@ async function deleteChild(kidId) {
       body: JSON.stringify({ kid_id: kidId })
     });
     const result = await response.json();
-    if (result.status !== "success") {
+
+    if (result.status === "success") {
+      await loadChildren();
+    } else if (result.status === "has_animals") {
+      showReassignModal(result.animals, kidId);
+    } else {
       alert(result.message || "Kind konnte nicht gelöscht werden");
     }
   } catch (error) {
@@ -172,7 +189,71 @@ async function deleteChild(kidId) {
   }
 }
 
-// ── Init: erst Auth prüfen, dann laden ─────────────────────────────────────
+function showReassignModal(animals, kidId) {
+  const otherChildren = children.filter(c => c.id !== kidId);
+
+  const animalRows = animals.map(animal => {
+    const options = otherChildren.map(c =>
+      `<option value="${c.id}">${c.kidsname}</option>`
+    ).join("");
+
+    return `
+      <div class="reassign-row">
+        <span class="reassign-animal-name">🐾 ${animal.animal_name}</span>
+        <select class="reassign-select" data-animal-id="${animal.id}">
+          <option value="">Kind wählen...</option>
+          ${options}
+        </select>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("reassignList").innerHTML = animalRows;
+
+  document.getElementById("reassignConfirm").onclick = async () => {
+    const selects = document.querySelectorAll(".reassign-select");
+    let allSelected = true;
+
+    for (const select of selects) {
+      if (!select.value) {
+        allSelected = false;
+        break;
+      }
+    }
+
+    if (!allSelected) {
+      alert("Bitte für jedes Tier ein neues Kind auswählen.");
+      return;
+    }
+
+    for (const select of selects) {
+      await reassignAnimal(parseInt(select.dataset.animalId), parseInt(select.value));
+    }
+
+    closeModal(reassignModal);
+    await deleteChild(kidId);
+  };
+
+  openModal(reassignModal);
+}
+
+async function reassignAnimal(animalId, newChildId) {
+  try {
+    const response = await fetch("/api/reassignanimal.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ animal_id: animalId, new_child_id: newChildId })
+    });
+    const result = await response.json();
+    if (result.status !== "success") {
+      alert(result.message || "Tier konnte nicht umgeschrieben werden");
+    }
+  } catch (error) {
+    console.error("Fehler beim Umschreiben:", error);
+  }
+}
+
+// ── Init ────────────────────────────────────────────────────────────────────
 (async () => {
   const isAuth = await checkAuth();
   if (!isAuth) return;

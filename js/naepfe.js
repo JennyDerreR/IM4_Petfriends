@@ -11,6 +11,22 @@ function getAnimalIcon(icon) {
 }
 
 const petsContainer = document.getElementById("petsContainer");
+let activeAnimalId  = null;
+
+const deleteAnimalModal  = document.getElementById("deleteAnimalModal");
+const deleteAnimalCancel = document.getElementById("deleteAnimalCancel");
+const deleteAnimalConfirm = document.getElementById("deleteAnimalConfirm");
+
+deleteAnimalCancel.addEventListener("click", () => deleteAnimalModal.classList.remove("open"));
+deleteAnimalModal.addEventListener("click", (e) => {
+  if (e.target === deleteAnimalModal) deleteAnimalModal.classList.remove("open");
+});
+
+deleteAnimalConfirm.addEventListener("click", async () => {
+  deleteAnimalModal.classList.remove("open");
+  await deleteAnimal(activeAnimalId);
+  await loadPets();
+});
 
 async function loadPets() {
   try {
@@ -45,18 +61,50 @@ function renderPets(animals) {
       <div class="mini-pet-avatar">
         <img src="${getAnimalIcon(animal.icon)}" alt="${animal.animal_name}" />
       </div>
-      <div>
+      <div style="flex:1">
         <h3>${animal.animal_name}</h3>
         <p>${animal.type ?? ""}</p>
       </div>
+      <button class="delete" data-id="${animal.id}" style="flex-shrink:0">🗑</button>
     `;
 
-    card.addEventListener("click", () => {
+    // Klick auf Karte → Detailseite (nicht wenn Löschen-Button)
+    card.addEventListener("click", (e) => {
+      if (e.target.closest(".delete")) return;
       window.location.href = `naepfedetail.html?id=${animal.id}`;
+    });
+
+    // Klick auf Löschen-Button → Modal
+    card.querySelector(".delete").addEventListener("click", (e) => {
+      e.stopPropagation();
+      activeAnimalId = animal.id;
+      deleteAnimalModal.classList.add("open");
     });
 
     petsContainer.appendChild(card);
   });
 }
 
-loadPets();
+async function deleteAnimal(animalId) {
+  try {
+    const response = await fetch("/api/deleteanimal.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ animal_id: animalId })
+    });
+    const result = await response.json();
+    if (result.status !== "success") {
+      alert(result.message || "Tier konnte nicht gelöscht werden");
+    }
+  } catch (error) {
+    console.error("Fehler beim Löschen:", error);
+    alert("Fehler beim Löschen");
+  }
+}
+
+// ── Init ────────────────────────────────────────────────────────────────────
+(async () => {
+  const isAuth = await checkAuth();
+  if (!isAuth) return;
+  await loadPets();
+})();
