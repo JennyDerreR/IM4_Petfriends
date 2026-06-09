@@ -34,7 +34,6 @@ body.no-scroll .app {
   --color-status-warning:  #F4AB4F;
   --color-status-critical: #DA5045;
 
-  /* ── Neu aus Pages CSS ── */
   --surface2:              #F0EFF8;
   --border:                #E8E6F5;
   --text-secondary:        #7A7899;
@@ -135,32 +134,32 @@ body {
 /* ------------------------------------------------- ABSTÄNDE UND LAYOUT ----------------------------------------------------- */
 
 .page {
-  padding: 28px 16px 140px;
-  max-width: 480px;
+  padding: 1.75rem 1rem 8.75rem;
+  max-width: 30rem;
   margin: 0 auto;
 }
 
 .page-header {
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 
 .page-header h1 {
-  font-size: 26px;
-  margin-bottom: 4px;
-  letter-spacing: -0.4px;
+  font-size: 1.625rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.025em;
 }
 
 .page-header p {
-  font-size: 13px;
+  font-size: 0.812rem;
   color: var(--text-secondary);
   margin: 0;
 }
 
 #panel-hub .page-header,
 .panel .page-header {
-  padding-top: 28px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-top: 1.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 /* ------------------------------------------------- BILDER ----------------------------------------------------- */
@@ -202,22 +201,22 @@ button:active {
 
 .btn-primary {
   flex: 1;
-  padding: 13px;
+  padding: 0.812rem;
   background: var(--color-primary);
   color: var(--color-text);
-  border-radius: 12px;
-  font-size: 15px;
+  border-radius: 0.75rem;
+  font-size: 0.937rem;
   font-weight: 700;
   margin: 0;
 }
 
 .btn-secondary {
   flex: 1;
-  padding: 13px;
-  background: #E8E6F5;
+  padding: 0.812rem;
+  background: var(--border);
   color: var(--color-text);
-  border-radius: 12px;
-  font-size: 15px;
+  border-radius: 0.75rem;
+  font-size: 0.937rem;
   font-weight: 700;
   margin: 0;
 }
@@ -226,18 +225,14 @@ button:active {
   background: none;
   border: none;
   color: var(--color-secondary);
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 700;
   padding: 0;
-  margin: 0 0 12px;
+  margin: 0 0 0.75rem;
   cursor: pointer;
 }
 
 /* ------------------------------------------------- FORMULARE ----------------------------------------------------- */
-
-form > div {
-  margin-bottom: 1rem;
-}
 
 label {
   display: block;
@@ -251,7 +246,6 @@ input[type="text"] {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1.5px solid var(--border);
-  border-radius: 0.75rem;
   font-family: inherit;
   background: var(--color-surface);
   color: var(--color-text);
@@ -276,7 +270,7 @@ input[type="text"]:focus {
 /* ------------------------------------------------- HILFSELEMENTE ----------------------------------------------------- */
 
 .empty-hint {
-  font-size: 13px;
+  font-size: 0.812rem;
   color: var(--text-secondary);
   margin: 0;
 }
@@ -286,6 +280,6 @@ input[type="text"]:focus {
 main.page {
   overflow: visible;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 140px;
-  scroll-padding-bottom: 140px;
+  padding-bottom: 8.75rem;
+  scroll-padding-bottom: 8.75rem;
 }
