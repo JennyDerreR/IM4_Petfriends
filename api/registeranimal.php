@@ -15,76 +15,101 @@ try {
     $family_id = (int) $_SESSION["family_id"];
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        
-        // 1. SCHRITT: Finde dynamisch die Seriennummer (snr) des Tieres dieser Familie
+
+        $range    = isset($_GET['range']) ? (int)$_GET['range'] : 1;
+        if (!in_array($range, [1, 7, 30])) $range = 1;
+
+        $animalId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+        // SNR über animal-ID holen
         $bowlStmt = $pdo->prepare("
             SELECT snr FROM petbowls 
-            WHERE family_id = :family_id 
+            WHERE id = :id AND family_id = :family_id
             LIMIT 1
         ");
-        $bowlStmt->execute([":family_id" => $family_id]);
+        $bowlStmt->execute([":id" => $animalId, ":family_id" => $family_id]);
         $bowl = $bowlStmt->fetch(PDO::FETCH_ASSOC);
 
-        // Falls noch gar kein Tier/Napf registriert ist
+        // Fallback: erste SNR der Familie
+        if (!$bowl || empty($bowl['snr'])) {
+            $bowlStmt = $pdo->prepare("SELECT snr FROM petbowls WHERE family_id = :family_id LIMIT 1");
+            $bowlStmt->execute([":family_id" => $family_id]);
+            $bowl = $bowlStmt->fetch(PDO::FETCH_ASSOC);
+        }
+
         if (!$bowl || empty($bowl['snr'])) {
             echo json_encode([
-                "status" => "success",
-                "gewicht" => ["labels" => [date('H:i')], "values" => [0]],
+                "status"       => "success",
+                "gewicht"      => ["labels" => [date('H:i')], "values" => [0]],
                 "feuchtigkeit" => ["labels" => [date('H:i')], "values" => [0]]
             ]);
             exit;
         }
 
-        $dynamischeSnr = $bowl['snr']; // Das ist z.B. "PB-001" aus der petbowls-Tabelle
+        $snr = $bowl['snr'];
 
-        // 2. SCHRITT: Hol die Sensordaten exakt für DIESE Seriennummer
-        $stmt = $pdo->prepare("
-            SELECT timestamp, filllevel, type 
-            FROM `data` 
-            WHERE snr = :snr 
-            ORDER BY timestamp ASC 
-            LIMIT 50
-        ");
-        $stmt->execute([":snr" => $dynamischeSnr]);
-        
-        $gewichtLabels = [];
-        $gewichtValues = [];
+        // Heute → letzter Wert pro Stunde
+        if ($range === 1) {
+            $stmt = $pdo->prepare("
+                SELECT 
+                    DATE_FORMAT(timestamp, '%H:00') as label,
+                    SUBSTRING_INDEX(GROUP_CONCAT(filllevel ORDER BY timestamp DESC), ',', 1) as value,
+                    type
+                FROM data
+                WHERE snr = :snr
+                  AND filllevel >= 0
+                  AND DATE(timestamp) = CURDATE()
+                GROUP BY HOUR(timestamp), type
+                ORDER BY HOUR(timestamp) ASC
+            ");
+            $stmt->execute([":snr" => $snr]);
+
+        } else {
+            // 7 oder 30 Tage → Durchschnitt pro Tag
+            // $range direkt einsetzen (bereits validiert auf 7 oder 30)
+            $stmt = $pdo->prepare("
+                SELECT
+                    DATE_FORMAT(DATE(timestamp), '%d.%m') as label,
+                    ROUND(AVG(filllevel)) as value,
+                    type
+                FROM data
+                WHERE snr = :snr
+                  AND filllevel >= 0
+                  AND timestamp >= NOW() - INTERVAL {$range} DAY
+                GROUP BY DATE(timestamp), type
+                ORDER BY DATE(timestamp) ASC
+            ");
+            $stmt->execute([":snr" => $snr]);
+        }
+
+        $gewichtLabels      = [];
+        $gewichtValues      = [];
         $feuchtigkeitLabels = [];
         $feuchtigkeitValues = [];
-        
+
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $zeit = date('H:i', strtotime($row['timestamp'])); 
             $sensorType = strtolower($row['type']);
-            
             if (strpos($sensorType, 'gewicht') !== false) {
-                $gewichtLabels[] = $zeit;
-                $gewichtValues[] = (int)$row['filllevel'];
-            } 
-            elseif (strpos($sensorType, 'feucht') !== false) {
-                $feuchtigkeitLabels[] = $zeit;
-                $feuchtigkeitValues[] = (int)$row['filllevel'];
+                $gewichtLabels[]      = $row['label'];
+                $gewichtValues[]      = (int)$row['value'];
+            } elseif (strpos($sensorType, 'feucht') !== false) {
+                $feuchtigkeitLabels[] = $row['label'];
+                $feuchtigkeitValues[] = (int)$row['value'];
             }
         }
-        
-        // Fallback falls die Box existiert, aber noch keine Daten gesendet hat
-        if (empty($gewichtLabels)) { $gewichtLabels[] = date('H:i'); $gewichtValues[] = 0; }
+
+        if (empty($gewichtLabels))      { $gewichtLabels[]      = date('H:i'); $gewichtValues[]      = 0; }
         if (empty($feuchtigkeitLabels)) { $feuchtigkeitLabels[] = date('H:i'); $feuchtigkeitValues[] = 0; }
-        
+
         echo json_encode([
-            "status" => "success",
-            "gewicht" => [
-                "labels" => $gewichtLabels,
-                "values" => $gewichtValues
-            ],
-            "feuchtigkeit" => [
-                "labels" => $feuchtigkeitLabels,
-                "values" => $feuchtigkeitValues
-            ]
+            "status"       => "success",
+            "gewicht"      => ["labels" => $gewichtLabels,      "values" => $gewichtValues],
+            "feuchtigkeit" => ["labels" => $feuchtigkeitLabels, "values" => $feuchtigkeitValues]
         ]);
         exit;
     }
 
-    // POST-Method zum Speichern bleibt unverändert...
+    // POST bleibt unverändert
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = json_decode(file_get_contents("php://input"), true);
         if (!$data || empty($data["animal_name"]) || empty($data["type"]) || empty($data["snr"]) || empty($data["neededgramms"]) || empty($data["child_id"])) {

@@ -10,32 +10,9 @@
     document.documentElement.setAttribute('data-theme', t);
   </script>
   
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/responsive.css" />
-
-  <style>
-    .dashboard-box {
-        background-color: #ffffff;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 24px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
-    .section-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 16px;
-        color: #333333;
-    }
-    .canvas-wrapper {
-        position: relative;
-        width: 100%;
-        height: 280px; /* Garantiert eine stabile Sichtbarkeit */
-    }
-  </style>
 </head>
  
 <body>
@@ -53,24 +30,6 @@
     <section class="dashboard-section">
       <h2 class="section-title">Heutige Aufgaben</h2>
       <div id="tasksContainer" class="dashboard-cards"></div>
-    </section>
-
-    <section class="dashboard-section">
-      <div class="dashboard-box">
-          <h2 class="section-title">Futterstand (Gewichtssensor)</h2>
-          <div class="canvas-wrapper">
-              <canvas id="weightChart"></canvas>
-          </div>
-      </div>
-    </section>
-
-    <section class="dashboard-section">
-      <div class="dashboard-box">
-          <h2 class="section-title">Feuchtigkeitsverlauf</h2>
-          <div class="canvas-wrapper">
-              <canvas id="humidityChart"></canvas>
-          </div>
-      </div>
     </section>
  
     <section class="dashboard-section">
@@ -98,8 +57,5 @@
   <script src="js/auth.js"></script>
   <script src="js/protected.js"></script>
   <script src="js/protectedDOM.js"></script>
-  <script src="js/nav.js"></script>
-  <script src="../js/chart.js"></script>
-  <script src="../js/logout.js"></script>
 </body>
 </html>
