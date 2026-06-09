@@ -33,7 +33,7 @@ const weekdays = ["So","Mo","Di","Mi","Do","Fr","Sa"];
 const months   = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
 const today    = new Date();
 document.getElementById("currentDate").textContent =
-  `📅 ${weekdays[today.getDay()]}, ${today.getDate()}. ${months[today.getMonth()]}`;
+  ` ${weekdays[today.getDay()]}, ${today.getDate()}. ${months[today.getMonth()]}`;
 
 // ── Aufgaben Widget ─────────────────────────────────────────────────────────
 const tasksContainer = document.getElementById("tasksContainer");
@@ -73,11 +73,11 @@ function renderTasksWidget(animals) {
       </div>
       <div class="task-row ${foodDone ? 'done' : ''}">
         <div class="task-check"></div>
-        <span class="task-label">🥣 Futter auffüllen</span>
+        <span class="task-label"> Futter auffüllen</span>
       </div>
       <div class="task-row ${waterDone ? 'done' : ''}">
         <div class="task-check"></div>
-        <span class="task-label">💧 Wasser auffüllen</span>
+        <span class="task-label"> Wasser auffüllen</span>
       </div>
     `;
 

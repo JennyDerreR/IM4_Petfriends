@@ -113,7 +113,7 @@ function renderChildren() {
       </div>
       <div class="actions">
         <button class="add-token" data-id="${child.id}">+ Token</button>
-        <button class="redeem" data-id="${child.id}">🎁 Einlösen</button>
+        <button class="redeem" data-id="${child.id}">Einlösen</button>
         <button class="delete" data-id="${child.id}">🗑</button>
       </div>
     `;
@@ -199,7 +199,7 @@ function showReassignModal(animals, kidId) {
 
     return `
       <div class="reassign-row">
-        <span class="reassign-animal-name">🐾 ${animal.animal_name}</span>
+        <span class="reassign-animal-name"> ${animal.animal_name}</span>
         <select class="reassign-select" data-animal-id="${animal.id}">
           <option value="">Kind wählen...</option>
           ${options}
