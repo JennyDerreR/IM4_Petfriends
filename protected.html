@@ -9,38 +9,76 @@
     const t = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', t);
   </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    .dashboard-box {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    .section-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: #333333;
+    }
+    .canvas-wrapper {
+        position: relative;
+        width: 100%;
+        height: 280px; /* Garantiert eine stabile Sichtbarkeit */
+    }
+  </style>
 </head>
  
 <body>
  
   <main class="page">
-
     <div id="familyBanner" style="display:none" class="onboarding-banner">
      Du gehörst noch keiner Familie an. Um die App nutzen zu können, musst du zuerst eine <a href="settings.html">Familie erstellen oder einer beitreten →</a>
     </div>
-    <!-- ── Begrüssung ── -->
+
     <header class="page-header">
       <h1>Herzlich Willkommen Familie <span id="familienname"></span>!</h1>
       <p id="currentDate"></p>
     </header>
  
-    <!-- ── Heutige Aufgaben ── -->
     <section class="dashboard-section">
       <h2 class="section-title">Heutige Aufgaben</h2>
       <div id="tasksContainer" class="dashboard-cards"></div>
     </section>
+
+    <section class="dashboard-section">
+      <div class="dashboard-box">
+          <h2 class="section-title">Futterstand (Gewichtssensor)</h2>
+          <div class="canvas-wrapper">
+              <canvas id="weightChart"></canvas>
+          </div>
+      </div>
+    </section>
+
+    <section class="dashboard-section">
+      <div class="dashboard-box">
+          <h2 class="section-title">Feuchtigkeitsverlauf</h2>
+          <div class="canvas-wrapper">
+              <canvas id="humidityChart"></canvas>
+          </div>
+      </div>
+    </section>
  
-    <!-- ── Meine Haustiere ── -->
     <section class="dashboard-section">
       <h2 class="section-title">Meine Haustiere</h2>
       <div id="petsContainer" class="dashboard-cards"></div>
       <button class="btn-dashboard" onclick="window.location.href='registeranimal.html'">+ Tier hinzufügen</button>
     </section>
  
-    <!-- ── Meine Kinder ── -->
     <section class="dashboard-section">
       <h2 class="section-title">Meine Kinder</h2>
       <div id="kidsWidgetContainer" class="dashboard-cards"></div>
@@ -50,29 +88,18 @@
  
   <footer>
     <nav class="bottom-nav">
-      <a href="protected.html" class="nav-item active">
-        <img src="assets/homeicon_v2.png" alt="Start" />
-        <span>Home</span>
-      </a>
-      <a href="naepfe.html" class="nav-item">
-        <img src="assets/dogicon_v2.png" alt="Tiere" />
-        <span>Tiere</span>
-      </a>
-      <a href="kids.html" class="nav-item">
-        <img src="assets/kidsicon_v2.png" alt="Kinder" />
-        <span>Kinder</span>
-      </a>
-      <a href="settings.html" class="nav-item">
-        <img src="assets/profileicon_v2.png" alt="Profil" />
-        <span>Profil</span>
-      </a>
+      <a href="protected.html" class="nav-item active"><img src="assets/homeicon_v2.png" alt="Start" /><span>Home</span></a>
+      <a href="naepfe.html" class="nav-item"><img src="assets/dogicon_v2.png" alt="Tiere" /><span>Tiere</span></a>
+      <a href="kids.html" class="nav-item"><img src="assets/kidsicon_v2.png" alt="Kinder" /><span>Kinder</span></a>
+      <a href="settings.html" class="nav-item"><img src="assets/profileicon_v2.png" alt="Profil" /><span>Profil</span></a>
     </nav>
   </footer>
  
   <script src="js/auth.js"></script>
   <script src="js/protected.js"></script>
-  <script src="js/logout.js"></script>
   <script src="js/protectedDOM.js"></script>
   <script src="js/nav.js"></script>
+  <script src="../js/chart.js"></script>
+  <script src="../js/logout.js"></script>
 </body>
 </html>
