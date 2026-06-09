@@ -69,12 +69,6 @@ form#registerForm button {
   margin-bottom: 0.75rem;
 }
 
-a {
-  color: #8b5cf6;
-  text-decoration: none;
-  font-weight: 600;
-}
-
 .IconSection {
   display: flex;
   gap: 0.5rem;
@@ -341,28 +335,11 @@ p#currentDate {
   margin: 0 0 20px;
 }
 
-.empty-hint {
-  font-size: 13px;
-  color: #7A7899;
-  margin: 0;
-}
-
 /* ------------------------------------------------- NÄPFE ----------------------------------------------------- */
 
 /* Nutzt: .mini-pet-card, .btn-add-child, .empty-hint */
 
 /* ------------------------------------------------- NÄPFE DETAIL ----------------------------------------------------- */
-
-.btn-back {
-  background: none;
-  border: none;
-  color: var(--color-secondary);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 0;
-  margin: 0 0 12px;
-  cursor: pointer;
-}
 
 .naepfe-card {
   background: #FFFCFA;
@@ -694,18 +671,6 @@ p#currentDate {
 }
 
 /* ------------------------------------------------- KIDS ----------------------------------------------------- */
-
-.page-header h1 {
-  font-size: 28px;
-  margin: 0 0 6px;
-  letter-spacing: -0.4px;
-}
-
-.page-header p {
-  font-size: 13px;
-  color: #7A7899;
-  margin: 0;
-}
 
 .children-container {
   display: flex;
@@ -1045,127 +1010,7 @@ p#currentDate {
   margin-top: 4px;
 }
 
-.btn-secondary {
-  flex: 1;
-  padding: 13px;
-  background: #E8E6F5;
-  color: var(--color-text);
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.btn-primary {
-  flex: 1;
-  padding: 13px;
-  background: var(--color-primary);
-  color: var(--color-text);
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 700;
-  margin: 0;
-}
-
 /* ------------------------------------------------- SETTINGS ----------------------------------------------------- */
-
-body.no-scroll {
-  overflow: hidden;
-  height: 100vh;
-}
-
-body.no-scroll .app {
-  overflow: hidden;
-  height: 100vh;
-}
-
-:root {
-  --surface2:       #F0EFF8;
-  --border:         #E8E6F5;
-  --text-secondary: #7A7899;
-  --shadow:         0 2px 12px rgba(98,68,180,0.08);
-  --shadow-md:      0 4px 24px rgba(98,68,180,0.13);
-  --purple-dark:    #4a3490;
-  --red-light:      #FEF0F0;
-}
-
-/* Dark Mode */
-[data-theme="dark"] {
-  --color-background: #12111F;
-  --color-surface: #1E1D30;
-  --color-text:       #F0EFF8;
-  --color-primary:    #2A2650;
-  --color-secondary:  #7C6FF7;
-  --surface2:         #282640;
-  --border:           #2E2C4A;
-  --text-secondary:   #9C9ABE;
-  --shadow:           0 2px 12px rgba(0,0,0,0.25);
-  --shadow-md:        0 4px 24px rgba(0,0,0,0.35);
-  --red-light:        #2A1A1A;
-}
-
-/* ── Dark Mode Fixes ── */
-[data-theme="dark"] .task-card,
-[data-theme="dark"] .mini-kid-card,
-[data-theme="dark"] .mini-pet-card,
-[data-theme="dark"] .child-card,
-[data-theme="dark"] .naepfe-card,
-[data-theme="dark"] .register-animal-form,
-[data-theme="dark"] .register-child-form,
-[data-theme="dark"] .kids-modal {
-  background: var(--color-surface);
-}
-
-[data-theme="dark"] .task-row {
-  background: var(--surface2);
-}
-
-[data-theme="dark"] .task-check {
-  background: var(--surface2);
-  border-color: var(--border);
-}
-
-[data-theme="dark"] .animal-task-row {
-  background: var(--surface2);
-}
-
-[data-theme="dark"] .animal-task-check {
-  background: var(--surface2);
-  border-color: var(--border);
-}
-
-[data-theme="dark"] .icon-option {
-  background: var(--surface2);
-  border-color: var(--border);
-}
-
-[data-theme="dark"] .icon-option.selected {
-  background: var(--color-primary);
-  border-color: var(--color-secondary);
-}
-
-[data-theme="dark"] .register-animal-form input,
-[data-theme="dark"] .register-animal-form select,
-[data-theme="dark"] .register-child-form input,
-[data-theme="dark"] .kids-modal input[type="number"] {
-  background: var(--surface2);
-  color: var(--color-text);
-  border-color: var(--border);
-}
-
-[data-theme="dark"] .device-card {
-  background: var(--surface2);
-  border-color: var(--border);
-}
-
-[data-theme="dark"] .btn-secondary,
-[data-theme="dark"] .btn-cancel,
-[data-theme="dark"] .btn-logout,
-[data-theme="dark"] .modal-btn-cancel {
-  background: var(--surface2);
-  color: var(--color-text);
-}
-
 
 .app {
   min-height: 100vh;
@@ -1185,7 +1030,7 @@ body.no-scroll .app {
 
 .panel.active { transform: translateX(0); }
 
-#panel-hub {
+ #panel-hub {
   transform: translateX(0);
   position: relative;
   min-height: 100vh;
@@ -1654,13 +1499,6 @@ span.badge-soon { color: var(--badge-color); background: var(--badge-bg); }
 .spacer      { height: 40px; }
 .section-gap { height: 8px; }
 
-#panel-hub .page-header,
-.panel .page-header {
-  padding-top: 28px;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
 /* ------------------------------------------------- PROFIL ----------------------------------------------------- */
 
 /* ------------------------------------------------- FOOTER ----------------------------------------------------- */
@@ -1712,10 +1550,3 @@ footer {
 
 .nav-item.active img { opacity: 1; }
 .nav-item.active span { color: #fff; }
-
-main.page {
-  overflow: visible;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 140px;
-  scroll-padding-bottom: 140px;
-}

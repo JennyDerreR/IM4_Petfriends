@@ -1,92 +1,138 @@
-
 /* ------------------------------------------------- GRUNDREGELN ------------------------------------------------- */
 
 * {
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+body.no-scroll .app {
+  overflow: hidden;
+  height: 100vh;
 }
 
 /* ------------------------------------------------- FARBEN ----------------------------------------------------- */
 
 :root {
-  --color-background: #FFF8F2;
-  --color-surface: #FFFCFA;
+  --color-background:      #FFF8F2;
+  --color-surface:         #FFFCFA;
 
-  --color-primary: #D5B4EB;
-  --color-secondary: #6244B4;
-  --color-text: #0f0b1d;
+  --color-primary:         #D5B4EB;
+  --color-secondary:       #6244B4;
+  --color-text:            #0f0b1d;
 
-  --color-status-good: #7BC47F;
-  --color-status-warning: #F4AB4F;
+  --color-status-good:     #7BC47F;
+  --color-status-warning:  #F4AB4F;
   --color-status-critical: #DA5045;
+
+  /* ── Neu aus Pages CSS ── */
+  --surface2:              #F0EFF8;
+  --border:                #E8E6F5;
+  --text-secondary:        #7A7899;
+  --shadow:                0 2px 12px rgba(98, 68, 180, 0.08);
+  --shadow-md:             0 4px 24px rgba(98, 68, 180, 0.13);
+  --purple-dark:           #4a3490;
+  --red-light:             #FEF0F0;
 }
 
-/* ------------------------------------------------- FONTS ----------------------------------------------------- */
+/* ------------------------------------------------- DARK MODE ----------------------------------------------------- */
+
+[data-theme="dark"] {
+  --color-background: #12111F;
+  --color-surface:    #1E1D30;
+  --color-text:       #F0EFF8;
+  --color-primary:    #2A2650;
+  --color-secondary:  #7C6FF7;
+  --surface2:         #282640;
+  --border:           #2E2C4A;
+  --text-secondary:   #9C9ABE;
+  --shadow:           0 2px 12px rgba(0, 0, 0, 0.25);
+  --shadow-md:        0 4px 24px rgba(0, 0, 0, 0.35);
+  --red-light:        #2A1A1A;
+}
+
+/* ── Dark Mode Fixes ── */
+[data-theme="dark"] .task-card,
+[data-theme="dark"] .mini-kid-card,
+[data-theme="dark"] .mini-pet-card,
+[data-theme="dark"] .child-card,
+[data-theme="dark"] .naepfe-card,
+[data-theme="dark"] .register-animal-form,
+[data-theme="dark"] .register-child-form,
+[data-theme="dark"] .kids-modal {
+  background: var(--color-surface);
+}
+
+[data-theme="dark"] .task-row {
+  background: var(--surface2);
+}
+
+[data-theme="dark"] .task-check {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .animal-task-row {
+  background: var(--surface2);
+}
+
+[data-theme="dark"] .animal-task-check {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .icon-option {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .icon-option.selected {
+  background: var(--color-primary);
+  border-color: var(--color-secondary);
+}
+
+[data-theme="dark"] .register-animal-form input,
+[data-theme="dark"] .register-animal-form select,
+[data-theme="dark"] .register-child-form input,
+[data-theme="dark"] .kids-modal input[type="number"] {
+  background: var(--surface2);
+  color: var(--color-text);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .device-card {
+  background: var(--surface2);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .btn-secondary,
+[data-theme="dark"] .btn-cancel,
+[data-theme="dark"] .btn-logout,
+[data-theme="dark"] .modal-btn-cancel {
+  background: var(--surface2);
+  color: var(--color-text);
+}
+
+/* ------------------------------------------------- FONTS & BASIS ----------------------------------------------------- */
 
 body {
   font-family: 'Nunito', sans-serif;
   color: var(--color-text);
   background-color: var(--color-background);
-}
-
-h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-}
-
-h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: -0.01rem;
-  margin-bottom: 0.5rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 0.5rem;
-}
-
-h4 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-}
-
-h5 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-}
-
-h6 {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-}
-
-p {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.6;
-  margin-bottom: 0.75rem;
+  min-height: 100vh;
+  padding: 1rem;
 }
 
 /* ------------------------------------------------- ABSTÄNDE UND LAYOUT ----------------------------------------------------- */
-
-body {
-  padding: 1rem;
-  min-height: 100vh;
-}
 
 .page {
   padding: 28px 16px 140px;
@@ -106,42 +152,45 @@ body {
 
 .page-header p {
   font-size: 13px;
-  color: #7A7899;
+  color: var(--text-secondary);
   margin: 0;
 }
+
+#panel-hub .page-header,
+.panel .page-header {
+  padding-top: 28px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 /* ------------------------------------------------- BILDER ----------------------------------------------------- */
 
 img {
-    max-width: 100%;
-    display: block;
-    margin-bottom: 1rem;
+  max-width: 100%;
+  display: block;
 }
 
-/* ------------------------------------------------- BUTTONS UND LINKS ----------------------------------------------------- */
+/* ------------------------------------------------- LINKS ----------------------------------------------------- */
 
-button a {
+a {
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: 600;
 }
 
+/* ------------------------------------------------- BUTTONS ----------------------------------------------------- */
+
 button {
   display: inline-block;
-
   padding: 0.75rem 1rem;
-
   border: none;
   border-radius: 1rem;
-
   background-color: var(--color-primary);
   color: var(--color-text);
-
   font-size: 1rem;
   font-family: inherit;
-
   text-decoration: none;
-
   transition: 0.2s ease;
-
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
 }
@@ -151,7 +200,40 @@ button:active {
   transform: scale(0.97);
 }
 
-/* ------------------------------------------------ SONSTIGES ----------------------------------------------------- */
+.btn-primary {
+  flex: 1;
+  padding: 13px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.btn-secondary {
+  flex: 1;
+  padding: 13px;
+  background: #E8E6F5;
+  color: var(--color-text);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--color-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0;
+  margin: 0 0 12px;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------- FORMULARE ----------------------------------------------------- */
 
 form > div {
   margin-bottom: 1rem;
@@ -167,15 +249,43 @@ input[type="email"],
 input[type="password"],
 input[type="text"] {
   width: 100%;
-
   padding: 0.75rem 1rem;
-
-  border: none;
+  border: 1.5px solid var(--border);
   border-radius: 0.75rem;
-
   font-family: inherit;
+  background: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-html {
-  scroll-behavior: smooth;
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  border-color: var(--color-secondary);
+}
+
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="text"] {
+  background: var(--surface2);
+  color: var(--color-text);
+  border-color: var(--border);
+}
+
+/* ------------------------------------------------- HILFSELEMENTE ----------------------------------------------------- */
+
+.empty-hint {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ------------------------------------------------- SONSTIGES ----------------------------------------------------- */
+
+main.page {
+  overflow: visible;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 140px;
+  scroll-padding-bottom: 140px;
 }
