@@ -1,50 +1,240 @@
+/* iPad / Tablet */
+@media (min-width: 431px) and (max-width: 768px) {
 
-/* Settings Panels (Mobile + Tablet) */
+  body {
+    font-size: 1.125rem;
+    padding: 0;
+  }
 
-@media (max-width: 768px) {
+  /* Headings */
+  .page-header h1,
+  .dashboard-header h1,
+  .animal-hero-name {
+    font-size: 2rem;
+  }
 
-  .panel .page-header,
-  .panel .section,
-  .panel .profile-banner,
-  .panel .settings-card,
-  .panel .invite-box,
-  .panel .add-form,
-  .panel .coming-soon-banner,
-  .panel .danger-card,
-  .panel .btn-logout {
-    max-width: 30rem;
+  .section-title,
+  .naepfe-card-title {
+    font-size: 1.375rem;
+  }
+
+  .page-header p,
+  .empty-hint,
+  .task-label,
+  .animal-task-label,
+  .naepfe-data-label,
+  .naepfe-data-value {
+    font-size: 1rem;
+  }
+
+  /* Buttons grösser */
+  .btn-primary,
+  .btn-secondary,
+  .btn-dashboard,
+  .btn-add-child,
+  .btn-logout,
+  .btn-cancel,
+  .btn-confirm-delete,
+  .modal-btn-cancel,
+  .modal-btn-confirm,
+  .modal-btn-delete {
+    font-size: 1.0625rem;
+    padding: 1rem 1.25rem;
+  }
+
+  button {
+    font-size: 1.0625rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  /* Gap bei nebeneinander Buttons */
+  .modal-actions,
+  .register-child-actions,
+  .register-animal-form .actions,
+  .actions {
+    gap: 0.875rem;
+  }
+
+  /* Cards grösser */
+  .task-card,
+  .child-card,
+  .naepfe-card,
+  .mini-kid-card,
+  .mini-pet-card {
+    padding: 1.125rem 1.25rem;
+  }
+
+  .task-card-header h3,
+  .mini-kid-card h3,
+  .mini-pet-card h3 {
+    font-size: 1.0625rem;
+  }
+
+  .task-row,
+  .animal-task-row {
+    padding: 0.875rem 1rem;
+  }
+
+  /* Forms grösser */
+  .register-animal-form,
+  .register-child-form {
+    padding: 1.75rem;
+    gap: 0.75rem;
+  }
+
+  .register-animal-form input,
+  .register-animal-form select,
+  .register-child-form input[type="text"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.0625rem;
+  }
+
+  .kids-modal {
+    padding: 2rem 1.75rem;
+  }
+
+  .kids-modal input[type="number"] {
+    padding: 0.875rem 1rem;
+    font-size: 1.0625rem;
+  }
+
+  /* Card-Items in Panels */
+  .card-item {
+    padding: 1.125rem 1.25rem;
+  }
+
+  .card-text strong {
+    font-size: 1.0625rem;
+  }
+
+  .card-text span {
+    font-size: 0.875rem;
+  }
+
+  .setting-label strong {
+    font-size: 1.0625rem;
+  }
+
+  .setting-label span {
+    font-size: 0.875rem;
+  }
+
+  .setting-row {
+    padding: 1.125rem 1.25rem;
+  }
+
+  .profile-info strong {
+    font-size: 1.125rem;
+  }
+
+  .profile-info span {
+    font-size: 0.875rem;
+  }
+
+  /* Pages */
+  .page {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2rem 2.5rem 8.75rem;
+  }
+
+  /* Settings Rand */
+  #panel-hub,
+  .panel {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  #panel-hub .page-header,
+  .panel .page-header {
+    max-width: 40rem;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .section,
+  .settings-card,
+  .danger-card,
+  .coming-soon-banner,
+  .invite-box,
+  .add-form,
+  .member-list,
+  .theme-options,
+  .btn-logout,
+  .profile-banner {
+    max-width: 40rem;
     margin-left: auto;
     margin-right: auto;
   }
 
-  .panel .page-header h1,
-  .panel .HeroSectionRegister h1,
-  .panel .page-header h1 {
-    font-size: 1.875rem;
+  .btn-logout {
+    display: block;
   }
 
-  .panel .page-header p,
-  .panel .profile-info strong,
-  .panel .card-text strong,
-  .panel .setting-label strong {
-    font-size: 1.0625rem;
+  /* Settings: Abstand zwischen Sektionen */
+  .section-label {
+    margin-bottom: 0.5rem;
+    padding-left: 0.25rem;
   }
 
-  .panel .page-header p,
-  .panel .profile-info span,
-  .panel .card-text span,
-  .panel .setting-label span {
-    font-size: 0.9375rem;
+  .section {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
   }
 
-  /* Panels gleich hoch wie Settings */
-  .app {
-    min-height: 100vh;
+  .section-gap {
+    height: 2rem;
   }
 
+  /* Napfdetail */
+  .animal-hero {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 3rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+  }
+
+  .btn-back-hero {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  /* Logo */
+  .petcareLogo {
+    width: 35%;
+    max-width: 12rem;
+  }
+
+  /* Icon-Picker */
+  .icon-picker {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .icon-option {
+    min-width: 4rem;
+  }
+
+  /* Footer */
+  .bottom-nav {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Charts */
+  .naepfe-card canvas {
+    min-height: 240px !important;
+  }
+
+  /* Panels */
   .panel,
   #panel-hub {
-    min-height: 100vh;
+    min-height: 120vh;
   }
 }
 
