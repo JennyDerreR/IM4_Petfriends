@@ -1024,9 +1024,10 @@ p#currentDate {
 
 /* ── Basis-Layout (Hub + Panels) ── */
 .app {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .panel {
@@ -1036,15 +1037,15 @@ p#currentDate {
   transform: translateX(100%);
   transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
   overflow-y: auto;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .panel.active { transform: translateX(0); }
 
 #panel-hub {
-  transform: translateX(0);
-  position: relative;
-  min-height: 100vh;
+  position: absolute;
+  inset: 0;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -1524,7 +1525,7 @@ p#currentDate {
 .btn-confirm-delete:hover { background: #c93030; }
 
 /* ── Hilfselemente ── */
-.spacer      { height: 2.5rem; }
+.spacer { height: 8rem; }
 .section-gap { height: 0.5rem; }
 
 /* ------------------------------------------------- FOOTER ----------------------------------------------------- */

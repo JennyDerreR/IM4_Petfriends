@@ -3,7 +3,6 @@
 
   body {
     font-size: 1.125rem;
-    padding: 0;
   }
 
   /* Headings */
@@ -39,12 +38,12 @@
   .modal-btn-confirm,
   .modal-btn-delete {
     font-size: 1.0625rem;
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
   }
 
   button {
     font-size: 1.0625rem;
-    padding: 0.875rem 1.25rem;
+    padding: 0.75rem 1rem;
   }
 
   /* Gap bei nebeneinander Buttons */
@@ -55,13 +54,25 @@
     gap: 0.875rem;
   }
 
+  /* Landing Page Buttons */
+  .navigation .btn-secondary,
+  .navigation .btn-primary {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .sectionCTA .btn-primary {
+    width: clamp(60%, 80vw, 100%);
+  }
+
   /* Cards grösser */
   .task-card,
   .child-card,
   .naepfe-card,
   .mini-kid-card,
   .mini-pet-card {
-    padding: 1.125rem 1.25rem;
+    padding: 1.25rem;
+    min-height: 5rem;
   }
 
   .task-card-header h3,
@@ -89,8 +100,45 @@
     font-size: 1.0625rem;
   }
 
+  /* Login / Register */
+  .petcareLogo {
+    width: 75%;
+    max-width: 14rem;
+  }
+
+  .HeroSectionRegister {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    margin-top: 1rem;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    padding: 0.875rem 1rem;
+    border-radius: 0.75rem;
+  }
+
+  .IconSection img,
+  .IconSection .icon {
+    height: clamp(4rem, 8vw, 4.5rem);
+    max-width: clamp(4rem, 8vw, 4.5rem);
+  }
+
+  /* Modals */
   .kids-modal {
-    padding: 2rem 1.75rem;
+    max-width: 26rem;
+    padding: 2.25rem 2rem;
+  }
+
+  .kids-modal h2 {
+    font-size: 1.375rem;
+  }
+
+  .kids-modal .modal-subtitle {
+    font-size: 0.9375rem;
   }
 
   .kids-modal input[type="number"] {
@@ -169,6 +217,12 @@
     margin-right: auto;
   }
 
+  /* Danger Button mitgrösser */
+  .btn-danger {
+    font-size: 1rem;
+    padding: 0.75rem 1.8rem;
+  }
+
   .btn-logout {
     display: block;
   }
@@ -185,32 +239,26 @@
   }
 
   .section-gap {
-    height: 2rem;
+    height: 1rem;
   }
 
   /* Napfdetail */
   .animal-hero {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 3rem;
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
+    padding: 3rem 2rem 2rem;
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
+    margin-top: -1rem;
   }
 
   .btn-back-hero {
+    position: absolute;
     top: 1rem;
-    left: 1rem;
+    left: 2.5rem;
   }
 
-  /* Logo */
-  .petcareLogo {
-    width: 35%;
-    max-width: 12rem;
-  }
-
-  /* Icon-Picker */
+  /* Icon-Picker – 3 Spalten bis 556px */
   .icon-picker {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
     max-width: 100%;
     margin: 0 auto;
@@ -220,21 +268,72 @@
     min-width: 4rem;
   }
 
-  /* Footer */
-  .bottom-nav {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
   /* Charts */
   .naepfe-card canvas {
     min-height: 240px !important;
   }
+}
 
-  /* Panels */
-  .panel,
-  #panel-hub {
-    min-height: 120vh;
+/* Icon-Picker 5 Spalten ab 556px */
+@media (min-width: 556px) and (max-width: 768px) {
+  .icon-picker {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Alles statisch ab 581px */
+@media (min-width: 581px) {
+  .bottom-nav {
+    justify-content: center;
+    gap: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .petcareLogo {
+    width: 80%;
+    max-width: 14rem;
+  }
+
+  .IconSection {
+    justify-content: center;
+    gap: 2.95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .IconSection img,
+  .IconSection .icon {
+    height: 4rem;
+    max-width: 4.5rem;
+  }
+
+  .HeroSectionRegister,
+  #loginForm,
+  #registerForm {
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-link {
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .navigation {
+    justify-content: center;
+  }
+
+  .navigation .btn-secondary,
+  .navigation .btn-primary {
+    max-width: 18rem;
+  }
+
+  .sectionCTA .btn-primary {
+    width: 29rem;
+    max-width: 29rem;
   }
 }
 

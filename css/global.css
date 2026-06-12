@@ -11,8 +11,8 @@ html, body {
 }
 
 body.no-scroll {
-  overflow: hidden;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* ------------------------------------------------- FARBEN ----------------------------------------------------- */
@@ -232,6 +232,7 @@ button:active {
 label {
   display: block;
   margin-bottom: 0.5rem;
+  margin-top: 1rem;
   font-weight: 600;
 }
 
@@ -241,6 +242,7 @@ input[type="text"] {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1.5px solid var(--border);
+  border-radius: 0.75rem;
   font-family: inherit;
   background: var(--color-surface);
   color: var(--color-text);
