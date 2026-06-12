@@ -1,10 +1,51 @@
 
-/* Mobile — Standard (bis 430px) */
-/* dein normaler CSS Code */
+/* Settings Panels (Mobile + Tablet) */
 
-/* iPad / Tablet */
-@media (min-width: 431px) and (max-width: 768px) {
+@media (max-width: 768px) {
 
+  .panel .page-header,
+  .panel .section,
+  .panel .profile-banner,
+  .panel .settings-card,
+  .panel .invite-box,
+  .panel .add-form,
+  .panel .coming-soon-banner,
+  .panel .danger-card,
+  .panel .btn-logout {
+    max-width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .panel .page-header h1,
+  .panel .HeroSectionRegister h1,
+  .panel .page-header h1 {
+    font-size: 1.875rem;
+  }
+
+  .panel .page-header p,
+  .panel .profile-info strong,
+  .panel .card-text strong,
+  .panel .setting-label strong {
+    font-size: 1.0625rem;
+  }
+
+  .panel .page-header p,
+  .panel .profile-info span,
+  .panel .card-text span,
+  .panel .setting-label span {
+    font-size: 0.9375rem;
+  }
+
+  /* Panels gleich hoch wie Settings */
+  .app {
+    min-height: 100vh;
+  }
+
+  .panel,
+  #panel-hub {
+    min-height: 100vh;
+  }
 }
 
 /* Small Desktop */
