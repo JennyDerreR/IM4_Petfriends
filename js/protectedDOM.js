@@ -18,6 +18,12 @@ async function checkAuth() {
       window.location.href = "/login.html";
       return false;
     }
+
+    const data = await response.json();
+    if (data.familienname) {
+      document.getElementById("familienname").textContent = data.familienname;
+    }
+    
     return true;
   } catch (error) {
     console.error("Auth check failed:", error);

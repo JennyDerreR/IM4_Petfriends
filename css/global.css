@@ -15,11 +15,6 @@ body.no-scroll {
   height: 100vh;
 }
 
-body.no-scroll .app {
-  overflow: hidden;
-  height: 100vh;
-}
-
 /* ------------------------------------------------- FARBEN ----------------------------------------------------- */
 
 :root {
@@ -259,27 +254,10 @@ input[type="text"]:focus {
   border-color: var(--color-secondary);
 }
 
-[data-theme="dark"] input[type="email"],
-[data-theme="dark"] input[type="password"],
-[data-theme="dark"] input[type="text"] {
-  background: var(--surface2);
-  color: var(--color-text);
-  border-color: var(--border);
-}
-
 /* ------------------------------------------------- HILFSELEMENTE ----------------------------------------------------- */
 
 .empty-hint {
   font-size: 0.812rem;
   color: var(--text-secondary);
   margin: 0;
-}
-
-/* ------------------------------------------------- SONSTIGES ----------------------------------------------------- */
-
-main.page {
-  overflow: visible;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 8.75rem;
-  scroll-padding-bottom: 8.75rem;
 }
