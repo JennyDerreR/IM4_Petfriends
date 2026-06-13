@@ -1,35 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PetCare – Anmelden</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
+
   <script>
     const t = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', t);
   </script>
+  
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
-  <body>
+<body>
+
+  <main class="page">
 
     <div class="HeroSectionRegister">
       <img src="assets/PetCareLogo.png" alt="Logo" class="petcareLogo" />
-       <h1>Anmelden</h1>
-       <p>Willkommen zurück!</p>
+      <h1>Anmelden</h1>
+      <p>Willkommen zurück!</p>
     </div>
-  
 
     <form id="loginForm">
       <div>
-        <label>Email</label>
+        <label for="email">Email</label>
         <input type="email" id="email" required />
       </div>
       <div>
-        <label>Passwort</label>
+        <label for="password">Passwort</label>
         <input type="password" id="password" required />
       </div>
       <button type="submit">Anmelden</button>
@@ -38,15 +42,15 @@
     <p class="form-link">Noch kein Konto? <a href="register.html">Hier registrieren</a>.</p>
 
     <div class="IconSection">
-     
       <img src="assets/dogicon_v2.png" alt="animalIcons" class="animalIcons" />
       <img src="assets/caticon_v2.png" alt="animalIcons" class="animalIcons" />
       <img src="assets/bunnyicon_v2.png" alt="animalIcons" class="animalIcons" />
       <img src="assets/gunneapig_v2.png" alt="animalIcons" class="animalIcons" />
       <img src="assets/birdicon_v2.png" alt="animalIcons" class="animalIcons" />
-
     </div>
 
-    <script src="js/login.js"></script>
-  </body>
+  </main>
+
+  <script src="js/login.js"></script>
+</body>
 </html>

@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PetCare – Kind hinzufügen</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
+
   <script>
     const t = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', t);
   </script>
+
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/responsive.css" />
@@ -23,6 +26,7 @@
     </header>
  
     <form id="kidsForm" class="register-child-form">
+
       <label for="kidsname">Name des Kindes</label>
       <input
         type="text"
@@ -35,10 +39,12 @@
         <button type="button" class="btn-secondary" onclick="window.location.href='kids.html'">
           Abbrechen
         </button>
+
         <button type="submit" class="btn-primary">
           Speichern
         </button>
       </div>
+
     </form>
   </main>
  
@@ -48,14 +54,17 @@
         <img src="assets/homeicon_v2.png" alt="Start" />
         <span>Home</span>
       </a>
+
       <a href="naepfe.html" class="nav-item">
         <img src="assets/dogicon_v2.png" alt="Tiere" />
         <span>Tiere</span>
       </a>
+
       <a href="kids.html" class="nav-item active">
         <img src="assets/kidsicon_v2.png" alt="Kinder" />
         <span>Kinder</span>
       </a>
+
       <a href="settings.html" class="nav-item">
         <img src="assets/profileicon_v2.png" alt="Profil" />
         <span>Profil</span>
@@ -63,7 +72,7 @@
     </nav>
   </footer>
  
-   <script src="js/auth.js"></script>
+  <script src="js/auth.js"></script>
   <script src="js/registerchild.js"></script>
   <script src="js/nav.js"></script>
 </body>

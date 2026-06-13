@@ -1,65 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PetCare – Registrierung</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
+
   <script>
     const t = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', t);
   </script>
+  
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
-  <body>
+<body>
+
+  <main class="page">
 
     <div class="HeroSectionRegister">
       <img src="assets/PetCareLogo.png" alt="Logo" class="petcareLogo" />
-       <h1>Registrierung</h1>
-       <p>Erstellen Sie Ihr PetCare Konto!</p>
+      <h1>Registrierung</h1>
+      <p>Erstelle dein PetCare Konto!</p>
     </div>
 
     <form id="registerForm">
       <div>
-        <label>Nachname</label>
+        <label for="lastname">Nachname</label>
         <input type="text" id="lastname" required />
       </div>
 
       <div>
-        <label>Vorname</label>
+        <label for="firstname">Vorname</label>
         <input type="text" id="firstname" required />
       </div>
 
       <div>
-        <label>Email</label>
+        <label for="email">Email</label>
         <input type="email" id="email" required />
       </div>
 
       <div>
-        <label>Passwort</label>
+        <label for="password">Passwort</label>
         <input type="password" id="password" required />
       </div>
 
       <button type="submit">Konto erstellen</button>
-
     </form>
 
-    <p class="form-link">Sie haben bereits ein Konto? <a href="login.html">Jetzt anmelden</a>.</p>
-    
+    <p class="form-link">Du hast bereits ein Konto? <a href="login.html">Jetzt anmelden</a>.</p>
+
     <div class="IconSection">
-     
       <img src="assets/dogicon_v2.png" alt="animalIcons" class="animalIcons" />
       <img src="assets/caticon_v2.png" alt="animalIcons" class="animalIcons" />
       <img src="assets/bunnyicon_v2.png" alt="animalIcons" class="animalIcons" />
       <img src="assets/gunneapig_v2.png" alt="animalIcons" class="animalIcons" />
       <img src="assets/birdicon_v2.png" alt="animalIcons" class="animalIcons" />
-
     </div>
 
-    <script src="js/register.js"></script>
-  </body>
-</html>
+  </main>
 
+  <script src="js/register.js"></script>
+</body>
+</html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PetCare – Tierdetails</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
+
   <script>
     const t = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', t);
@@ -15,43 +17,6 @@
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/responsive.css" />
-
-  <style>
-    .canvas-wrapper {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      margin-top: 12px;
-    }
-
-    .chart-range-btns {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-
-    .chart-range-btn {
-      flex: 1;
-      padding: 7px 10px;
-      border-radius: 10px;
-      border: 1.5px solid var(--border);
-      background: var(--color-background);
-      color: var(--text-secondary);
-      font-size: 13px;
-      font-weight: 700;
-      font-family: 'Nunito', sans-serif;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      margin: 0;
-      margin-bottom: 0;
-    }
-
-    .chart-range-btn.active {
-      background: var(--color-secondary);
-      color: #fff;
-      border-color: var(--color-secondary);
-    }
-  </style>
 </head>
 
 <body>
@@ -104,6 +69,7 @@
         <button class="chart-range-btn" data-range="7">7 Tage</button>
         <button class="chart-range-btn" data-range="30">30 Tage</button>
       </div>
+
       <div class="canvas-wrapper">
         <canvas id="feedingChart"></canvas>
       </div>
@@ -111,6 +77,7 @@
 
     <section class="naepfe-card">
       <h2 class="naepfe-card-title">Feuchtigkeitsverlauf</h2>
+
       <div class="canvas-wrapper">
         <canvas id="humidityChart"></canvas>
       </div>
@@ -118,10 +85,12 @@
 
     <section class="naepfe-card">
       <h2 class="naepfe-card-title">Tierdaten</h2>
+
       <div class="naepfe-data-row">
         <span class="naepfe-data-label">SNR</span>
         <span id="snr" class="naepfe-data-value"></span>
       </div>
+
       <div class="naepfe-data-row">
         <span class="naepfe-data-label">Benötigte Gramm</span>
         <span id="neededGramms" class="naepfe-data-value"></span>
@@ -130,35 +99,52 @@
 
     <section class="naepfe-card">
       <h2 class="naepfe-card-title">Smart Device Verbindung</h2>
+
       <div class="device-grid-new">
         <div class="device-card">
           <span class="device-icon"></span>
           <p class="device-name">Futternapf</p>
           <span class="device-status" id="foodStatus">– Lädt...</span>
         </div>
+
         <div class="device-card">
           <span class="device-icon"></span>
           <p class="device-name">Wassernapf</p>
           <span class="device-status" id="waterStatus">– Lädt...</span>
         </div>
       </div>
-    </section>
 
+    </section>
   </main>
 
   <footer>
     <nav class="bottom-nav">
-      <a href="protected.html" class="nav-item"><img src="assets/homeicon_v2.png" alt="Start" /><span>Home</span></a>
-      <a href="naepfe.html" class="nav-item active"><img src="assets/dogicon_v2.png" alt="Tiere" /><span>Tiere</span></a>
-      <a href="kids.html" class="nav-item"><img src="assets/kidsicon_v2.png" alt="Kinder" /><span>Kinder</span></a>
-      <a href="settings.html" class="nav-item"><img src="assets/profileicon_v2.png" alt="Profil" /><span>Profil</span></a>
+      <a href="protected.html" class="nav-item">
+        <img src="assets/homeicon_v2.png" alt="Start" />
+        <span>Home</span>
+      </a>
+
+      <a href="naepfe.html" class="nav-item active">
+        <img src="assets/dogicon_v2.png" alt="Tiere" />
+        <span>Tiere</span>
+      </a>
+
+      <a href="kids.html" class="nav-item">
+        <img src="assets/kidsicon_v2.png" alt="Kinder" />
+        <span>Kinder</span>
+      </a>
+
+      <a href="settings.html" class="nav-item">
+        <img src="assets/profileicon_v2.png" alt="Profil" />
+        <span>Profil</span>
+      </a>
     </nav>
   </footer>
 
   <script src="js/auth.js"></script>
+  <script src="js/utils.js"></script>
   <script src="js/naepfedetail.js"></script>
   <script src="js/chart.js"></script>
   <script src="js/nav.js"></script>
-
 </body>
 </html>

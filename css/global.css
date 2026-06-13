@@ -36,6 +36,10 @@ body.no-scroll {
   --shadow-md:             0 4px 24px rgba(98, 68, 180, 0.13);
   --purple-dark:           #4a3490;
   --red-light:             #FEF0F0;
+
+  --color-check-border:    #C4B5FD;
+  --color-token:           #d97706;
+  --color-placeholder:     #B8B6D0;
 }
 
 /* ------------------------------------------------- DARK MODE ----------------------------------------------------- */

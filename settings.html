@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="de" data-theme="light">
+<html lang="de">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PetCare – Einstellungen</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
+
   <script>
     const t = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', t);
   </script>
+
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/pages.css" />
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
 <body class="no-scroll">
+
   <div class="app">
 
     <!-- ═══ HUB ═══ -->
@@ -25,10 +29,12 @@
 
       <a class="profile-banner" href="profil.html">
         <div class="avatar">F</div>
+
         <div class="profile-info">
           <strong id="profileName">Familie Test</strong>
           <span id="profileEmail">test@familie.ch</span>
         </div>
+        
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M9 18l6-6-6-6"/>
         </svg>
@@ -39,10 +45,12 @@
 
           <button class="card-item" onclick="openPanel('panel-family')">
             <div class="card-icon purple">👨‍👩‍👧</div>
+
             <div class="card-text">
               <strong>Familie</strong>
               <span>Familienmitglieder verwalten</span>
             </div>
+
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <path d="M9 18l6-6-6-6"/>
             </svg>
@@ -50,10 +58,12 @@
 
           <button class="card-item" onclick="openPanel('panel-appearance')">
             <div class="card-icon purple">🎨</div>
+
             <div class="card-text">
               <strong>Aussehen</strong>
               <span>Dark Mode &amp; Thema</span>
             </div>
+
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <path d="M9 18l6-6-6-6"/>
             </svg>
@@ -61,28 +71,35 @@
 
           <button class="card-item" onclick="openPanel('panel-notifications')">
             <div class="card-icon purple">🔔</div>
+
             <div class="card-text">
               <strong>Benachrichtigungen</strong>
               <span>Benachrichtigungen &amp; Erinnerungen</span>
             </div>
+
             <span class="badge-soon" style="--badge-color:#7A7899;--badge-bg:#F0EFF8">Bald verfügbar</span>
           </button>
 
         </div>
       </div>
 
+
       <div class="section">
         <div class="card-list">
+
           <button class="card-item" onclick="openPanel('panel-account')">
             <div class="card-icon red">⚠️</div>
+
             <div class="card-text">
               <strong>Account</strong>
               <span>Account löschen &amp; Daten</span>
             </div>
+
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <path d="M9 18l6-6-6-6"/>
             </svg>
           </button>
+
         </div>
       </div>
 
@@ -94,8 +111,9 @@
     </div>
 
 
-    <!-- ═══ FAMILY PANEL ═══ -->
+    <!-- ═══ FAMILIEN PANEL ═══ -->
     <div id="panel-family" class="panel">
+
       <header class="page-header">
         <button class="btn-back" onclick="closePanel('panel-family')">← Zurück</button>
         <h1>Familie</h1>
@@ -106,10 +124,12 @@
 
       <div class="invite-box">
         <p>Teile diesen Code, damit andere deiner Familie beitreten können</p>
+
         <div class="invite-code-row">
           <span class="invite-code" id="invite-code">–</span>
           <button class="btn-copy" onclick="copyCode()">Kopieren</button>
         </div>
+
         <div class="copy-confirm" id="copy-confirm">✓ Kopiert!</div>
       </div>
 
@@ -130,8 +150,9 @@
     </div>
 
 
-    <!-- ═══ APPEARANCE PANEL ═══ -->
+    <!-- ═══ AUSSEHEN PANEL ═══ -->
     <div id="panel-appearance" class="panel">
+
       <header class="page-header">
         <button class="btn-back" onclick="closePanel('panel-appearance')">← Zurück</button>
         <h1>Aussehen</h1>
@@ -141,45 +162,55 @@
       <div class="section-gap"></div>
 
       <div class="settings-card">
+
         <div class="theme-options">
+
           <div class="theme-card" id="theme-light" onclick="setTheme('light')">
             <div class="theme-preview light-prev">
               <div class="preview-bar"></div>
               <div class="preview-bar"></div>
               <div class="preview-dot"></div>
             </div>
+
             <div class="theme-label">☀️ Hell</div>
           </div>
+
           <div class="theme-card" id="theme-dark" onclick="setTheme('dark')">
             <div class="theme-preview dark-prev">
               <div class="preview-bar"></div>
               <div class="preview-bar"></div>
               <div class="preview-dot"></div>
             </div>
+
             <div class="theme-label">🌙 Dunkel</div>
           </div>
         </div>
+
       </div>
 
       <div class="settings-card">
+
         <div class="setting-row">
           <div class="setting-label">
             <strong>Systemeinstellungen folgen</strong>
             <span>Automatisch Geräteeinstellungen übernehmen</span>
           </div>
+
           <label class="toggle">
             <input type="checkbox" id="toggle-system" onchange="toggleSystem(this.checked)">
             <span class="toggle-track"></span>
           </label>
         </div>
+
       </div>
 
       <div class="spacer"></div>
     </div>
 
 
-    <!-- ═══ NOTIFICATIONS PANEL ═══ -->
+    <!-- ═══ NOTIFIKATIONEN PANEL ═══ -->
     <div id="panel-notifications" class="panel">
+
       <header class="page-header">
         <button class="btn-back" onclick="closePanel('panel-notifications')">← Zurück</button>
         <h1>Benachrichtigungen</h1>
@@ -195,34 +226,46 @@
       </div>
 
       <div class="settings-card">
+
         <div class="setting-row disabled">
           <div class="setting-label">
             <strong>Aufgaben-Erinnerungen</strong>
             <span>Erinnert Kinder wenn eine Aufgabe fällig ist</span>
           </div>
+
           <label class="toggle"><input type="checkbox" disabled><span class="toggle-track"></span></label>
         </div>
+
         <div class="setting-row disabled">
+
           <div class="setting-label">
             <strong>Fütterungsbenachrichtigungen</strong>
             <span>Benachrichtigt wenn ein Haustier nicht gefüttert wurde</span>
           </div>
+
           <label class="toggle"><input type="checkbox" disabled><span class="toggle-track"></span></label>
         </div>
+
         <div class="setting-row disabled">
+
           <div class="setting-label">
             <strong>Token-Meilensteine</strong>
-            <span>Benachrichtigt wenn Ihre Kinder ein Ziel erreichen</span>
+            <span>Benachrichtigt wenn deine Kinder ein Ziel erreichen</span>
           </div>
+
           <label class="toggle"><input type="checkbox" disabled><span class="toggle-track"></span></label>
         </div>
+
         <div class="setting-row disabled">
+
           <div class="setting-label">
             <strong>Tageszusammenfassung</strong>
             <span>Tägliche Zusammenfassung für Eltern</span>
           </div>
+
           <label class="toggle"><input type="checkbox" disabled><span class="toggle-track"></span></label>
         </div>
+
       </div>
 
       <div class="spacer"></div>
@@ -231,6 +274,7 @@
 
     <!-- ═══ ACCOUNT PANEL ═══ -->
     <div id="panel-account" class="panel">
+
       <header class="page-header">
         <button class="btn-back" onclick="closePanel('panel-account')">← Zurück</button>
         <h1>Account</h1>
@@ -240,9 +284,11 @@
       <div class="section-gap"></div>
 
       <div class="danger-card">
+
         <div class="danger-header">
           <strong>Gefahrenzone</strong>
         </div>
+
         <div class="danger-row">
           <div class="danger-text">
             <strong>Account löschen</strong>
@@ -250,25 +296,31 @@
           </div>
           <button class="btn-danger" onclick="openDeleteModal()">Löschen</button>
         </div>
+
       </div>
 
       <div class="spacer"></div>
     </div>
 
 
-    <!-- ═══ DELETE MODAL ═══ -->
+    <!-- ═══ LÖSCHUNGS MODAL ═══ -->
     <div class="modal-overlay" id="delete-modal" onclick="closeDeleteModal(event)">
+
       <div class="modal">
+
         <div class="modal-inner">
           <div class="modal-handle"></div>
           <h2>Account löschen?</h2>
           <p>Diese Aktion löscht dauerhaft dein Familienkonto, alle Haustiere, alle Aufgaben und den gesamten Token-Verlauf. Dies kann nicht rückgängig gemacht werden.</p>
+
           <div class="modal-actions">
             <button class="btn-cancel" onclick="closeDeleteModal()">Abbrechen</button>
             <button class="btn-confirm-delete" onclick="confirmDelete()">Ja, löschen</button>
           </div>
         </div>
+
       </div>
+
     </div>
 
   </div>
@@ -279,14 +331,17 @@
         <img src="assets/homeicon_v2.png" alt="Start" />
         <span>Home</span>
       </a>
+
       <a href="naepfe.html" class="nav-item">
         <img src="assets/dogicon_v2.png" alt="Tiere" />
         <span>Tiere</span>
       </a>
+
       <a href="kids.html" class="nav-item">
         <img src="assets/kidsicon_v2.png" alt="Kinder" />
         <span>Kinder</span>
       </a>
+
       <a href="settings.html" class="nav-item active">
         <img src="assets/profileicon_v2.png" alt="Profil" />
         <span>Profil</span>
