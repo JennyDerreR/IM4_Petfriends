@@ -43,7 +43,7 @@ Unser Ziel ist es, den Kindern Verantwortung beizubringen, damit sie sich selbst
 #### Bauanleitung Physical Computing
 
 * ***Was muss ich wie bauen, verbinden, installieren?***  
-* *ergänze: **Komponentenplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): Schaubild enthält*  
+* *ergänze: **Komponentenplan** (https://www.figma.com/board/jeGKa61qVivS5yyxwHhfXK/Komponentenplan?node-id=0-1&t=1QCFma1QEknU99Me-1) (betrifft Physical Computing, vgl. Slides Kapitel 15): Schaubild enthält*  
   * *die eingesetzten Komponenten*  
   * *die verbundenen Sensoren und Aktoren*  
   * *die Programme (mit Dateinamen)*  
