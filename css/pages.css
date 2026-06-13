@@ -209,7 +209,7 @@ p#currentDate {
   width: 1.375rem;
   height: 1.375rem;
   border-radius: 50%;
-  border: 2px solid #C4B5FD;
+  border: 2px solid var(--color-check-border);
   background: #fff;
   flex-shrink: 0;
   display: flex;
@@ -281,7 +281,7 @@ p#currentDate {
 .mini-kid-card p {
   font-size: 0.812rem;
   font-weight: 700;
-  color: #d97706;
+  color: var(--color-token);
   margin: 0;
 }
 
@@ -531,7 +531,7 @@ p#currentDate {
   width: 1.375rem;
   height: 1.375rem;
   border-radius: 50%;
-  border: 2px solid #C4B5FD;
+  border: 2px solid var(--color-check-border);
   background: #fff;
   flex-shrink: 0;
   display: flex;
@@ -562,6 +562,41 @@ p#currentDate {
 .animal-task-row.done .animal-task-label {
   color: var(--text-secondary);
   text-decoration: line-through;
+}
+
+/* ── Chart ── */
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin-top: 12px;
+}
+
+.chart-range-btns {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.chart-range-btn {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--color-background);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  margin: 0;
+}
+
+.chart-range-btn.active {
+  background: var(--color-secondary);
+  color: #fff;
+  border-color: var(--color-secondary);
 }
 
 /* ------------------------------------------------- REGISTER ANIMAL ----------------------------------------------------- */
@@ -605,7 +640,7 @@ p#currentDate {
 }
 
 .register-animal-form input::placeholder {
-  color: #B8B6D0;
+  color: var(--color-placeholder);
 }
 
 /* ── Icon Picker ── */
@@ -732,7 +767,7 @@ p#currentDate {
 .tokens {
   font-size: 0.812rem;
   font-weight: 700;
-  color: #d97706;
+  color: var(--color-token);
   margin: 0;
 }
 
@@ -1011,7 +1046,7 @@ p#currentDate {
 }
 
 .register-child-form input[type="text"]::placeholder {
-  color: #B8B6D0;
+  color: var(--color-placeholder);
 }
 
 .register-child-actions {
