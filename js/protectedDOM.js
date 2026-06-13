@@ -1,15 +1,3 @@
-const ICON_MAP = {
-  dog:       'assets/dogicon_v2.png',
-  cat:       'assets/caticon_v2.png',
-  bunny:     'assets/bunnyicon_v2.png',
-  gunneapig: 'assets/gunneapig_v2.png',
-  bird:      'assets/birdicon_v2.png',
-};
-
-function getAnimalIcon(icon) {
-  return ICON_MAP[icon] || 'assets/dogicon_v2.png';
-}
-
 // ── Auth Check ──────────────────────────────────────────────────────────────
 async function checkAuth() {
   try {
@@ -23,7 +11,7 @@ async function checkAuth() {
     if (data.familienname) {
       document.getElementById("familienname").textContent = data.familienname;
     }
-    
+
     return true;
   } catch (error) {
     console.error("Auth check failed:", error);
@@ -64,7 +52,6 @@ function renderTasksWidget(animals) {
   }
 
   animals.forEach((animal) => {
-    // Aufgabe erledigt wenn heute schon abgehakt ODER aktuell Sollwert erreicht
     const foodDone  = animal.food_done_today  || (animal.food_level  ?? 0) >= (animal.neededgramms ?? 100);
     const waterDone = animal.water_done_today || (animal.water_level ?? 0) >= 50;
 

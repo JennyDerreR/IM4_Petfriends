@@ -58,7 +58,6 @@ function closePanel(id) {
 /* ═══════════════════════════════════════
    FAMILY MEMBERS
 ═══════════════════════════════════════ */
-
 async function loadFamily() {
   const res  = await fetch('api/family.php?action=get_family');
   const data = await res.json();
@@ -76,8 +75,13 @@ async function loadFamily() {
 
   const currentUserId = parseInt(localStorage.getItem('user_id'));
   const list = document.getElementById('member-list');
-  list.innerHTML = data.members.map((m, i) => `
-    <div class="member-item">
+  list.innerHTML = '';
+
+  data.members.forEach((m, i) => {
+    const item = document.createElement('div');
+    item.classList.add('member-item');
+
+    item.innerHTML = `
       <div class="member-avatar" style="background:${COLORS[i % COLORS.length]}">
         ${m.firstname.charAt(0).toUpperCase()}
       </div>
@@ -86,10 +90,16 @@ async function loadFamily() {
         <span>${m.email}</span>
       </div>
       ${m.id !== currentUserId
-        ? `<button class="member-remove" onclick="removeMember(${m.id})" aria-label="Entfernen">✕</button>`
+        ? `<button class="member-remove" aria-label="Entfernen">✕</button>`
         : '<span class="member-you">Du</span>'}
-    </div>
-  `).join('');
+    `;
+
+    if (m.id !== currentUserId) {
+      item.querySelector('.member-remove').addEventListener('click', () => removeMember(m.id));
+    }
+
+    list.appendChild(item);
+  });
 
   document.querySelector('.add-form').style.display = 'none';
 }
@@ -97,20 +107,44 @@ async function loadFamily() {
 function showNoFamilyUI() {
   document.querySelector('.invite-box').style.display = 'none';
   document.querySelector('.settings-card').style.display = 'none';
-  document.querySelector('.add-form').classList.add('no-family');
 
-  document.querySelector('.add-form').innerHTML = `
-    <p style="margin-bottom:4px; font-weight:600">Du gehörst noch keiner Familie an</p>
-    <p style="margin-bottom:12px; font-size:13px; color: var(--text-secondary)">Um die App vollständig nutzen zu können, erstelle eine neue Familie oder tritt einer bestehenden bei.</p>
+  const addForm = document.querySelector('.add-form');
+  addForm.classList.add('no-family');
+  addForm.innerHTML = '';
 
-    <input type="text" id="family-name-input" placeholder="Familienname (z.B. Familie Müller)" />
-    <button class="btn-add" onclick="createFamily()">Familie erstellen</button>
+  const descP = document.createElement('p');
+  descP.style.cssText = 'margin-bottom:4px; font-weight:600';
+  descP.textContent = 'Du gehörst noch keiner Familie an';
 
-    <p style="margin: 12px 0 8px; text-align:center; color: var(--text-muted)">— oder —</p>
+  const subP = document.createElement('p');
+  subP.style.cssText = 'margin-bottom:12px; font-size:13px; color: var(--text-secondary)';
+  subP.textContent = 'Um die App vollständig nutzen zu können, erstelle eine neue Familie oder tritt einer bestehenden bei.';
 
-    <input type="text" id="join-code-input" placeholder="Einladungscode (z.B. FAM-AB123)" />
-    <button class="btn-add" onclick="joinFamily()">Beitreten</button>
-  `;
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.id = 'family-name-input';
+  nameInput.placeholder = 'Familienname (z.B. Familie Müller)';
+
+  const createBtn = document.createElement('button');
+  createBtn.classList.add('btn-add');
+  createBtn.textContent = 'Familie erstellen';
+  createBtn.addEventListener('click', createFamily);
+
+  const orP = document.createElement('p');
+  orP.style.cssText = 'margin: 12px 0 8px; text-align:center; color: var(--text-muted)';
+  orP.textContent = '— oder —';
+
+  const codeInput = document.createElement('input');
+  codeInput.type = 'text';
+  codeInput.id = 'join-code-input';
+  codeInput.placeholder = 'Einladungscode (z.B. FAM-AB123)';
+
+  const joinBtn = document.createElement('button');
+  joinBtn.classList.add('btn-add');
+  joinBtn.textContent = 'Beitreten';
+  joinBtn.addEventListener('click', joinFamily);
+
+  addForm.append(descP, subP, nameInput, createBtn, orP, codeInput, joinBtn);
 }
 
 async function createFamily() {
