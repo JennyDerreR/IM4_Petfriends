@@ -1,3 +1,5 @@
+// kids.js
+
 const childrenContainer = document.getElementById("childrenContainer");
 
 let children = [];

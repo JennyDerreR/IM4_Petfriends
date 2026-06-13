@@ -16,8 +16,10 @@ try {
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-        $range    = isset($_GET['range']) ? (int)$_GET['range'] : 1;
-        if (!in_array($range, [1, 7, 30])) $range = 1;
+        $feedingRange  = isset($_GET['feedingRange'])  ? (int)$_GET['feedingRange']  : 1;
+        $humidityRange = isset($_GET['humidityRange']) ? (int)$_GET['humidityRange'] : 1;
+        if (!in_array($feedingRange,  [1, 7, 30])) $feedingRange  = 1;
+        if (!in_array($humidityRange, [1, 7, 30])) $humidityRange = 1;
 
         $animalId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
@@ -48,9 +50,9 @@ try {
 
         $snr = $bowl['snr'];
 
-        // Heute → letzter Wert pro Stunde
-        if ($range === 1) {
-            $stmt = $pdo->prepare("
+        // ── Futter-Chart ────────────────────────────────────────────────────
+        if ($feedingRange === 1) {
+            $stmtF = $pdo->prepare("
                 SELECT
                     DATE_FORMAT(timestamp, '%H:00') as label,
                     SUBSTRING_INDEX(GROUP_CONCAT(filllevel ORDER BY timestamp DESC), ',', 1) as value,
@@ -59,14 +61,12 @@ try {
                 WHERE snr = :snr
                   AND filllevel >= 0
                   AND DATE(timestamp) = CURDATE()
-                GROUP BY HOUR(timestamp), type
+                  AND type LIKE '%ewicht%'
+                GROUP BY HOUR(timestamp)
                 ORDER BY HOUR(timestamp) ASC
             ");
-            $stmt->execute([":snr" => $snr]);
-
         } else {
-            // 7 oder 30 Tage → Durchschnitt pro Tag
-            $stmt = $pdo->prepare("
+            $stmtF = $pdo->prepare("
                 SELECT
                     DATE_FORMAT(DATE(timestamp), '%d.%m') as label,
                     ROUND(AVG(filllevel)) as value,
@@ -74,30 +74,58 @@ try {
                 FROM data
                 WHERE snr = :snr
                   AND filllevel >= 0
-                  AND timestamp >= NOW() - INTERVAL {$range} DAY
-                GROUP BY DATE(timestamp), type
+                  AND timestamp >= NOW() - INTERVAL {$feedingRange} DAY
+                  AND type LIKE '%ewicht%'
+                GROUP BY DATE(timestamp)
                 ORDER BY DATE(timestamp) ASC
             ");
-            $stmt->execute([":snr" => $snr]);
         }
+        $stmtF->execute([":snr" => $snr]);
+        $gewichtLabels = [];
+        $gewichtValues = [];
+        while ($row = $stmtF->fetch(PDO::FETCH_ASSOC)) {
+            $gewichtLabels[] = $row['label'];
+            $gewichtValues[] = (int)$row['value'];
+        }
+        if (empty($gewichtLabels)) { $gewichtLabels[] = date('H:i'); $gewichtValues[] = 0; }
 
-        $gewichtLabels      = [];
-        $gewichtValues      = [];
+        // ── Wasser-Chart ─────────────────────────────────────────────────────
+        if ($humidityRange === 1) {
+            $stmtW = $pdo->prepare("
+                SELECT
+                    DATE_FORMAT(timestamp, '%H:00') as label,
+                    SUBSTRING_INDEX(GROUP_CONCAT(filllevel ORDER BY timestamp DESC), ',', 1) as value,
+                    type
+                FROM data
+                WHERE snr = :snr
+                  AND filllevel >= 0
+                  AND DATE(timestamp) = CURDATE()
+                  AND type LIKE '%eucht%'
+                GROUP BY HOUR(timestamp)
+                ORDER BY HOUR(timestamp) ASC
+            ");
+        } else {
+            $stmtW = $pdo->prepare("
+                SELECT
+                    DATE_FORMAT(DATE(timestamp), '%d.%m') as label,
+                    ROUND(AVG(filllevel)) as value,
+                    type
+                FROM data
+                WHERE snr = :snr
+                  AND filllevel >= 0
+                  AND timestamp >= NOW() - INTERVAL {$humidityRange} DAY
+                  AND type LIKE '%eucht%'
+                GROUP BY DATE(timestamp)
+                ORDER BY DATE(timestamp) ASC
+            ");
+        }
+        $stmtW->execute([":snr" => $snr]);
         $feuchtigkeitLabels = [];
         $feuchtigkeitValues = [];
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $sensorType = strtolower($row['type']);
-            if (strpos($sensorType, 'gewicht') !== false) {
-                $gewichtLabels[]      = $row['label'];
-                $gewichtValues[]      = (int)$row['value'];
-            } elseif (strpos($sensorType, 'feucht') !== false) {
-                $feuchtigkeitLabels[] = $row['label'];
-                $feuchtigkeitValues[] = (int)$row['value'];
-            }
+        while ($row = $stmtW->fetch(PDO::FETCH_ASSOC)) {
+            $feuchtigkeitLabels[] = $row['label'];
+            $feuchtigkeitValues[] = (int)$row['value'];
         }
-
-        if (empty($gewichtLabels))      { $gewichtLabels[]      = date('H:i'); $gewichtValues[]      = 0; }
         if (empty($feuchtigkeitLabels)) { $feuchtigkeitLabels[] = date('H:i'); $feuchtigkeitValues[] = 0; }
 
         echo json_encode([

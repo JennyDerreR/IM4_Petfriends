@@ -1,3 +1,5 @@
+// protectedDOM.js
+
 // ── Auth Check ──────────────────────────────────────────────────────────────
 async function checkAuth() {
   try {

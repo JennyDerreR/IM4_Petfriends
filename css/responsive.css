@@ -539,9 +539,9 @@
   }
 }
 
-/* ------------------------------------------------- DESKTOP (1025px+) ----------------------------------------------------- */
+/* ------------------------------------------------- DESKTOP (1025px – 1440px) ----------------------------------------------------- */
 
-@media (min-width: 1025px) {
+@media (min-width: 1025px) and (max-width: 1440px) {
 
   /* ── Basis ── */
   body {
@@ -656,6 +656,215 @@
   .page {
     max-width: 48rem;
     padding: 3rem 4rem 8.75rem;
+  }
+
+  /* ── Settings ── */
+  #panel-hub,
+  .panel {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  #panel-hub .page-header,
+  .panel .page-header {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .section,
+  .settings-card,
+  .danger-card,
+  .coming-soon-banner,
+  .invite-box,
+  .add-form,
+  .member-list,
+  .theme-options,
+  .btn-logout,
+  .profile-banner {
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .member-list {
+    padding: 0 1.5rem;
+  }
+
+  .card-item {
+    padding: 1.25rem 1.375rem;
+  }
+
+  .card-text strong { font-size: 1.125rem; }
+  .card-text span   { font-size: 0.9375rem; }
+
+  .setting-label strong { font-size: 1.125rem; }
+  .setting-label span   { font-size: 0.9375rem; }
+
+  .setting-row {
+    padding: 1.25rem 1.375rem;
+  }
+
+  .profile-info strong { font-size: 1.1875rem; }
+  .profile-info span   { font-size: 0.9375rem; }
+
+  /* ── Modal ── */
+  .modal-inner {
+    max-width: 48rem;
+  }
+
+  /* ── Charts ── */
+  .canvas-wrapper {
+    height: 300px;
+  }
+
+  .naepfe-card canvas {
+    min-height: 300px !important;
+  }
+
+  /* ── Landing Page ── */
+  .HeroText {
+    margin: 2rem 0;
+  }
+
+  .sectionInfo h2,
+  .sectionInfo p,
+  .sectionCTA {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .navigation .btn-secondary,
+  .navigation .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  .sectionCTA .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+/* ------------------------------------------------- LARGE DESKTOP (1441px+) ----------------------------------------------------- */
+
+@media (min-width: 1441px) {
+
+  /* ── Basis ── */
+  body {
+    font-size: 1.25rem;
+  }
+
+  /* ── Headings ── */
+  .page-header h1,
+  .dashboard-header h1,
+  .animal-hero-name {
+    font-size: 2.5rem;
+  }
+
+  .section-title,
+  .naepfe-card-title {
+    font-size: 1.625rem;
+  }
+
+  .page-header p,
+  .empty-hint,
+  .task-label,
+  .animal-task-label,
+  .naepfe-data-label,
+  .naepfe-data-value {
+    font-size: 1.125rem;
+  }
+
+  /* ── Buttons ── */
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-dashboard,
+  .btn-add-child,
+  .btn-logout,
+  .btn-cancel,
+  .btn-confirm-delete,
+  .modal-btn-cancel,
+  .modal-btn-confirm,
+  .modal-btn-delete {
+    font-size: 1.125rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .btn-danger {
+    font-size: 1.0625rem;
+    padding: 0.875rem 2rem;
+  }
+
+  /* ── Cards ── */
+  .task-card,
+  .child-card,
+  .mini-kid-card,
+  .mini-pet-card {
+    padding: 1.375rem;
+    min-height: 5rem;
+  }
+
+  .naepfe-card {
+    padding: 1.375rem;
+  }
+
+  .task-row,
+  .animal-task-row {
+    padding: 1rem 1.125rem;
+  }
+
+  /* ── Forms ── */
+  .register-animal-form,
+  .register-child-form {
+    padding: 2rem;
+  }
+
+  .register-animal-form input,
+  .register-animal-form select,
+  .register-child-form input[type="text"] {
+    padding: 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  /* ── Modals ── */
+  .kids-modal {
+    max-width: 30rem;
+    padding: 2.5rem 2.25rem;
+  }
+
+  .kids-modal h2 {
+    font-size: 1.5rem;
+  }
+
+  .kids-modal .modal-subtitle {
+    font-size: 1rem;
+  }
+
+  .kids-modal input[type="number"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  /* ── Tier hinzufügen ── */
+  .icon-picker {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* ── Pages ── */
+  .page {
+    max-width: 48rem;
+    padding: 3rem 4rem 8.75rem;
+    margin: 0 auto;
   }
 
   /* ── Settings ── */

@@ -1,3 +1,5 @@
+// naepfedetail.js
+
 // Nur für Wasser: unter 25% = rot, 25-75% = orange, über 75% = grün
 function getWaterColor(level) {
   if (level < 25) return '#DA5045';
@@ -38,7 +40,7 @@ async function loadAnimal() {
 
     // Futter-Kreis: immer grün
     const foodCircle = document.querySelector(".status-circle-new.food");
-    if (foodCircle) foodCircle.style.borderColor = '#7BC47F';
+    if (foodCircle) foodCircle.style.borderColor = 'var(--color-secondary)';
 
     // Wasser-Kreis: Ampelfarbe
     const waterCircle = document.querySelector(".status-circle-new.water");

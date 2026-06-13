@@ -1,3 +1,5 @@
+// naepfe.js
+
 // Nur für Wasser: unter 25% = rot, 25-75% = orange, über 75% = grün
 function getWaterColor(level) {
   if (level < 25) return '#DA5045';

@@ -1,7 +1,4 @@
-/**
- * PetCare - Chart Management System
- * Steuert die Diagramme für die Tierdetailseite.
- */
+// chart.js
 
 (function () {
     "use strict";
@@ -22,29 +19,31 @@ function evaluateCurrentPageAndLoad() {
     const isDetail = !!detailFeedingCanvas;
 
     if (isDetail) {
-        setupRangeButtons();
-        fetchChartData(1);
+        setupRangeButtons("feeding-range-btns", "feedingRange");
+        setupRangeButtons("humidity-range-btns", "humidityRange");
+        fetchChartData();
     }
 }
 
-function setupRangeButtons() {
-    const buttons = document.querySelectorAll(".chart-range-btn");
+function setupRangeButtons(groupClass, stateKey) {
+    const buttons = document.querySelectorAll(`.${groupClass} .chart-range-btn`);
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
             buttons.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            const range = parseInt(btn.dataset.range);
-            fetchChartData(range);
+            window[stateKey] = parseInt(btn.dataset.range);
+            fetchChartData();
         });
     });
 }
 
-function fetchChartData(range) {
-    // Animal-ID aus der URL holen
-    const urlParams = new URLSearchParams(window.location.search);
-    const animalId = urlParams.get('id') || 0;
+function fetchChartData() {
+    const urlParams   = new URLSearchParams(window.location.search);
+    const animalId    = urlParams.get('id') || 0;
+    const feedingRange  = window.feedingRange  || 1;
+    const humidityRange = window.humidityRange || 1;
 
-    fetch(`api/registeranimal.php?range=${range}&id=${animalId}`)
+    fetch(`api/registeranimal.php?feedingRange=${feedingRange}&humidityRange=${humidityRange}&id=${animalId}`)
         .then(response => {
             if (!response.ok) throw new Error(`HTTP-Fehler! Status: ${response.status}`);
             return response.json();

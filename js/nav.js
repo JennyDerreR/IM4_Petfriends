@@ -1,3 +1,5 @@
+// nav.js
+
 // Aktuell aktive Seite im Footer markieren
 const currentPage = window.location.pathname.split('/').pop();
 document.querySelectorAll('.nav-item').forEach(item => {

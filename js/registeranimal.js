@@ -1,3 +1,5 @@
+// registeranimal.js
+
 const ICON_MAP = {
   dog:       'assets/dogicon_v2.png',
   cat:       'assets/caticon_v2.png',

@@ -1,3 +1,5 @@
+// auth.js
+
 async function checkAuth() {
   try {
     const response = await fetch("/api/protected.php", {

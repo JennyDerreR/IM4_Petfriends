@@ -1,3 +1,5 @@
+// settings.js
+
 /* ── Constants ── */
 const COLORS = ['#7C6FF7', '#F4A261', '#2DC8A0', '#F06291', '#5BA4CF'];
 
