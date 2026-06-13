@@ -1,0 +1,228 @@
+#include <Arduino.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <Arduino_JSON.h>
+#include <Preferences.h>
+#include "HX711.h"
+
+// -------------------- Speicher --------------------
+Preferences preferences;
+
+// -------------------- Feuchtigkeitssensor --------------------
+const int FEUCHTIGKEITS_PIN = 4;
+int sensorValue = 0;
+int wasserstand = 0;
+const int voll = 1750;
+const int leer = 1;
+const char* feuchtigkeitsSensorSNR = "PB-001";
+
+// -------------------- Gewichtssensor HX711 --------------------
+const int LOADCELL_DOUT_PIN = 3;
+const int LOADCELL_SCK_PIN = 2;
+HX711 scale;
+
+long offset = 0;
+float calibration_factor = 428.6;
+
+// Zusätzlicher Korrekturwert für Gewicht
+const float gewichtsOffset = -300.0;
+
+const char* gewichtSensorSNR = "PB-001";
+
+bool kalibrierungErzwingen = false;
+
+// -------------------- WLAN --------------------
+const char* ssid = "Pixelvonkili";
+const char* pass = "bF6a61E10f23";
+const char* serverURL = "https://im4.jennifer-derrer.ch/api/load.php";
+
+// -------------------- Zeitsteuerung --------------------
+unsigned long lastTime = 0;
+unsigned long timerDelay = 60000;
+
+// -------------------- Änderungsprüfung --------------------
+float letzterWasserstand = -1;
+float letztesGewicht = -1;
+const float MIN_AENDERUNG = 5.0;
+
+// -------------------- LED --------------------
+int led = LED_BUILTIN;
+bool isWlanConnected = 0;
+
+// Vorwärtsdeklarationen
+void connectWiFi();
+bool is_wlan_connected();
+void sendSensorData(const char* sensorTyp, const char* snr, float filllevel);
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+
+  pinMode(led, OUTPUT);
+  rgbLedWrite(led, 0, 255, 0);
+
+  Serial.println("Starte Sensoren...");
+  scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
+  delay(1000);
+
+  preferences.begin("waage", false);
+
+  if (preferences.isKey("offset") && !kalibrierungErzwingen) {
+    offset = preferences.getLong("offset", 0);
+    Serial.print("Gespeicherten Nullpunkt geladen: ");
+    Serial.println(offset);
+  } else {
+    if (scale.is_ready()) {
+      Serial.println("\n--- EINMALIGE KALIBRIERUNG ---");
+      Serial.println("Bitte Waage komplett LEEREN. Nullpunkt wird in 5 Sekunden gemessen...");
+      delay(5000);
+
+      offset = scale.read_average(50);
+      preferences.putLong("offset", offset);
+
+      Serial.print("Neuer Nullpunkt gemessen und gespeichert: ");
+      Serial.println(offset);
+      Serial.println("---------------------------------\n");
+    } else {
+      Serial.println("HX711 nicht gefunden. Kalibrierung fehlgeschlagen.");
+    }
+  }
+
+  preferences.end();
+
+  Serial.println("Starte WLAN-Verbindung...");
+  connectWiFi();
+}
+
+void loop() {
+  if (!is_wlan_connected()) return;
+
+  if ((millis() - lastTime) > timerDelay) {
+    lastTime = millis();
+
+    // -------------------- Feuchtigkeit lesen --------------------
+    sensorValue = analogRead(FEUCHTIGKEITS_PIN);
+    wasserstand = map(sensorValue, leer, voll, 0, 100);
+    wasserstand = constrain(wasserstand, 0, 100);
+
+    Serial.print("Sensorwert Feuchtigkeit: ");
+    Serial.println(sensorValue);
+    Serial.print("Wasserstand / Filllevel: ");
+    Serial.print(wasserstand);
+    Serial.println("%");
+
+    if (wasserstand < 20) {
+      Serial.println("Bitte Wasser auffüllen.");
+    } else {
+      Serial.println("Es hat noch genug Wasser.");
+    }
+
+    if (letzterWasserstand < 0 || abs(wasserstand - letzterWasserstand) >= MIN_AENDERUNG) {
+      sendSensorData("Feuchtigkeitssensor", feuchtigkeitsSensorSNR, wasserstand);
+      letzterWasserstand = wasserstand;
+    } else {
+      Serial.println("Wasserstand unverändert. Kein Upload.");
+    }
+
+    // -------------------- Gewicht lesen --------------------
+    float gewicht = 0;
+
+    if (scale.is_ready()) {
+      long rohwert = scale.read_average(5);
+
+      gewicht = ((rohwert - offset) / calibration_factor) + gewichtsOffset;
+
+      Serial.print("Rohwert Gewicht: ");
+      Serial.print(rohwert);
+      Serial.print(" | Geladener Offset: ");
+      Serial.print(offset);
+      Serial.print(" | Gewichts-Korrektur: ");
+      Serial.print(gewichtsOffset);
+      Serial.print(" g | Gewicht: ");
+      Serial.print(gewicht, 2);
+      Serial.println(" g");
+
+      if (letztesGewicht < 0 || abs(gewicht - letztesGewicht) >= MIN_AENDERUNG) {
+        sendSensorData("Gewichtssensor", gewichtSensorSNR, gewicht);
+        letztesGewicht = gewicht;
+      } else {
+        Serial.println("Gewicht unverändert. Kein Upload.");
+      }
+    } else {
+      Serial.println("HX711 nicht bereit.");
+    }
+
+    Serial.println();
+  }
+}
+
+void sendSensorData(const char* sensorTyp, const char* snr, float filllevel) {
+  JSONVar dataObject;
+  dataObject["type"] = sensorTyp;
+  dataObject["snr"] = snr;
+  dataObject["filllevel"] = filllevel;
+
+  String jsonString = JSON.stringify(dataObject);
+  Serial.print("Sende JSON: ");
+  Serial.println(jsonString);
+
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin(serverURL);
+    http.addHeader("Content-Type", "application/json");
+
+    int httpResponseCode = http.POST(jsonString);
+
+    if (httpResponseCode > 0) {
+      String response = http.getString();
+      Serial.printf("HTTP Response code: %d\n", httpResponseCode);
+      Serial.println("Response: " + response);
+    } else {
+      Serial.printf("Error on sending POST: %d\n", httpResponseCode);
+    }
+
+    http.end();
+  }
+}
+
+void connectWiFi() {
+  Serial.printf("\nVerbinde mit WLAN %s", ssid);
+  WiFi.begin(ssid, pass);
+
+  int attempts = 0;
+
+  while (WiFi.status() != WL_CONNECTED && attempts < 40) {
+    delay(500);
+    Serial.print(".");
+    attempts++;
+  }
+
+  if (WiFi.status() == WL_CONNECTED) {
+    Serial.printf(
+      "\nWiFi verbunden: SSID: %s, IP-Adresse: %s\n",
+      ssid,
+      WiFi.localIP().toString().c_str()
+    );
+
+    rgbLedWrite(led, 255, 0, 0);
+    isWlanConnected = 1;
+
+  } else {
+    Serial.println("\nWiFi Verbindung fehlgeschlagen!");
+  }
+}
+
+bool is_wlan_connected() {
+  if (WiFi.status() != WL_CONNECTED) {
+    if (isWlanConnected == 1) {
+      Serial.println("WiFi-Verbindung verloren, reconnect...");
+      rgbLedWrite(led, 0, 255, 0);
+      isWlanConnected = 0;
+    }
+
+    connectWiFi();
+    return false;
+  }
+
+  return true;
+}
