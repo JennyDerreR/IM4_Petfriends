@@ -113,7 +113,7 @@
         <div class="copy-confirm" id="copy-confirm">✓ Kopiert!</div>
       </div>
 
-      <div class="settings-card" style="margin: 0 16px 16px;">
+      <div class="settings-card">
         <div id="member-list" class="member-list"></div>
       </div>
 
@@ -259,12 +259,14 @@
     <!-- ═══ DELETE MODAL ═══ -->
     <div class="modal-overlay" id="delete-modal" onclick="closeDeleteModal(event)">
       <div class="modal">
-        <div class="modal-handle"></div>
-        <h2>Account löschen?</h2>
-        <p>Diese Aktion löscht dauerhaft dein Familienkonto, alle Haustiere, alle Aufgaben und den gesamten Token-Verlauf. Dies kann nicht rückgängig gemacht werden.</p>
-        <div class="modal-actions">
-          <button class="btn-cancel" onclick="closeDeleteModal()">Abbrechen</button>
-          <button class="btn-confirm-delete" onclick="confirmDelete()">Ja, löschen</button>
+        <div class="modal-inner">
+          <div class="modal-handle"></div>
+          <h2>Account löschen?</h2>
+          <p>Diese Aktion löscht dauerhaft dein Familienkonto, alle Haustiere, alle Aufgaben und den gesamten Token-Verlauf. Dies kann nicht rückgängig gemacht werden.</p>
+          <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeDeleteModal()">Abbrechen</button>
+            <button class="btn-confirm-delete" onclick="confirmDelete()">Ja, löschen</button>
+          </div>
         </div>
       </div>
     </div>

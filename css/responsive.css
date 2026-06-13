@@ -1,11 +1,13 @@
-/* iPad / Tablet */
+/* ------------------------------------------------- TABLET (431px – 768px) ----------------------------------------------------- */
+
 @media (min-width: 431px) and (max-width: 768px) {
 
+  /* ── Basis ── */
   body {
     font-size: 1.125rem;
   }
 
-  /* Headings */
+  /* ── Headings ── */
   .page-header h1,
   .dashboard-header h1,
   .animal-hero-name {
@@ -26,7 +28,8 @@
     font-size: 1rem;
   }
 
-  /* Buttons grösser */
+  /* ── Buttons ── */
+  button,
   .btn-primary,
   .btn-secondary,
   .btn-dashboard,
@@ -41,12 +44,6 @@
     padding: 0.75rem 1rem;
   }
 
-  button {
-    font-size: 1.0625rem;
-    padding: 0.75rem 1rem;
-  }
-
-  /* Gap bei nebeneinander Buttons */
   .modal-actions,
   .register-child-actions,
   .register-animal-form .actions,
@@ -54,18 +51,16 @@
     gap: 0.875rem;
   }
 
-  /* Landing Page Buttons */
-  .navigation .btn-secondary,
-  .navigation .btn-primary {
-    flex: 1;
-    max-width: 100%;
+  .btn-danger {
+    font-size: 1rem;
+    padding: 0.75rem 1.8rem;
   }
 
-  .sectionCTA .btn-primary {
-    width: clamp(60%, 80vw, 100%);
+  .btn-logout {
+    display: block;
   }
 
-  /* Cards grösser */
+  /* ── Cards ── */
   .task-card,
   .child-card,
   .naepfe-card,
@@ -86,7 +81,7 @@
     padding: 0.875rem 1rem;
   }
 
-  /* Forms grösser */
+  /* ── Forms ── */
   .register-animal-form,
   .register-child-form {
     padding: 1.75rem;
@@ -100,16 +95,6 @@
     font-size: 1.0625rem;
   }
 
-  /* Login / Register */
-  .petcareLogo {
-    width: 75%;
-    max-width: 14rem;
-  }
-
-  .HeroSectionRegister {
-    margin-bottom: 1.5rem;
-  }
-
   label {
     margin-top: 1rem;
   }
@@ -121,13 +106,7 @@
     border-radius: 0.75rem;
   }
 
-  .IconSection img,
-  .IconSection .icon {
-    height: clamp(4rem, 8vw, 4.5rem);
-    max-width: clamp(4rem, 8vw, 4.5rem);
-  }
-
-  /* Modals */
+  /* ── Modals ── */
   .kids-modal {
     max-width: 26rem;
     padding: 2.25rem 2rem;
@@ -146,47 +125,52 @@
     font-size: 1.0625rem;
   }
 
-  /* Card-Items in Panels */
-  .card-item {
-    padding: 1.125rem 1.25rem;
+  /* ── Login / Register ── */
+  .petcareLogo {
+    width: 75%;
+    max-width: 14rem;
   }
 
-  .card-text strong {
-    font-size: 1.0625rem;
+  .HeroSectionRegister {
+    margin-bottom: 1.5rem;
   }
 
-  .card-text span {
-    font-size: 0.875rem;
+  .IconSection img,
+  .IconSection .icon {
+    height: clamp(4rem, 8vw, 4.5rem);
+    max-width: clamp(4rem, 8vw, 4.5rem);
   }
 
-  .setting-label strong {
-    font-size: 1.0625rem;
+  /* ── Landing Page ── */
+  .HeroText {
+    margin: 1.25rem 0;
   }
 
-  .setting-label span {
-    font-size: 0.875rem;
+  .sectionInfo h2,
+  .sectionInfo p,
+  .sectionCTA {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
-  .setting-row {
-    padding: 1.125rem 1.25rem;
+  .navigation .btn-secondary,
+  .navigation .btn-primary {
+    flex: 1;
+    max-width: 100%;
   }
 
-  .profile-info strong {
-    font-size: 1.125rem;
+  .sectionCTA .btn-primary {
+    width: clamp(60%, 80vw, 100%);
   }
 
-  .profile-info span {
-    font-size: 0.875rem;
-  }
-
-  /* Pages */
+  /* ── Pages ── */
   .page {
     max-width: 40rem;
     margin: 0 auto;
     padding: 2rem 2.5rem 8.75rem;
   }
 
-  /* Settings Rand */
+  /* ── Settings ── */
   #panel-hub,
   .panel {
     padding-left: 1.5rem;
@@ -217,17 +201,23 @@
     margin-right: auto;
   }
 
-  /* Danger Button mitgrösser */
-  .btn-danger {
-    font-size: 1rem;
-    padding: 0.75rem 1.8rem;
+  .card-item {
+    padding: 1.125rem 1.25rem;
   }
 
-  .btn-logout {
-    display: block;
+  .card-text strong { font-size: 1.0625rem; }
+  .card-text span   { font-size: 0.875rem; }
+
+  .setting-label strong { font-size: 1.0625rem; }
+  .setting-label span   { font-size: 0.875rem; }
+
+  .setting-row {
+    padding: 1.125rem 1.25rem;
   }
 
-  /* Settings: Abstand zwischen Sektionen */
+  .profile-info strong { font-size: 1.125rem; }
+  .profile-info span   { font-size: 0.875rem; }
+
   .section-label {
     margin-bottom: 0.5rem;
     padding-left: 0.25rem;
@@ -238,11 +228,9 @@
     margin-bottom: 0.5rem;
   }
 
-  .section-gap {
-    height: 1rem;
-  }
+  .section-gap { height: 1rem; }
 
-  /* Napfdetail */
+  /* ── Näpfe Detail ── */
   .animal-hero {
     padding: 3rem 2rem 2rem;
     margin-left: -2.5rem;
@@ -256,7 +244,11 @@
     left: 2.5rem;
   }
 
-  /* Icon-Picker – 3 Spalten bis 556px */
+  .naepfe-card canvas {
+    min-height: 240px !important;
+  }
+
+  /* ── Tier hinzufügen ── */
   .icon-picker {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
@@ -267,22 +259,19 @@
   .icon-option {
     min-width: 4rem;
   }
-
-  /* Charts */
-  .naepfe-card canvas {
-    min-height: 240px !important;
-  }
 }
 
-/* Icon-Picker 5 Spalten ab 556px */
+/* ── Icon-Picker 5 Spalten ab 556px ── */
 @media (min-width: 556px) and (max-width: 768px) {
   .icon-picker {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
-/* Alles statisch ab 581px */
+/* ── Statisch ab 581px ── */
 @media (min-width: 581px) {
+
+  /* ── Footer ── */
   .bottom-nav {
     justify-content: center;
     gap: 3rem;
@@ -290,22 +279,10 @@
     padding-right: 1rem;
   }
 
+  /* ── Login / Register ── */
   .petcareLogo {
     width: 80%;
     max-width: 14rem;
-  }
-
-  .IconSection {
-    justify-content: center;
-    gap: 2.95rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .IconSection img,
-  .IconSection .icon {
-    height: 4rem;
-    max-width: 4.5rem;
   }
 
   .HeroSectionRegister,
@@ -322,6 +299,20 @@
     margin-right: auto;
   }
 
+  .IconSection {
+    justify-content: center;
+    gap: 2.95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .IconSection img,
+  .IconSection .icon {
+    height: 4rem;
+    max-width: 4.5rem;
+  }
+
+  /* ── Landing Page ── */
   .navigation {
     justify-content: center;
   }
@@ -337,17 +328,603 @@
   }
 }
 
-/* Small Desktop */
+@media (min-width: 769px) {
+  .modal {
+    max-width: 100%;
+    border-radius: 1.5rem;
+  }
+
+  .modal-inner {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+}
+
+/* ------------------------------------------------- SMALL DESKTOP (769px – 1024px) ----------------------------------------------------- */
+
 @media (min-width: 769px) and (max-width: 1024px) {
 
+  /* ── Basis ── */
+  body {
+    font-size: 1.1875rem;
+  }
+
+  /* ── Headings ── */
+  .page-header h1,
+  .dashboard-header h1,
+  .animal-hero-name {
+    font-size: 2.25rem;
+  }
+
+  .section-title,
+  .naepfe-card-title {
+    font-size: 1.5rem;
+  }
+
+  .page-header p,
+  .empty-hint,
+  .task-label,
+  .animal-task-label,
+  .naepfe-data-label,
+  .naepfe-data-value {
+    font-size: 1.0625rem;
+  }
+
+  /* ── Buttons ── */
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-dashboard,
+  .btn-add-child,
+  .btn-logout,
+  .btn-cancel,
+  .btn-confirm-delete,
+  .modal-btn-cancel,
+  .modal-btn-confirm,
+  .modal-btn-delete {
+    font-size: 1.125rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .btn-danger {
+    font-size: 1.0625rem;
+    padding: 0.875rem 2rem;
+  }
+
+  /* ── Cards ── */
+  .task-card,
+  .child-card,
+  .naepfe-card,
+  .mini-kid-card,
+  .mini-pet-card {
+    padding: 1.375rem;
+  }
+
+  .task-row,
+  .animal-task-row {
+    padding: 1rem 1.125rem;
+  }
+
+  /* ── Forms ── */
+  .register-animal-form,
+  .register-child-form {
+    padding: 2rem;
+  }
+
+  .register-animal-form input,
+  .register-animal-form select,
+  .register-child-form input[type="text"] {
+    padding: 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  /* ── Modals ── */
+  .kids-modal {
+    max-width: 30rem;
+    padding: 2.5rem 2.25rem;
+  }
+
+  .kids-modal h2 {
+    font-size: 1.5rem;
+  }
+
+  .kids-modal .modal-subtitle {
+    font-size: 1rem;
+  }
+
+  .kids-modal input[type="number"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  /* ── Landing Page ── */
+  .HeroText {
+    margin: 1.5rem 0;
+  }
+
+  .sectionInfo h2,
+  .sectionInfo p,
+  .sectionCTA {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* ── Pages ── */
+  .page {
+    max-width: 44rem;
+    padding: 2.5rem 3rem 8.75rem;
+  }
+
+  /* ── Settings ── */
+  #panel-hub,
+  .panel {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  #panel-hub .page-header,
+  .panel .page-header {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+   .section,
+  .settings-card,
+  .danger-card,
+  .coming-soon-banner,
+  .invite-box,
+  .add-form,
+  .member-list,
+  .theme-options,
+  .btn-logout,
+  .profile-banner {
+    max-width: 44rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .member-list {
+    padding: 0 1.5rem;
+  }
+
+  .card-item {
+    padding: 1.25rem 1.375rem;
+  }
+
+  .card-text strong { font-size: 1.125rem; }
+  .card-text span   { font-size: 0.9375rem; }
+
+  .setting-label strong { font-size: 1.125rem; }
+  .setting-label span   { font-size: 0.9375rem; }
+
+  .setting-row {
+    padding: 1.25rem 1.375rem;
+  }
+
+  .profile-info strong { font-size: 1.1875rem; }
+  .profile-info span   { font-size: 0.9375rem; }
+
+  /* ── Näpfe Detail ── */
+  .naepfe-card canvas {
+    min-height: 280px !important;
+  }
+
+  /* ── Tier hinzufügen ── */
+  .icon-picker {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
-/* Desktop */
+/* ------------------------------------------------- DESKTOP (1025px – 1440px) ----------------------------------------------------- */
+
+/* ------------------------------------------------- DESKTOP (1025px – 1440px) ----------------------------------------------------- */
+
 @media (min-width: 1025px) and (max-width: 1440px) {
 
+  /* ── Basis ── */
+  body {
+    font-size: 1.25rem;
+  }
+
+  /* ── Headings ── */
+  .page-header h1,
+  .dashboard-header h1,
+  .animal-hero-name {
+    font-size: 2.5rem;
+  }
+
+  .section-title,
+  .naepfe-card-title {
+    font-size: 1.625rem;
+  }
+
+  .page-header p,
+  .empty-hint,
+  .task-label,
+  .animal-task-label,
+  .naepfe-data-label,
+  .naepfe-data-value {
+    font-size: 1.125rem;
+  }
+
+  /* ── Buttons gleich wie Small Desktop ── */
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-dashboard,
+  .btn-add-child,
+  .btn-logout,
+  .btn-cancel,
+  .btn-confirm-delete,
+  .modal-btn-cancel,
+  .modal-btn-confirm,
+  .modal-btn-delete {
+    font-size: 1.125rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .btn-danger {
+    font-size: 1.0625rem;
+    padding: 0.875rem 2rem;
+  }
+
+  /* ── Cards gleich wie Small Desktop ── */
+  .task-card,
+  .child-card,
+  .naepfe-card,
+  .mini-kid-card,
+  .mini-pet-card {
+    padding: 1.375rem;
+    min-height: 5rem;
+  }
+
+  .task-row,
+  .animal-task-row {
+    padding: 1rem 1.125rem;
+  }
+
+  /* ── Forms gleich wie Small Desktop ── */
+  .register-animal-form,
+  .register-child-form {
+    padding: 2rem;
+  }
+
+  .register-animal-form input,
+  .register-animal-form select,
+  .register-child-form input[type="text"] {
+    padding: 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  /* ── Modals ── */
+  .kids-modal {
+    max-width: 30rem;
+    padding: 2.5rem 2.25rem;
+  }
+
+  .kids-modal h2 {
+    font-size: 1.5rem;
+  }
+
+  .kids-modal .modal-subtitle {
+    font-size: 1rem;
+  }
+
+  .kids-modal input[type="number"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  /* ── Tier hinzufügen ── */
+  .icon-picker {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* ── Pages ── */
+  .page {
+    max-width: 48rem;
+    padding: 3rem 4rem 8.75rem;
+  }
+
+  /* ── Settings ── */
+  #panel-hub,
+  .panel {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  #panel-hub .page-header,
+  .panel .page-header {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .section,
+  .settings-card,
+  .danger-card,
+  .coming-soon-banner,
+  .invite-box,
+  .add-form,
+  .member-list,
+  .theme-options,
+  .btn-logout,
+  .profile-banner {
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .member-list {
+    padding: 0 1.5rem;
+  }
+
+  .card-item {
+    padding: 1.25rem 1.375rem;
+  }
+
+  .card-text strong { font-size: 1.125rem; }
+  .card-text span   { font-size: 0.9375rem; }
+
+  .setting-label strong { font-size: 1.125rem; }
+  .setting-label span   { font-size: 0.9375rem; }
+
+  .setting-row {
+    padding: 1.25rem 1.375rem;
+  }
+
+  .profile-info strong { font-size: 1.1875rem; }
+  .profile-info span   { font-size: 0.9375rem; }
+
+  /* ── Modal ── */
+  .modal-inner {
+    max-width: 48rem;
+  }
+
+  /* ── Charts ── */
+  .naepfe-card canvas {
+    min-height: 300px !important;
+  }
+
+  /* ── Landing Page ── */
+  .HeroText {
+    margin: 2rem 0;
+  }
+
+  .sectionInfo h2,
+  .sectionInfo p,
+  .sectionCTA {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .navigation .btn-secondary,
+  .navigation .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  .sectionCTA .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
 }
 
-/* Large Desktop */
+/* ------------------------------------------------- LARGE DESKTOP (1441px+) ----------------------------------------------------- */
+
 @media (min-width: 1441px) {
 
+  /* ── Basis ── */
+  body {
+    font-size: 1.25rem;
+  }
+
+  /* ── Headings ── */
+  .page-header h1,
+  .dashboard-header h1,
+  .animal-hero-name {
+    font-size: 2.5rem;
+  }
+
+  .section-title,
+  .naepfe-card-title {
+    font-size: 1.625rem;
+  }
+
+  .page-header p,
+  .empty-hint,
+  .task-label,
+  .animal-task-label,
+  .naepfe-data-label,
+  .naepfe-data-value {
+    font-size: 1.125rem;
+  }
+
+  /* ── Buttons gleich wie Desktop ── */
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-dashboard,
+  .btn-add-child,
+  .btn-logout,
+  .btn-cancel,
+  .btn-confirm-delete,
+  .modal-btn-cancel,
+  .modal-btn-confirm,
+  .modal-btn-delete {
+    font-size: 1.125rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .btn-danger {
+    font-size: 1.0625rem;
+    padding: 0.875rem 2rem;
+  }
+
+  /* ── Cards gleich wie Desktop ── */
+  .task-card,
+  .child-card,
+  .naepfe-card,
+  .mini-kid-card,
+  .mini-pet-card {
+    padding: 1.375rem;
+    min-height: 5rem;
+  }
+
+  .task-row,
+  .animal-task-row {
+    padding: 1rem 1.125rem;
+  }
+
+  /* ── Forms gleich wie Desktop ── */
+  .register-animal-form,
+  .register-child-form {
+    padding: 2rem;
+  }
+
+  .register-animal-form input,
+  .register-animal-form select,
+  .register-child-form input[type="text"] {
+    padding: 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  /* ── Modals ── */
+  .kids-modal {
+    max-width: 30rem;
+    padding: 2.5rem 2.25rem;
+  }
+
+  .kids-modal h2 {
+    font-size: 1.5rem;
+  }
+
+  .kids-modal .modal-subtitle {
+    font-size: 1rem;
+  }
+
+  .kids-modal input[type="number"] {
+    padding: 1rem 1.125rem;
+    font-size: 1.125rem;
+  }
+
+  /* ── Tier hinzufügen ── */
+  .icon-picker {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* ── Pages ── */
+  .page {
+    max-width: 48rem;
+    padding: 3rem 4rem 8.75rem;
+    margin: 0 auto;
+  }
+
+  /* ── Settings ── */
+  #panel-hub,
+  .panel {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  #panel-hub .page-header,
+  .panel .page-header {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .section,
+  .settings-card,
+  .danger-card,
+  .coming-soon-banner,
+  .invite-box,
+  .add-form,
+  .member-list,
+  .theme-options,
+  .btn-logout,
+  .profile-banner {
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .member-list {
+    padding: 0 1.5rem;
+  }
+
+  .card-item {
+    padding: 1.25rem 1.375rem;
+  }
+
+  .card-text strong { font-size: 1.125rem; }
+  .card-text span   { font-size: 0.9375rem; }
+
+  .setting-label strong { font-size: 1.125rem; }
+  .setting-label span   { font-size: 0.9375rem; }
+
+  .setting-row {
+    padding: 1.25rem 1.375rem;
+  }
+
+  .profile-info strong { font-size: 1.1875rem; }
+  .profile-info span   { font-size: 0.9375rem; }
+
+  /* ── Modal ── */
+  .modal-inner {
+    max-width: 48rem;
+  }
+
+  /* ── Charts ── */
+  .naepfe-card canvas {
+    min-height: 300px !important;
+  }
+
+  /* ── Landing Page ── */
+  .HeroText {
+    margin: 2rem 0;
+  }
+
+  .sectionInfo h2,
+  .sectionInfo p,
+  .sectionCTA {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .navigation .btn-secondary,
+  .navigation .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  .sectionCTA .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
 }
