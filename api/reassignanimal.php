@@ -18,9 +18,6 @@ try {
     $new_child_id = (int) $data["new_child_id"];
     $family_id    = (int) $_SESSION["family_id"];
 
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     // Prüfen ob neues Kind zur Familie gehört
     $checkChild = $pdo->prepare("SELECT id FROM kids WHERE id = :id AND family_id = :family_id");
     $checkChild->execute([":id" => $new_child_id, ":family_id" => $family_id]);

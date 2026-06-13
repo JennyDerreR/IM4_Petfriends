@@ -15,9 +15,6 @@ try {
     $family_id = (int) $_SESSION["family_id"];
     $today     = date("Y-m-d");
 
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $stmt = $pdo->prepare("
         SELECT id, animal_name, type, snr, neededgramms, child_id, icon
         FROM petbowls
@@ -46,15 +43,14 @@ try {
         $waterLevel = 0;
 
         foreach ($rows as $row) {
-            if ($row["type"] === "Gewichtssensor"     && $foodLevel  === 0) $foodLevel  = (int)$row["filllevel"];
+            if ($row["type"] === "Gewichtssensor"      && $foodLevel  === 0) $foodLevel  = (int)$row["filllevel"];
             if ($row["type"] === "Feuchtigkeitssensor" && $waterLevel === 0) $waterLevel = (int)$row["filllevel"];
         }
 
         $animal["food_level"]  = $foodLevel;
         $animal["water_level"] = $waterLevel;
 
-        // Prüfen ob Aufgaben heute schon erledigt und Token vergeben
-        // Futter
+        // Prüfen ob Aufgaben heute schon erledigt
         $foodCheck = $pdo->prepare("
             SELECT id FROM task_completions
             WHERE animal_id = :animal_id AND task_type = 'food' AND completed_date = :today
@@ -63,7 +59,6 @@ try {
         $foodCheck->execute([":animal_id" => $animal["id"], ":today" => $today]);
         $animal["food_done_today"] = !!$foodCheck->fetch();
 
-        // Wasser
         $waterCheck = $pdo->prepare("
             SELECT id FROM task_completions
             WHERE animal_id = :animal_id AND task_type = 'water' AND completed_date = :today

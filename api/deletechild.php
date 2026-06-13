@@ -17,9 +17,6 @@ try {
     $kid_id    = (int) $data["kid_id"];
     $family_id = (int) $_SESSION["family_id"];
 
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     // Prüfen ob Kind noch Tiere hat
     $checkAnimals = $pdo->prepare("
         SELECT id, animal_name FROM petbowls

@@ -17,9 +17,6 @@ try {
     $animal_id = (int) $data["animal_id"];
     $family_id = (int) $_SESSION["family_id"];
 
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $stmt = $pdo->prepare("
         DELETE FROM petbowls
         WHERE id = :animal_id AND family_id = :family_id
